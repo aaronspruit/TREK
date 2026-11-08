@@ -3,7 +3,7 @@ import type { BudgetItemsRepository } from '../../db/repositories/BudgetItems.re
 import type { Reservation, User } from '../../types';
 import { DomainError } from '../common/domain-error';
 import { restTripWriter, type TripWriter } from '../common/trip-writer';
-import { AirtrailLinkService } from '../integrations/airtrail-link.service';
+import { AirtrailLinkService, isUnlinkedFlight } from '../integrations/airtrail-link.service';
 import { RealtimeService } from '../realtime/realtime.service';
 import {
   ReservationsService,
@@ -53,7 +53,14 @@ export class ReservationWritesService {
     return restTripWriter(this.realtime, tripId, user, socketId);
   }
 
-  /** A new booking with its linked cost, and the stay a hotel booking brings. */
+  /**
+   * A new booking with its linked cost, and the stay a hotel booking brings. A new
+   * flight goes to the writer's AirTrail, when they opted in.
+   *
+   * @txIndependent the booking and its cost commit in one transaction; the AirTrail
+   * create after it is network I/O against another system and writes its own link,
+   * so it never shares that transaction.
+   */
   async createBooking(tripId: string, data: CreateReservationData, entry: BudgetEntry, writer: TripWriter) {
     const { reservation, accommodationCreated, costEvents } = await this.reservations.createWithCost(
       tripId,
@@ -63,8 +70,26 @@ export class ReservationWritesService {
     if (accommodationCreated) writer.events.emit('accommodation:created', {});
     this.sendCost(costEvents, writer);
     writer.events.emit('reservation:created', { reservation });
+    this.createInAirtrail(reservation, tripId, writer, 'create');
     await this.reservations.notifyBookingChange(tripId, writer.userId, data.title, data.type ?? '');
     return { reservation };
+  }
+
+  /**
+   * A flight booking with no AirTrail link goes to AirTrail (see
+   * AirtrailLinkService.createInAirtrail for whose). Fire and forget, like the
+   * push: it is network I/O against another system, after the booking committed.
+   */
+  private createInAirtrail(
+    reservation: { id: unknown; type?: unknown; external_source?: unknown; external_id?: unknown },
+    tripId: string,
+    writer: TripWriter,
+    trigger: 'create' | 'edit',
+  ): void {
+    if (!isUnlinkedFlight(reservation)) return;
+    void this.airtrailLink
+      .createInAirtrail(Number(reservation.id), Number(tripId), writer.userId, trigger)
+      .catch(() => {});
   }
 
   /**
@@ -100,7 +125,8 @@ export class ReservationWritesService {
    * An edit of a booking the caller already read (`current`), with the costs it
    * re-files. A stay the edit wrote for the first time is `accommodation:created`,
    * one it changed `accommodation:updated`. A linked AirTrail flight is pushed
-   * back to AirTrail, or the next pull would overwrite the edit.
+   * back to AirTrail, or the next pull would overwrite the edit. A flight that
+   * was never linked is created in AirTrail, as on a new booking.
    *
    * @txIndependent the booking write commits in one transaction; the AirTrail
    * push after it is network I/O against another system and may detach the link
@@ -123,6 +149,9 @@ export class ReservationWritesService {
     // Fire and forget, under the importer's credentials (#214).
     if (reservation.external_source === 'airtrail' && reservation.sync_enabled) {
       void this.airtrailLink.pushReservationToAirtrail(Number(reservation.id), Number(tripId)).catch(() => {});
+    } else {
+      // A booking saved without airports can be completed by an edit.
+      this.createInAirtrail(reservation, tripId, writer, 'edit');
     }
     await this.reservations.notifyBookingChange(
       tripId,

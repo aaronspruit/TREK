@@ -332,7 +332,9 @@ describe('service errors are translated into the RPC taxonomy', () => {
       'p',
       ALL,
       makeDeps(),
-      createTestPluginRegistry([new ReservationsRpc(reservations, realtime(), guards)]),
+      createTestPluginRegistry([
+        new ReservationsRpc(reservations, realtime(), guards, { createInAirtrail: async () => undefined } as never),
+      ]),
     );
     await host.dispatch(req('reservations.delete', { tripId: 1, reservationId: 5 }), 42);
     expect(notifyBookingChange).toHaveBeenCalledWith(1, 42, 'Hotel', '');
@@ -353,7 +355,9 @@ describe('service errors are translated into the RPC taxonomy', () => {
       'p',
       ALL,
       makeDeps(),
-      createTestPluginRegistry([new ReservationsRpc(reservations, realtime(), guards)]),
+      createTestPluginRegistry([
+        new ReservationsRpc(reservations, realtime(), guards, { createInAirtrail: async () => undefined } as never),
+      ]),
     );
     await host.dispatch(
       req('reservations.update', { tripId: 1, reservationId: 5, input: { title: 'Renamed', type: 'lodging' } }),
@@ -416,7 +420,7 @@ describe('every schema-validated method rejects a payload its schema refuses', (
       new PackingRpc(anything, realtime(), guards),
       new TripsRpc(anything, anything, anything, anything, realtime(), guards, anything, anything, em),
       new AccommodationsRpc(anything, realtime(), guards),
-      new ReservationsRpc(anything, realtime(), guards),
+      new ReservationsRpc(anything, realtime(), guards, anything),
     ]);
     return new PluginRpcHost('p', ALL, makeDeps(), registry);
   }

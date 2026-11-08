@@ -610,7 +610,7 @@ export async function createPluginRpcHostParts(
       (await sharedTestOrm(db)).em,
     ),
     new CostsRpc(budget, new TripAccessService(await createTestTripsRepo(db)), realtime, guards, membership),
-    new ReservationsRpc(reservations, realtime, guards),
+    new ReservationsRpc(reservations, realtime, guards, { createInAirtrail: async () => undefined } as never),
     new CollabRpc(collab, realtime, guards),
     new AtlasRpc(atlas, guards),
     new VacayRpc(vacay, guards),

@@ -12,7 +12,8 @@ const trip = { id: 5, user_id: 1 };
 
 // Fire-and-forget write-back trigger, injected since airtrail.bridge died.
 const pushReservationToAirtrail = vi.fn().mockResolvedValue(undefined);
-const airtrailLink = { pushReservationToAirtrail } as unknown as AirtrailLinkService;
+const createInAirtrail = vi.fn().mockResolvedValue(undefined);
+const airtrailLink = { pushReservationToAirtrail, createInAirtrail } as unknown as AirtrailLinkService;
 
 function makeService(overrides: Partial<ReservationsService> = {}): ReservationsService {
   return {
@@ -88,6 +89,18 @@ describe('ReservationsController (parity with the legacy /api/trips/:tripId/rese
         ['5', 'reservation:created', { reservation: { id: 9 } }, 'sock'],
       ]);
       expect(notifyBookingChange).toHaveBeenCalledWith('5', user.id, 'Hotel', 'lodging');
+    });
+
+    it('creates a new flight booking in AirTrail under the writer, and no other booking type', async () => {
+      createInAirtrail.mockClear();
+      const createWithCost = vi
+        .fn()
+        .mockReturnValueOnce({ reservation: { id: 9, type: 'flight' }, accommodationCreated: false, costEvents: [] })
+        .mockReturnValueOnce({ reservation: { id: 10, type: 'train' }, accommodationCreated: false, costEvents: [] });
+      const svc = makeService({ createWithCost } as Partial<ReservationsService>);
+      await controllerOver(svc).create(user, '5', { title: 'AY1502', type: 'flight' }, 'sock');
+      await controllerOver(svc).create(user, '5', { title: 'IC 2', type: 'train' }, 'sock');
+      expect(createInAirtrail.mock.calls).toEqual([[9, 5, user.id, 'create']]);
     });
 
     it('400s on a body id belonging to another trip, without writing', async () => {
@@ -248,6 +261,25 @@ describe('ReservationsController (parity with the legacy /api/trips/:tripId/rese
       await controllerOver(svc).update(user, '5', '9', { notes: 'Gate B' }, 'sock');
       await controllerOver(svc).update(user, '5', '9', { notes: 'Gate C' }, 'sock');
       expect(pushReservationToAirtrail.mock.calls).toEqual([[9, 5]]);
+    });
+
+    it('creates an unlinked flight in AirTrail after an edit, and never a linked or detached one', async () => {
+      createInAirtrail.mockClear();
+      const updateWithCost = vi
+        .fn()
+        .mockReturnValueOnce({ reservation: { id: 9, type: 'flight' }, accommodationChanged: false, costEvents: [] })
+        .mockReturnValueOnce({
+          reservation: { id: 9, type: 'flight', external_source: 'airtrail', external_id: '42', sync_enabled: 0 },
+          accommodationChanged: false,
+          costEvents: [],
+        });
+      const svc = makeService({
+        getReservation: vi.fn().mockReturnValue({ title: 'AY1502', type: 'flight' }),
+        updateWithCost,
+      } as Partial<ReservationsService>);
+      await controllerOver(svc).update(user, '5', '9', { notes: 'Gate B' }, 'sock');
+      await controllerOver(svc).update(user, '5', '9', { notes: 'Gate C' }, 'sock');
+      expect(createInAirtrail.mock.calls).toEqual([[9, 5, user.id, 'edit']]);
     });
 
     it('400s on a body id belonging to another trip, without writing', async () => {

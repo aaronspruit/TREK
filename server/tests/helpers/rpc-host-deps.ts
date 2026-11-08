@@ -83,7 +83,7 @@ export function allRpcControllers(): object[] {
       anyService(),
     ),
     new CostsRpc(anyService(), anyService(), anyService(), anyService(), anyService()),
-    new ReservationsRpc(anyService(), anyService(), anyService()),
+    new ReservationsRpc(anyService(), anyService(), anyService(), anyService()),
     new AccommodationsRpc(anyService(), anyService(), anyService()),
     new CollabRpc(anyService(), anyService(), anyService()),
     new AtlasRpc(anyService(), anyService()),

@@ -126,7 +126,8 @@ describe('AssistantBookingImportService', () => {
     const run = await t.service.apply(7, 5, { ...ITEM });
     const reservation = { id: 81, title: 'ICE 123', type: 'train', day_id: 31 };
     expect(run).toEqual({ ok: true, value: { reservation } });
-    expect(t.bookingImport.confirm).toHaveBeenCalledWith('5', [ITEM], undefined);
+    // The applying user imports, so an imported flight goes to their AirTrail.
+    expect(t.bookingImport.confirm).toHaveBeenCalledWith('5', [ITEM], undefined, 7);
     expect(t.trips.findAccessible).toHaveBeenCalledWith(5, 7);
     expect(t.guards.hasTripPermission).toHaveBeenCalledWith('reservation_edit', 5, 7);
   });

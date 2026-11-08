@@ -250,4 +250,14 @@ export class AirtrailClient {
     const data = await parseJson<{ id?: number }>(resp);
     return { id: data.id };
   }
+
+  /** POST /api/flight/delete. Removes a flight TREK made for a create that then failed. */
+  async deleteFlight(creds: AirtrailCreds, id: number): Promise<void> {
+    const resp = await request(creds, '/flight/delete', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id }),
+    });
+    if (!resp.ok) throw new AirtrailRequestError(`AirTrail delete failed (HTTP ${resp.status})`, resp.status);
+  }
 }

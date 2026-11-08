@@ -84,6 +84,8 @@ function makeServices(): { link: AirtrailLinkService; sync: AirtrailSyncService 
     { getReservationWithJoins } as unknown as ReservationsReadService,
     client,
     airtrail,
+    {} as never,
+    {} as never,
   );
   const sync = new AirtrailSyncService(
     reservationsRepo,

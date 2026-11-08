@@ -2,6 +2,7 @@ import { Days } from '../../db/entities/Days.entity';
 import { Reservations } from '../../db/entities/Reservations.entity';
 import { AddonsModule } from '../addons/addons.module';
 import { BudgetModule } from '../budget/budget.module';
+import { AirtrailCoreModule } from '../integrations/airtrail-core.module';
 import { LlmParseModule } from '../llm-parse/llm-parse.module';
 import { MapsModule } from '../maps/maps.module';
 import { PermissionsModule } from '../permissions/permissions.module';
@@ -23,6 +24,7 @@ import { Module } from '@nestjs/common';
     KitineraryExtractorModule,
     LlmParseModule,
     ReservationsModule,
+    AirtrailCoreModule,
     PermissionsModule,
     BudgetModule,
     AddonsModule,

@@ -3,6 +3,7 @@ import { BadParams, ForbiddenResource } from '../../nest-rpc/rpc-errors';
 import { PluginController, PluginMethod } from '../../nest-rpc/rpc-kit/decorators';
 import type { PluginRpcContext } from '../../nest-rpc/rpc-kit/types';
 import { num, schemaMessage } from '../../nest-rpc/rpc-params';
+import { AirtrailLinkService } from '../integrations/airtrail-link.service';
 import { RealtimeService } from '../realtime/realtime.service';
 import { ReservationsService } from './reservations.service';
 import {
@@ -27,8 +28,13 @@ export class ReservationsRpc {
     private readonly reservations: ReservationsService,
     private readonly realtime: RealtimeService,
     private readonly guards: PluginGuards,
+    private readonly airtrailLink: AirtrailLinkService,
   ) {}
 
+  /**
+   * @txIndependent the booking and its cost commit in one transaction; the AirTrail
+   * create after it is network I/O against another system and writes its own link.
+   */
   @PluginMethod('reservations.create', { permission: 'db:write:reservations' })
   async create(params: Record<string, unknown>, ctx: PluginRpcContext): Promise<unknown> {
     const tripId = num(params.tripId, 'tripId');
@@ -50,6 +56,10 @@ export class ReservationsRpc {
     if (accommodationCreated) this.realtime.broadcast(tripId, 'accommodation:created', {}, undefined);
     this.reservations.announceCost(tripId, costEvents, undefined);
     this.realtime.broadcast(tripId, 'reservation:created', { reservation }, undefined);
+    // A new flight goes to the acting user's AirTrail, as from the web app.
+    if (reservation.type === 'flight') {
+      void this.airtrailLink.createInAirtrail(Number(reservation.id), tripId, actor, 'create').catch(() => {});
+    }
     await this.notifyBooking(actor, tripId, i.title ?? '', i.type ?? '');
     return reservation;
   }

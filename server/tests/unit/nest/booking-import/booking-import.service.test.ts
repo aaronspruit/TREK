@@ -61,6 +61,7 @@ function make(opts: { kit?: boolean; ai?: boolean; extract?: any; parse?: any })
       places as never,
       uowStub as never,
       origins as never,
+      {} as never,
     ),
     extractor,
     llmParse,
@@ -268,6 +269,7 @@ describe('BookingImportService.confirm venue website (#2483)', () => {
       places as never,
       uowStub as never,
       origins as never,
+      {} as never,
     );
     const item = (website?: string) => ({
       type: 'restaurant',
@@ -301,6 +303,7 @@ describe('BookingImportService.confirm writes the booking with its cost', () => 
       budget?: boolean;
       failWrite?: boolean;
       freeze?: (tripId: string, entry: { currency?: string | null; exchange_rate?: number }) => Promise<void>;
+      type?: string;
     } = {},
   ) {
     const order: string[] = [];
@@ -309,7 +312,12 @@ describe('BookingImportService.confirm writes the booking with its cost', () => 
       createWithCostInTx: vi.fn(async () => {
         if (opts.failWrite) throw new Error('write failed');
         order.push('write');
-        return { reservation: { id: 1 }, accommodationCreated: false, costEvents, stayMirror: {} };
+        return {
+          reservation: { id: 1, ...(opts.type ? { type: opts.type } : {}) },
+          accommodationCreated: false,
+          costEvents,
+          stayMirror: {},
+        };
       }),
       announceStayMirror: vi.fn(async () => {
         order.push('announceStayMirror');
@@ -348,6 +356,7 @@ describe('BookingImportService.confirm writes the booking with its cost', () => 
         order.push(event);
       }),
     };
+    const airtrailLink = { createInAirtrail: vi.fn(async () => undefined) };
     const svc = new BookingImportService(
       {} as never,
       {} as never,
@@ -362,8 +371,9 @@ describe('BookingImportService.confirm writes the booking with its cost', () => 
       places as never,
       uow as never,
       origins as never,
+      airtrailLink as never,
     );
-    return { svc, reservations, budget, places, realtime, order, costEvents };
+    return { svc, reservations, budget, places, realtime, order, costEvents, airtrailLink };
   }
   const priced = {
     type: 'train',
@@ -398,6 +408,19 @@ describe('BookingImportService.confirm writes the booking with its cost', () => 
       'announceStayMirror',
       'announceCost',
     ]);
+  });
+
+  it('sends an imported flight to the AirTrail of the user who imports, and nothing else', async () => {
+    const flight = makeConfirm({ type: 'flight' });
+    await flight.svc.confirm('5', [{ ...priced, type: 'flight' } as never], undefined, 3);
+    expect(flight.airtrailLink.createInAirtrail).toHaveBeenCalledWith(1, 5, 3, 'create');
+
+    const train = makeConfirm({ type: 'train' });
+    await train.svc.confirm('5', [priced as never], undefined, 3);
+    const noUser = makeConfirm({ type: 'flight' });
+    await noUser.svc.confirm('5', [{ ...priced, type: 'flight' } as never], undefined);
+    expect(train.airtrailLink.createInAirtrail).not.toHaveBeenCalled();
+    expect(noUser.airtrailLink.createInAirtrail).not.toHaveBeenCalled();
   });
 
   it('BOOKING-IMPORT-2895: a rail ticket with changes is one booking with one cost for its fare', async () => {

@@ -1,7 +1,9 @@
 import { AppSettings } from '../../db/entities/AppSettings.entity';
+import { Days } from '../../db/entities/Days.entity';
 import { ReservationEndpoints } from '../../db/entities/ReservationEndpoints.entity';
 import { Reservations } from '../../db/entities/Reservations.entity';
 import { Users } from '../../db/entities/Users.entity';
+import { ReservationAirtrailRepository } from '../../db/repositories/ReservationAirtrail.repository';
 import { AddonsModule } from '../addons/addons.module';
 import { AuditModule } from '../audit/audit.module';
 import { UserConnectionRepositoriesModule } from '../database/user-connection-repositories.module';
@@ -10,6 +12,7 @@ import { ReservationsReadModule } from '../reservations/reservations-read.module
 import { AirtrailLinkService } from './airtrail-link.service';
 import { AirtrailClient } from './airtrail.client';
 import { AirtrailService } from './airtrail.service';
+import { EntityManager } from '@mikro-orm/core';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { Module } from '@nestjs/common';
 
@@ -37,9 +40,18 @@ import { Module } from '@nestjs/common';
     RealtimeModule,
     ReservationsReadModule,
     UserConnectionRepositoriesModule,
-    MikroOrmModule.forFeature([Users, Reservations, ReservationEndpoints, AppSettings]),
+    MikroOrmModule.forFeature([Users, Reservations, ReservationEndpoints, AppSettings, Days]),
   ],
-  providers: [AirtrailClient, AirtrailService, AirtrailLinkService],
+  providers: [
+    AirtrailClient,
+    AirtrailService,
+    AirtrailLinkService,
+    {
+      provide: ReservationAirtrailRepository,
+      useFactory: (em: EntityManager) => new ReservationAirtrailRepository(em),
+      inject: [EntityManager],
+    },
+  ],
   exports: [AirtrailClient, AirtrailService, AirtrailLinkService],
 })
 export class AirtrailCoreModule {}

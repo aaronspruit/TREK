@@ -8,6 +8,7 @@ import { AddonsService } from '../addons/addons.service';
 import { BudgetService } from '../budget/budget.service';
 import { DomainError } from '../common/domain-error';
 import { UnitOfWork } from '../database/unit-of-work';
+import { AirtrailLinkService } from '../integrations/airtrail-link.service';
 import { imageMimeType } from '../llm-parse/image-input';
 import { LlmParseService } from '../llm-parse/llm-parse.service';
 import { MapsService } from '../maps/maps.service';
@@ -47,6 +48,7 @@ export class BookingImportService {
     private readonly places: PlacesService,
     private readonly uow: UnitOfWork,
     private readonly origins: PlaceOriginsService,
+    private readonly airtrailLink: AirtrailLinkService,
   ) {}
 
   /**
@@ -304,13 +306,18 @@ export class BookingImportService {
    * transaction, so a booking that fails leaves no stray place behind. place:created,
    * reservation:created, accommodation:created and the cost go out after the commit.
    *
+   * An imported flight then goes to the AirTrail of `userId`, the user who imports,
+   * when they opted in (AirtrailLinkService.createInAirtrail).
+   *
    * @txIndependent one transaction per imported item: each booking lands whole with its
    * venue and cost, and one that fails is skipped without undoing the ones before it.
+   * The AirTrail create after it is network I/O against another system.
    */
   async confirm(
     tripId: string,
     items: BookingImportPreviewItem[],
     socketId: string | undefined,
+    userId?: number,
   ): Promise<BookingImportConfirmResponse> {
     const created: Reservation[] = [];
     const confirmGeoCache = new Map<string, { lat: number; lng: number } | null>();
@@ -430,6 +437,11 @@ export class BookingImportService {
         this.reservations.announceCost(tripId, costEvents, socketId);
 
         created.push(reservation);
+        if (userId !== undefined && reservation.type === 'flight') {
+          void this.airtrailLink
+            .createInAirtrail(Number(reservation.id), Number(tripId), userId, 'create')
+            .catch(() => {});
+        }
       } catch (err) {
         console.error(
           `[booking-import] Failed to create reservation "${item.title}":`,

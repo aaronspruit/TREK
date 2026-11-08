@@ -129,7 +129,7 @@ export class AssistantBookingImportService implements AttachedFileReader {
     }
     // No socket to spare from the echo: the user's own planner learns of the
     // booking like every other member's.
-    const { created } = await this.bookingImport.confirm(String(tripId), [parsed.data], undefined);
+    const { created } = await this.bookingImport.confirm(String(tripId), [parsed.data], undefined, userId);
     const reservation = created[0];
     if (!reservation) return { ok: false, value: NOT_ADDED };
     return {

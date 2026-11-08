@@ -1562,7 +1562,7 @@ const help: TranslationStrings = {
   'help.guide.connect-airtrail.step.1':
     'Under Integrations, find AirTrail and enter its Instance URL and an API key. You create the key in AirTrail under Settings, Security.',
   'help.guide.connect-airtrail.step.2':
-    'Allow self-signed certificates is only for a trusted instance on your own network. Write changes back to AirTrail is off by default, so TREK only reads; switch it on to send your edits back.',
+    'Allow self-signed certificates is only for a trusted instance on your own network. Write changes back to AirTrail is off by default, so TREK only reads; switch it on to send your edits back and to add the flights you book in TREK to AirTrail.',
   'help.guide.connect-airtrail.step.3':
     'Click Save, then Test connection. It says how many flights it found, and the badge changes to Connected.',
   'help.guide.connect-airtrail.result':
@@ -3618,7 +3618,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     'A flight that is already in the trip with the same number and date is skipped, and a message says how many were skipped. The undo arrow in the toolbar above the days undoes the whole import.',
   'help.guide.airtrail-import.tip.2':
-    'AirTrail remains the main source of the data. TREK reads its changes when you open the trip and every few minutes in the background. A flight deleted in AirTrail keeps its card in TREK, and its label changes to Not synced. Edits made in TREK are sent back to AirTrail only when Write changes back to AirTrail is switched on under Integrations.',
+    'AirTrail remains the main source of the data. TREK reads its changes when you open the trip and every few minutes in the background. A flight deleted in AirTrail keeps its card in TREK, and its label changes to Not synced. Edits made in TREK are sent back to AirTrail only when Write changes back to AirTrail is switched on under Integrations. With it on, a flight you book in TREK is also added to your AirTrail and linked. A booking with stopovers becomes one AirTrail flight for each leg, and those flights do not sync after that.',
   'help.guide.airtrail-import.tip.3':
     'A joined connection is not one single AirTrail flight that can be synced, so it is a one-time import: it keeps the blue pill, and when you hover over the pill, it tells you this. The same happens to a synced flight when you add a stop to it by hand.',
 

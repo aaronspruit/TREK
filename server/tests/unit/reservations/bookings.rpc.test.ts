@@ -132,8 +132,9 @@ function build(
     { isAddonEnabled: vi.fn(() => true) } as unknown as AddonsService,
     { getRole: vi.fn(async () => 'user') } as unknown as UsersRepository,
   );
+  const airtrailLink = { createInAirtrail: vi.fn(async () => undefined) };
   const registry = createTestPluginRegistry([
-    new ReservationsRpc(reservations, realtime, guards),
+    new ReservationsRpc(reservations, realtime, guards, airtrailLink as never),
     new AccommodationsRpc(days, realtime, guards),
   ]);
   const host = (...grants: string[]) =>
@@ -143,7 +144,7 @@ function build(
       makeDeps(),
       registry,
     );
-  return { reservations, days, realtime, host };
+  return { reservations, days, realtime, host, airtrailLink };
 }
 
 describe('ReservationsRpc', () => {
@@ -179,6 +180,18 @@ describe('ReservationsRpc', () => {
     expect(res.error.code).toBe('BAD_PARAMS');
     // Otherwise it fails deep in the service mid-transaction, or is silently dropped.
     expect(f.reservations.createWithCost).not.toHaveBeenCalled();
+  });
+
+  it('BOOK-RPC-AIRTRAIL a new flight goes to the acting user, and another booking type does not', async () => {
+    const f = build();
+    vi.mocked(f.reservations.createWithCost).mockReturnValueOnce({
+      reservation: { id: 41, type: 'flight' },
+      accommodationCreated: false,
+      costEvents: [],
+    } as never);
+    await f.host().dispatch(req('reservations.create', { tripId: 1, input: { title: 'AY1502', type: 'flight' } }), 42);
+    await f.host().dispatch(req('reservations.create', { tripId: 1, input: { title: 'Hotel', type: 'lodging' } }), 42);
+    expect(f.airtrailLink.createInAirtrail.mock.calls).toEqual([[41, 1, 42, 'create']]);
   });
 
   it('BOOK-RPC-003 an absent endpoints field stays absent, which means "keep"', async () => {

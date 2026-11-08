@@ -2,6 +2,7 @@ import { ReservationDayPositions } from '../../db/entities/ReservationDayPositio
 import { ReservationEndpoints } from '../../db/entities/ReservationEndpoints.entity';
 import { ReservationTravelers } from '../../db/entities/ReservationTravelers.entity';
 import { Reservations } from '../../db/entities/Reservations.entity';
+import { TripMembers } from '../../db/entities/TripMembers.entity';
 import type { ReservationDayPositionsRepository } from '../../db/repositories/ReservationDayPositions.repository';
 import type { ReservationEndpointsRepository } from '../../db/repositories/ReservationEndpoints.repository';
 import type { ReservationTravelersRepository } from '../../db/repositories/ReservationTravelers.repository';
@@ -58,6 +59,16 @@ export class ReservationsReadService {
     @InjectRepository(ReservationTravelers) private readonly travelersRepo: ReservationTravelersRepository,
     @InjectRepository(ReservationDayPositions) private readonly dayPositionsRepo: ReservationDayPositionsRepository,
   ) {}
+
+  /**
+   * The users who can travel on a trip's bookings: its members (guests included)
+   * and the owner. TripMembersRepository comes from the EntityManager, as
+   * `rosterUserIds` itself reaches TripsRepository, so this leaf service keeps
+   * its four constructor slots.
+   */
+  tripRoster(tripId: number): Promise<Set<number>> {
+    return this.reservationsRepo.getEntityManager().getRepository(TripMembers).rosterUserIds(tripId);
+  }
 
   async getReservationWithJoins(id: string | number): Promise<ReservationRow | undefined> {
     // RR1
