@@ -416,7 +416,7 @@ const settings: TranslationStrings = {
   'settings.airtrail.allowInsecureTlsHint': 'Chỉ kích hoạt cho một phiên bản đáng tin cậy trên mạng của riêng bạn.',
   'settings.airtrail.writeBack': 'Viết các thay đổi trở lại AirTrail',
   'settings.airtrail.writeBackHint':
-    'Tắt theo mặc định: AirTrail là nguồn sự thật và TREK chỉ đọc từ đó. Bật để đẩy các chỉnh sửa được thực hiện trong TREK trở lại AirTrail.',
+    'Tắt theo mặc định: AirTrail là nguồn sự thật và TREK chỉ đọc từ đó. Bật để đẩy các chỉnh sửa được thực hiện trong TREK trở lại AirTrail. Tùy chọn này cũng thêm các chuyến bay bạn đặt trong TREK vào AirTrail.',
   'settings.airtrail.connected': 'Đã kết nối',
   'settings.airtrail.notConnected': 'Không được kết nối',
   'settings.airtrail.toast.saved': 'AirTrail đã lưu kết nối',

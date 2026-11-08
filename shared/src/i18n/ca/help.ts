@@ -4100,7 +4100,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     "Si un vol ja és al viatge amb el mateix número i la mateixa data, se salta, i un missatge t'indica quants se n'han saltat. La fletxa de desfer de la barra d'eines de sobre els dies desfà tota la importació.",
   'help.guide.airtrail-import.tip.2':
-    'AirTrail continua sent la font principal de les dades. TREK en llegeix els canvis quan obres el viatge i, en segon pla, cada pocs minuts. Si elimines un vol a AirTrail, la targeta es manté a TREK i la seva etiqueta passa a «No sincronitzat». Els canvis que facis a TREK només s’envien a AirTrail si tens activat «Sincronitzar els canvis cap a AirTrail» a «Integracions».',
+    'AirTrail continua sent la font principal de les dades. TREK en llegeix els canvis quan obres el viatge i, en segon pla, cada pocs minuts. Si elimines un vol a AirTrail, la targeta es manté a TREK i la seva etiqueta passa a «No sincronitzat». Els canvis que facis a TREK només s’envien a AirTrail si tens activat «Sincronitzar els canvis cap a AirTrail» a «Integracions». Amb l’opció activada, un vol que reserves a TREK també s’afegeix al teu AirTrail i s’hi vincula. Una reserva amb escales es converteix en un vol d’AirTrail per cada tram, i aquests vols ja no se sincronitzen després.',
   'help.guide.airtrail-import.tip.3':
     'Una connexió combinada no és un únic vol d’AirTrail que es pugui sincronitzar, així que s’importa una sola vegada: conserva l’etiqueta blava i, si hi passes el ratolí per sobre, t’ho indica. El mateix passa amb un vol sincronitzat si hi afegeixes una escala a mà.',
 
@@ -5041,7 +5041,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     "Push funciona per navegador: repeteix-ho a cada telèfon i ordinador on vulguis rebre notificacions. «Desactiva en aquest dispositiu» l'atura només en aquell dispositiu.",
   'help.guide.connect-airtrail.step.2':
-    "«Permetre certificats autodirigits» només és per a una instància de confiança de la teva pròpia xarxa. «Sincronitzar els canvis cap a AirTrail» està desactivat per defecte, de manera que TREK només llegeix; activa'l per enviar-hi les teves modificacions.",
+    "«Permetre certificats autodirigits» només és per a una instància de confiança de la teva pròpia xarxa. «Sincronitzar els canvis cap a AirTrail» està desactivat per defecte, de manera que TREK només llegeix; activa'l per enviar-hi les teves modificacions. També afegeix a AirTrail els vols que reserves a TREK.",
   'help.guide.connect-dawarich.step.2':
     '«Comprova automàticament si hi ha estades noves» fa que TREK ho comprovi pel seu compte. Si està desactivat, TREK només consulta Dawarich quan tu ho demanes. «Permet un certificat autosignat» només és per a una instància en què el teu servidor no confia.',
   'help.guide.tour-connect-wanderer.step.2':

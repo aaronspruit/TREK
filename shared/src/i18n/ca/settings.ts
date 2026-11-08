@@ -390,7 +390,8 @@ const settings: TranslationStrings = {
   'settings.airtrail.allowInsecureTls': 'Permetre certificats autodirigits',
   'settings.airtrail.allowInsecureTlsHint': 'Activa-ho només per a una instància de confiança a la teva pròpia xarxa.',
   'settings.airtrail.writeBack': 'Sincronitzar els canvis cap a AirTrail',
-  'settings.airtrail.writeBackHint': "Sincronitza les modificacions fetes aquí de tornada al teu compte d'AirTrail.",
+  'settings.airtrail.writeBackHint':
+    "Sincronitza les modificacions fetes aquí de tornada al teu compte d'AirTrail. També afegeix a AirTrail els vols que reserves a TREK.",
   'settings.airtrail.connected': 'Connectat',
   'settings.airtrail.notConnected': 'No connectat',
   'settings.airtrail.toast.saved': 'Connexió amb AirTrail desada',

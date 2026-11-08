@@ -4159,7 +4159,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     "Un vol déjà présent dans le voyage avec le même numéro et la même date est ignoré, et un message indique combien de vols l'ont été. La flèche d'annulation dans la barre d'outils au-dessus des jours annule l'import entier.",
   'help.guide.airtrail-import.tip.2':
-    "AirTrail reste la source principale des données. TREK récupère ses modifications à l'ouverture du voyage, puis toutes les quelques minutes en arrière-plan. Un vol supprimé dans AirTrail garde sa carte dans TREK, et son étiquette passe à « Non synchronisé ». Les modifications faites dans TREK ne sont renvoyées à AirTrail que si « Réécrire les modifications dans AirTrail » est activé sous « Intégrations ».",
+    "AirTrail reste la source principale des données. TREK récupère ses modifications à l'ouverture du voyage, puis toutes les quelques minutes en arrière-plan. Un vol supprimé dans AirTrail garde sa carte dans TREK, et son étiquette passe à « Non synchronisé ». Les modifications faites dans TREK ne sont renvoyées à AirTrail que si « Réécrire les modifications dans AirTrail » est activé sous « Intégrations ». Une fois l’option activée, un vol réservé dans TREK est aussi ajouté à votre AirTrail et lié. Une réservation avec escales devient un vol AirTrail par segment, et ces vols ne se synchronisent plus ensuite.",
   'help.guide.airtrail-import.tip.3':
     "Une correspondance regroupée ne correspond pas à un vol AirTrail unique synchronisable : il s'agit donc d'un import ponctuel. Elle garde la pastille bleue, qui vous l'indique au survol. Il en va de même pour un vol synchronisé auquel vous ajoutez manuellement une escale.",
 
@@ -5119,7 +5119,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Le push fonctionne navigateur par navigateur : répétez l’opération sur chaque téléphone et ordinateur où vous voulez recevoir des notifications. « Désactiver sur cet appareil » ne l’arrête que sur cet appareil.',
   'help.guide.connect-airtrail.step.2':
-    '« Autoriser les certificats auto-signés » ne sert que pour une instance de confiance sur votre propre réseau. « Réécrire les modifications dans AirTrail » est désactivé par défaut, TREK se contente donc de lire ; activez-le pour renvoyer vos modifications.',
+    '« Autoriser les certificats auto-signés » ne sert que pour une instance de confiance sur votre propre réseau. « Réécrire les modifications dans AirTrail » est désactivé par défaut, TREK se contente donc de lire ; activez-le pour renvoyer vos modifications. Les vols réservés dans TREK sont aussi ajoutés à AirTrail.',
   'help.guide.connect-dawarich.step.2':
     '« Rechercher automatiquement les nouveaux séjours » permet à TREK de vérifier de lui-même. Si l’option est désactivée, TREK ne consulte Dawarich que sur demande. « Autoriser un certificat auto-signé » ne sert que pour une instance que votre serveur ne reconnaît pas comme fiable.',
   'help.guide.tour-connect-wanderer.step.2':

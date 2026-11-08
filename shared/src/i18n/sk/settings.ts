@@ -419,7 +419,7 @@ const settings: TranslationStrings = {
   'settings.airtrail.allowInsecureTlsHint': 'Povoľte iba pre dôveryhodnú inštanciu vo vlastnej sieti.',
   'settings.airtrail.writeBack': 'Zapisovať zmeny späť do AirTrail',
   'settings.airtrail.writeBackHint':
-    'V predvolenom stave vypnuté: AirTrail je zdrojom pravdy a TREK z neho iba číta. Zapnite, ak chcete odosielať úpravy vykonané v TREK späť do AirTrail.',
+    'V predvolenom stave vypnuté: AirTrail je zdrojom pravdy a TREK z neho iba číta. Zapnite, ak chcete odosielať úpravy vykonané v TREK späť do AirTrail. Tiež pridá do AirTrail lety, ktoré si rezervujete v TREK.',
   'settings.airtrail.connected': 'Pripojené',
   'settings.airtrail.notConnected': 'Nepripojené',
   'settings.airtrail.toast.saved': 'Pripojenie k AirTrail uložené',

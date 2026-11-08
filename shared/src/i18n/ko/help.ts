@@ -3737,7 +3737,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     '번호와 날짜가 같은 항공편이 이미 여행에 있으면 건너뛰고, 몇 개를 건너뛰었는지 메시지로 알려 줘요. 일자 위 도구 모음의 실행 취소 화살표로 가져오기 전체를 되돌릴 수 있어요.',
   'help.guide.airtrail-import.tip.2':
-    '데이터의 기준은 계속 AirTrail이에요. TREK은 여행을 열 때와 백그라운드에서 몇 분마다 변경 사항을 읽어 와요. AirTrail에서 삭제한 항공편은 TREK에 카드가 남고 라벨이 “동기화되지 않음”으로 바뀌어요. TREK에서 수정한 내용은 “통합”에서 “변경 사항을 AirTrail에 다시 기록”이 켜져 있을 때만 AirTrail로 보내져요.',
+    '데이터의 기준은 계속 AirTrail이에요. TREK은 여행을 열 때와 백그라운드에서 몇 분마다 변경 사항을 읽어 와요. AirTrail에서 삭제한 항공편은 TREK에 카드가 남고 라벨이 “동기화되지 않음”으로 바뀌어요. TREK에서 수정한 내용은 “통합”에서 “변경 사항을 AirTrail에 다시 기록”이 켜져 있을 때만 AirTrail로 보내져요. 켜면 TREK에서 예약한 항공편도 내 AirTrail에 추가되고 연결됩니다. 경유가 있는 예약은 구간마다 하나의 AirTrail 항공편이 되며, 그 이후에는 동기화되지 않습니다.',
   'help.guide.airtrail-import.tip.3':
     '합친 연결편은 동기화할 수 있는 하나의 AirTrail 항공편이 아니라서 한 번만 가져와요. 파란 배지가 그대로 있고, 배지에 마우스를 올리면 그렇게 안내해요. 동기화된 항공편에 경유지를 직접 추가해도 마찬가지예요.',
 
@@ -4594,7 +4594,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     '푸시는 브라우저마다 따로 동작해요. 알림을 받을 휴대폰과 컴퓨터마다 따로 켜세요. ‘이 기기에서 끄기’는 그 기기에서만 꺼요.',
   'help.guide.connect-airtrail.step.2':
-    '‘자체 서명 인증서 허용’은 내 네트워크에 있는 믿을 수 있는 인스턴스에만 쓰세요. ‘변경 사항을 AirTrail에 다시 기록’은 기본으로 꺼져 있어서 TREK는 읽기만 해요. 켜면 내가 편집한 내용을 AirTrail로 보내요.',
+    '‘자체 서명 인증서 허용’은 내 네트워크에 있는 믿을 수 있는 인스턴스에만 쓰세요. ‘변경 사항을 AirTrail에 다시 기록’은 기본으로 꺼져 있어서 TREK는 읽기만 해요. 켜면 내가 편집한 내용을 AirTrail로 보내요. TREK에서 예약한 항공편도 AirTrail에 추가합니다.',
   'help.guide.connect-dawarich.step.2':
     '‘새 방문 기록을 자동으로 확인’을 켜면 TREK가 알아서 확인해요. 끄면 내가 요청할 때만 Dawarich를 읽어요. ‘자체 서명 인증서 허용’은 서버가 신뢰하지 않는 인스턴스에만 쓰세요.',
   'help.guide.tour-connect-wanderer.step.2': '‘자체 서명 인증서 허용’은 내 네트워크에 있는 인스턴스일 때만 켜세요.',

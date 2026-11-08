@@ -4010,7 +4010,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     'En flygning som redan finns i resan med samma nummer och datum hoppas över, och ett meddelande anger hur många som hoppades över. Ångrapilen i verktygsfältet ovanför dagarna ångrar hela importen.',
   'help.guide.airtrail-import.tip.2':
-    'AirTrail är fortfarande den huvudsakliga datakällan. TREK läser ändringarna när du öppnar resan och med några minuters mellanrum i bakgrunden. En flygning som raderats i AirTrail behåller sitt kort i TREK, och etiketten ändras till ”Ej synkroniserad”. Ändringar som görs i TREK skickas tillbaka till AirTrail bara om ”Skriv tillbaka ändringarna till AirTrail” är påslaget under Integrationer.',
+    'AirTrail är fortfarande den huvudsakliga datakällan. TREK läser ändringarna när du öppnar resan och med några minuters mellanrum i bakgrunden. En flygning som raderats i AirTrail behåller sitt kort i TREK, och etiketten ändras till ”Ej synkroniserad”. Ändringar som görs i TREK skickas tillbaka till AirTrail bara om ”Skriv tillbaka ändringarna till AirTrail” är påslaget under Integrationer. När den är på läggs ett flyg du bokar i TREK också till i ditt AirTrail och länkas. En bokning med mellanlandningar blir ett AirTrail-flyg per delsträcka, och de flygen synkroniseras inte efter det.',
   'help.guide.airtrail-import.tip.3':
     'En sammanslagen förbindelse är inte en enda AirTrail-flygning som kan synkroniseras, så den är en engångsimport: den behåller den blå pillern, och när du håller muspekaren över pillern får du veta det. Detsamma gäller en synkroniserad flygning där du lägger till ett stopp för hand.',
 
@@ -4932,7 +4932,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Push fungerar per webbläsare: upprepa stegen på varje telefon och dator där du vill ha meddelanden. Slå av för den här enheten stänger bara av push på den enheten.',
   'help.guide.connect-airtrail.step.2':
-    'Tillåt självsignerade certifikat är bara till för en betrodd instans i ditt eget nätverk. Skriv tillbaka ändringarna till AirTrail är av som standard, så TREK bara läser. Slå på det för att skicka tillbaka dina ändringar.',
+    'Tillåt självsignerade certifikat är bara till för en betrodd instans i ditt eget nätverk. Skriv tillbaka ändringarna till AirTrail är av som standard, så TREK bara läser. Slå på det för att skicka tillbaka dina ändringar. Den lägger också till flygen du bokar i TREK i AirTrail.',
   'help.guide.connect-dawarich.step.2':
     'Leta efter nya vistelser automatiskt låter TREK kontrollera på egen hand. När det är av läser TREK Dawarich bara när du ber om det. Tillåt självsignerat certifikat är bara till för en instans som din server inte litar på.',
   'help.guide.tour-connect-wanderer.step.2':

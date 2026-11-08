@@ -4108,7 +4108,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     'Si un vuelo ya está en el viaje con el mismo número y la misma fecha, se omite, y un mensaje te dice cuántos se han omitido. La flecha de deshacer de la barra de herramientas, sobre los días, deshace toda la importación.',
   'help.guide.airtrail-import.tip.2':
-    'AirTrail sigue siendo la fuente principal de los datos. TREK lee sus cambios cuando abres el viaje y cada pocos minutos en segundo plano. Si borras un vuelo en AirTrail, su tarjeta se mantiene en TREK y su etiqueta cambia a «No sincronizado». Lo que edites en TREK solo se envía a AirTrail si tienes activado «Escribir cambios de vuelta en AirTrail» en «Integraciones».',
+    'AirTrail sigue siendo la fuente principal de los datos. TREK lee sus cambios cuando abres el viaje y cada pocos minutos en segundo plano. Si borras un vuelo en AirTrail, su tarjeta se mantiene en TREK y su etiqueta cambia a «No sincronizado». Lo que edites en TREK solo se envía a AirTrail si tienes activado «Escribir cambios de vuelta en AirTrail» en «Integraciones». Con esta opción activada, un vuelo que reservas en TREK también se añade a tu AirTrail y se vincula. Una reserva con escalas se convierte en un vuelo de AirTrail por cada tramo, y esos vuelos no se sincronizan después.',
   'help.guide.airtrail-import.tip.3':
     'Una conexión unida no es un único vuelo de AirTrail que se pueda sincronizar, así que se importa una sola vez: mantiene la etiqueta azul y, al pasar el ratón por encima, te lo indica. Lo mismo ocurre con un vuelo sincronizado si le añades una escala a mano.',
 
@@ -5055,7 +5055,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Push funciona por navegador: repite el proceso en cada móvil y ordenador en el que quieras recibir notificaciones. «Desactivar en este dispositivo» las desactiva solo en ese dispositivo.',
   'help.guide.connect-airtrail.step.2':
-    '«Permitir certificados autofirmados» es solo para una instancia de confianza en tu propia red. «Escribir cambios de vuelta en AirTrail» está desactivado de forma predeterminada, así que TREK solo lee; actívalo para enviar tus cambios a AirTrail.',
+    '«Permitir certificados autofirmados» es solo para una instancia de confianza en tu propia red. «Escribir cambios de vuelta en AirTrail» está desactivado de forma predeterminada, así que TREK solo lee; actívalo para enviar tus cambios a AirTrail. También añade a AirTrail los vuelos que reservas en TREK.',
   'help.guide.connect-dawarich.step.2':
     '«Buscar estancias nuevas automáticamente» permite que TREK compruebe por su cuenta. Si está desactivado, TREK solo consulta Dawarich cuando se lo pides. «Permitir certificado autofirmado» es solo para una instancia en la que tu servidor no confía.',
   'help.guide.tour-connect-wanderer.step.2':

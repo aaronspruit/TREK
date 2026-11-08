@@ -3137,7 +3137,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     'Səyahətdə eyni nömrə və tarixlə artıq olan uçuş ötürülür və mesajda neçəsinin ötürüldüyü yazılır. Günlərin üstündəki alətlər panelində geri qaytarma oxu bütün idxalı geri alır.',
   'help.guide.airtrail-import.tip.2':
-    'Məlumatın əsas mənbəyi AirTrail olaraq qalır. TREK səyahəti açanda və arxa fonda bir neçə dəqiqədən bir onun dəyişikliklərini oxuyur. AirTrail-də silinmiş uçuşun kartı TREK-də qalır, nişanı isə «Sinxronlaşdırılmayıb» olur. TREK-də etdiyiniz dəyişikliklər yalnız «İnteqrasiyalar» altında «Dəyişiklikləri AirTrail-ə geri yaz» yandırılıbsa, AirTrail-ə göndərilir.',
+    'Məlumatın əsas mənbəyi AirTrail olaraq qalır. TREK səyahəti açanda və arxa fonda bir neçə dəqiqədən bir onun dəyişikliklərini oxuyur. AirTrail-də silinmiş uçuşun kartı TREK-də qalır, nişanı isə «Sinxronlaşdırılmayıb» olur. TREK-də etdiyiniz dəyişikliklər yalnız «İnteqrasiyalar» altında «Dəyişiklikləri AirTrail-ə geri yaz» yandırılıbsa, AirTrail-ə göndərilir. Aktiv olduqda, TREK-də sifariş etdiyiniz uçuş AirTrail-inizə də əlavə olunur və əlaqələndirilir. Aktarmalı sifariş hər seqment üçün bir AirTrail uçuşuna çevrilir və bu uçuşlar bundan sonra sinxronlaşdırılmır.',
   'help.guide.airtrail-import.tip.3':
     'Birləşdirilmiş əlaqə sinxronlaşdırıla bilən tək AirTrail reysi deyil, ona görə bu, birdəfəlik idxaldır: mavi nişan qalır və kursoru onun üzərinə gətirəndə bu barədə məlumat görünür. Sinxronlaşdırılmış reysə əllə dayanacaq əlavə etdikdə də eyni şey baş verir.',
   // ── Screen: trip-bookings ─────────────────────────────────────────────────────────────
@@ -5007,7 +5007,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Push hər brauzer üçün ayrıca işləyir: bildiriş almaq istədiyiniz hər telefon və kompüterdə bunu təkrarlayın. «Bu cihaz üçün deaktiv et» onu yalnız həmin cihazda dayandırır.',
   'help.guide.connect-airtrail.step.2':
-    '«Öz-özünə imzalanmış sertifikatlara icazə ver» yalnız öz şəbəkənizdəki etibarlı instansiya üçündür. «Dəyişiklikləri AirTrail-ə geri yaz» standart olaraq söndürülüb, yəni TREK yalnız oxuyur; redaktələrinizi geri göndərmək üçün onu yandırın.',
+    '«Öz-özünə imzalanmış sertifikatlara icazə ver» yalnız öz şəbəkənizdəki etibarlı instansiya üçündür. «Dəyişiklikləri AirTrail-ə geri yaz» standart olaraq söndürülüb, yəni TREK yalnız oxuyur; redaktələrinizi geri göndərmək üçün onu yandırın. Həmçinin TREK-də sifariş etdiyiniz uçuşları AirTrail-ə əlavə edir.',
   'help.guide.connect-dawarich.step.2':
     '«Yeni dayanma qeydlərini avtomatik yoxla» TREK-ə özbaşına yoxlamağa imkan verir. Söndürülübsə, TREK Dawarich-i yalnız siz istədikdə oxuyur. «Öz-özünə imzalanmış sertifikata icazə ver» yalnız serverinizin etibar etmədiyi instansiya üçündür.',
   'help.guide.tour-connect-wanderer.step.2':

@@ -4026,7 +4026,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     'Seyahatte aynı numara ve tarihle zaten bulunan bir uçuş atlanır ve bir mesaj kaç uçuşun atlandığını bildirir. Günlerin üstündeki araç çubuğunda bulunan geri al oku, içe aktarmanın tamamını geri alır.',
   'help.guide.airtrail-import.tip.2':
-    "Verilerin ana kaynağı AirTrail'dir. TREK, değişiklikleri seyahati açtığınızda ve arka planda birkaç dakikada bir okur. AirTrail'de silinen bir uçuşun TREK'teki kartı kalır ve etiketi “Senkronize değil” olur. TREK'te yaptığınız düzenlemeler AirTrail'e yalnızca Entegrasyonlar altında “Değişiklikleri AirTrail’e geri yaz” açıkken geri gönderilir.",
+    "Verilerin ana kaynağı AirTrail'dir. TREK, değişiklikleri seyahati açtığınızda ve arka planda birkaç dakikada bir okur. AirTrail'de silinen bir uçuşun TREK'teki kartı kalır ve etiketi “Senkronize değil” olur. TREK'te yaptığınız düzenlemeler AirTrail'e yalnızca Entegrasyonlar altında “Değişiklikleri AirTrail’e geri yaz” açıkken geri gönderilir. Açıkken TREK’te ayırttığınız bir uçuş AirTrail’inize de eklenir ve bağlanır. Aktarmalı bir rezervasyon her bölüm için bir AirTrail uçuşu olur ve bu uçuşlar bundan sonra eşitlenmez.",
   'help.guide.airtrail-import.tip.3':
     'Birleştirilmiş bir bağlantı, eşitlenebilecek tek bir AirTrail uçuşu değildir, bu yüzden tek seferlik bir içe aktarmadır: mavi rozetini korur ve rozetin üzerine gelince bunu belirtir. Elle durak eklediğiniz eşitlenmiş bir uçuşta da aynısı olur.',
 
@@ -4963,7 +4963,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Anlık bildirim tarayıcı başına çalışır: bildirim almak istediğiniz her telefonda ve bilgisayarda bunu yeniden yapın. Bu cihaz için kapat yalnızca o cihazdaki bildirimleri durdurur.',
   'help.guide.connect-airtrail.step.2':
-    "Kendinden imzalı sertifikalara izin ver yalnızca kendi ağınızdaki güvenilir bir sunucu içindir. Değişiklikleri AirTrail’e geri yaz varsayılan olarak kapalıdır, yani TREK yalnızca okur. Düzenlemelerinizi AirTrail'e geri göndermek için açın.",
+    "Kendinden imzalı sertifikalara izin ver yalnızca kendi ağınızdaki güvenilir bir sunucu içindir. Değişiklikleri AirTrail’e geri yaz varsayılan olarak kapalıdır, yani TREK yalnızca okur. Düzenlemelerinizi AirTrail'e geri göndermek için açın. Ayrıca TREK’te ayırttığınız uçuşları AirTrail’e ekler.",
   'help.guide.connect-dawarich.step.2':
     "Yeni konaklamaları otomatik olarak denetle, TREK'in kendiliğinden bakmasını sağlar. Kapalıyken TREK Dawarich'i yalnızca siz istediğinizde okur. Kendinden imzalı sertifikaya izin ver yalnızca sunucunuzun güvenmediği bir sunucu içindir.",
   'help.guide.tour-connect-wanderer.step.2':

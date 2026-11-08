@@ -4091,7 +4091,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     'Een vlucht met hetzelfde nummer en dezelfde datum die al in de reis staat, wordt overgeslagen, en een melding vertelt hoeveel vluchten zijn overgeslagen. Met de pijl voor ongedaan maken in de werkbalk boven de dagen draai je de hele import terug.',
   'help.guide.airtrail-import.tip.2':
-    "AirTrail blijft de hoofdbron van de gegevens. TREK haalt wijzigingen op als je de reis opent en daarna om de paar minuten op de achtergrond. Een vlucht die in AirTrail is verwijderd, houdt zijn kaart in TREK, maar het label verandert in 'Niet gesynchroniseerd'. Wijzigingen in TREK gaan alleen terug naar AirTrail als 'Wijzigingen terugschrijven naar AirTrail' aan staat onder Integraties.",
+    "AirTrail blijft de hoofdbron van de gegevens. TREK haalt wijzigingen op als je de reis opent en daarna om de paar minuten op de achtergrond. Een vlucht die in AirTrail is verwijderd, houdt zijn kaart in TREK, maar het label verandert in 'Niet gesynchroniseerd'. Wijzigingen in TREK gaan alleen terug naar AirTrail als 'Wijzigingen terugschrijven naar AirTrail' aan staat onder Integraties. Als dit aan staat, wordt een vlucht die je in TREK boekt ook aan je AirTrail toegevoegd en gekoppeld. Een boeking met tussenstops wordt één AirTrail-vlucht per traject, en die vluchten worden daarna niet meer gesynchroniseerd.",
   'help.guide.airtrail-import.tip.3':
     'Een samengevoegde verbinding is niet één AirTrail-vlucht die kan worden gesynchroniseerd, dus het is een eenmalige import: hij houdt het blauwe label, en als je met de muis over dat label gaat, zie je dat ook. Hetzelfde gebeurt met een gesynchroniseerde vlucht als je er zelf een tussenstop aan toevoegt.',
 
@@ -5039,7 +5039,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Push werkt per browser: herhaal dit op elke telefoon en computer waarop je meldingen wilt. ‘Uitschakelen op dit apparaat’ zet het alleen op dat apparaat uit.',
   'help.guide.connect-airtrail.step.2':
-    '‘Zelfondertekende certificaten toestaan’ is alleen bedoeld voor een vertrouwde instantie op je eigen netwerk. ‘Wijzigingen terugschrijven naar AirTrail’ staat standaard uit, dus TREK leest alleen; zet het aan om je wijzigingen terug te sturen.',
+    '‘Zelfondertekende certificaten toestaan’ is alleen bedoeld voor een vertrouwde instantie op je eigen netwerk. ‘Wijzigingen terugschrijven naar AirTrail’ staat standaard uit, dus TREK leest alleen; zet het aan om je wijzigingen terug te sturen. Het voegt ook de vluchten die je in TREK boekt toe aan AirTrail.',
   'help.guide.connect-dawarich.step.2':
     'Met ‘Automatisch op nieuwe bezoeken controleren’ controleert TREK zelf. Staat het uit, dan leest TREK Dawarich alleen als jij daarom vraagt. ‘Zelfondertekend certificaat toestaan’ is alleen bedoeld voor een instantie die je server niet vertrouwt.',
   'help.guide.tour-connect-wanderer.step.2':

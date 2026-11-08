@@ -3058,7 +3058,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     'Lend, mis on reisil juba sama numbri ja kuupäevaga, jäetakse vahele ja teade ütleb, mitu jäeti vahele. Päevade kohal tööriistaribal olev tagasivõtmise nool tühistab kogu impordi.',
   'help.guide.airtrail-import.tip.2':
-    'Andmete peamiseks allikaks jääb AirTrail. TREK loeb selle muudatusi reisi avamisel ja taustal iga paari minuti järel. AirTrailis kustutatud lennu kaart jääb TREKi alles ja selle sildiks saab „Sünkroonimata“. TREKis tehtud muudatused saadetakse AirTraili tagasi ainult siis, kui jaotises „Integratsioonid“ on sisse lülitatud „Kirjuta muudatused AirTraili tagasi“.',
+    'Andmete peamiseks allikaks jääb AirTrail. TREK loeb selle muudatusi reisi avamisel ja taustal iga paari minuti järel. AirTrailis kustutatud lennu kaart jääb TREKi alles ja selle sildiks saab „Sünkroonimata“. TREKis tehtud muudatused saadetakse AirTraili tagasi ainult siis, kui jaotises „Integratsioonid“ on sisse lülitatud „Kirjuta muudatused AirTraili tagasi“. Kui see on sees, lisatakse TREKis broneeritud lend ka sinu AirTraili ja seotakse. Vahemaandumistega broneeringust saab iga lõigu kohta üks AirTraili lend ning neid lende pärast seda ei sünkroonita.',
   'help.guide.airtrail-import.tip.3':
     'Ühendatud ühenduslend ei ole üks AirTraili lend, mida saaks sünkroonida, seega imporditakse see ühekordselt: sinine kiip jääb alles ja kui viid kursori kiibi kohale, öeldakse seda ka seal. Sama juhtub sünkroonitud lennuga, kui lisad sellele käsitsi peatuse.',
   // ── Screen: trip-bookings ─────────────────────────────────────────────────────────────
@@ -4903,7 +4903,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Tõuketeavitused töötavad brauseri kaupa: korda seda igas telefonis ja arvutis, kus tahad teavitusi saada. „Lülita selles seadmes välja“ peatab need ainult selles seadmes.',
   'help.guide.connect-airtrail.step.2':
-    '„Luba iseallkirjastatud sertifikaadid“ on mõeldud ainult usaldusväärsele serverile sinu enda võrgus. „Kirjuta muudatused AirTraili tagasi“ on vaikimisi väljas, nii et TREK ainult loeb; lülita see sisse, et saata oma muudatused tagasi.',
+    '„Luba iseallkirjastatud sertifikaadid“ on mõeldud ainult usaldusväärsele serverile sinu enda võrgus. „Kirjuta muudatused AirTraili tagasi“ on vaikimisi väljas, nii et TREK ainult loeb; lülita see sisse, et saata oma muudatused tagasi. See lisab AirTraili ka TREKis broneeritud lennud.',
   'help.guide.connect-dawarich.step.2':
     '„Kontrolli uusi peatumisi automaatselt“ laseb TREKil ise kontrollida. Kui see on väljas, loeb TREK Dawarichi ainult siis, kui seda palud. „Luba iseallkirjastatud sertifikaat“ on mõeldud ainult serverile, mida sinu server ei usalda.',
   'help.guide.tour-connect-wanderer.step.2':

@@ -420,7 +420,7 @@ const settings: TranslationStrings = {
   'settings.airtrail.allowInsecureTlsHint': 'Luba ainult usaldatud serverile oma võrgus.',
   'settings.airtrail.writeBack': 'Kirjuta muudatused AirTraili tagasi',
   'settings.airtrail.writeBackHint':
-    'Vaikimisi väljas: AirTrail on andmete põhiline allikas ja TREK ainult loeb sealt. Luba see, et saata TREKis tehtud muudatused AirTraili tagasi.',
+    'Vaikimisi väljas: AirTrail on andmete põhiline allikas ja TREK ainult loeb sealt. Luba see, et saata TREKis tehtud muudatused AirTraili tagasi. See lisab AirTraili ka TREKis broneeritud lennud.',
   'settings.airtrail.connected': 'Ühendatud',
   'settings.airtrail.notConnected': 'Ühendamata',
   'settings.airtrail.toast.saved': 'AirTraili ühendus salvestatud',

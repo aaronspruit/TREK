@@ -460,7 +460,7 @@ const settings: TranslationStrings = {
   'settings.airtrail.allowInsecureTlsHint': 'Yalnız öz şəbəkənizdəki etibarlı instansiya üçün aktivləşdirin.',
   'settings.airtrail.writeBack': 'Dəyişiklikləri AirTrail-ə geri yaz',
   'settings.airtrail.writeBackHint':
-    'Standart olaraq deaktivdir: AirTrail əsas məlumat mənbəyidir və TREK ondan yalnız oxuyur. TREK-də edilən dəyişiklikləri AirTrail-ə göndərmək üçün aktivləşdirin.',
+    'Standart olaraq deaktivdir: AirTrail əsas məlumat mənbəyidir və TREK ondan yalnız oxuyur. TREK-də edilən dəyişiklikləri AirTrail-ə göndərmək üçün aktivləşdirin. Həmçinin TREK-də sifariş etdiyiniz uçuşları AirTrail-ə əlavə edir.',
   'settings.airtrail.connected': 'Qoşulub',
   'settings.airtrail.notConnected': 'Qoşulmayıb',
   'settings.airtrail.toast.saved': 'AirTrail bağlantısı yadda saxlanıldı',

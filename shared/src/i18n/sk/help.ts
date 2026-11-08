@@ -3057,7 +3057,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     'Let, ktorý už v ceste je s rovnakým číslom a dátumom, sa preskočí a správa uvedie, koľko letov sa preskočilo. Šípka späť na paneli nástrojov nad dňami vráti celý import.',
   'help.guide.airtrail-import.tip.2':
-    'Hlavným zdrojom údajov zostáva AirTrail. TREK načíta jeho zmeny pri otvorení cesty a každých pár minút na pozadí. Let vymazaný v AirTrail si v TREK ponechá kartu a jeho štítok sa zmení na Nesynchronizované. Úpravy urobené v TREK sa posielajú späť do AirTrail iba vtedy, keď je v časti Integrácie zapnuté Zapisovať zmeny späť do AirTrail.',
+    'Hlavným zdrojom údajov zostáva AirTrail. TREK načíta jeho zmeny pri otvorení cesty a každých pár minút na pozadí. Let vymazaný v AirTrail si v TREK ponechá kartu a jeho štítok sa zmení na Nesynchronizované. Úpravy urobené v TREK sa posielajú späť do AirTrail iba vtedy, keď je v časti Integrácie zapnuté Zapisovať zmeny späť do AirTrail. Keď je voľba zapnutá, let rezervovaný v TREK sa tiež pridá do vášho AirTrail a prepojí sa. Rezervácia s prestupmi sa stane jedným letom v AirTrail pre každý úsek a tieto lety sa potom už nesynchronizujú.',
   'help.guide.airtrail-import.tip.3':
     'Spojenie s prestupom nie je jeden let z AirTrail, ktorý by sa dal synchronizovať, preto ide o jednorazový import: ponechá si modrý štítok a keď naň ukážete kurzorom, štítok to povie. To isté sa stane synchronizovanému letu, ku ktorému ručne pridáte zastávku.',
   // ── Screen: trip-bookings ─────────────────────────────────────────────────────────────
@@ -4908,7 +4908,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Push funguje pre každý prehliadač zvlášť: zopakujte postup na každom telefóne a počítači, na ktorom chcete dostávať oznámenia. Vypnúť pre toto zariadenie ho zastaví iba na tom zariadení.',
   'help.guide.connect-airtrail.step.2':
-    'Povoliť certifikáty podpísané sebou samým používajte iba pre dôveryhodnú inštanciu vo vlastnej sieti. Zapisovať zmeny späť do AirTrail je predvolene vypnuté, takže TREK iba číta. Zapnite to, ak chcete svoje úpravy posielať späť.',
+    'Povoliť certifikáty podpísané sebou samým používajte iba pre dôveryhodnú inštanciu vo vlastnej sieti. Zapisovať zmeny späť do AirTrail je predvolene vypnuté, takže TREK iba číta. Zapnite to, ak chcete svoje úpravy posielať späť. Tiež pridá do AirTrail lety, ktoré si rezervujete v TREK.',
   'help.guide.connect-dawarich.step.2':
     'Automaticky hľadať nové pobyty nechá TREK kontrolovať samo. Keď je vypnuté, TREK číta Dawarich, iba keď o to požiadate. Povoliť vlastnoručne podpísaný certifikát používajte iba pre inštanciu, ktorej váš server nedôveruje.',
   'help.guide.tour-connect-wanderer.step.2':

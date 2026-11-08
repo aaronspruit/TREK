@@ -4068,7 +4068,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     'Penerbangan dengan nomor dan tanggal yang sama yang sudah ada di perjalanan akan dilewati, dan muncul pesan berapa yang dilewati. Panah urungkan di bilah alat di atas daftar hari membatalkan seluruh impor.',
   'help.guide.airtrail-import.tip.2':
-    'AirTrail tetap menjadi sumber utama data. TREK membaca perubahannya saat kamu membuka perjalanan dan setiap beberapa menit di latar belakang. Penerbangan yang dihapus di AirTrail tetap punya kartu di TREK, dan labelnya berubah menjadi “Tidak tersinkron”. Perubahan yang dibuat di TREK hanya dikirim balik ke AirTrail kalau “Tulis perubahan kembali ke AirTrail” diaktifkan di “Integrasi”.',
+    'AirTrail tetap menjadi sumber utama data. TREK membaca perubahannya saat kamu membuka perjalanan dan setiap beberapa menit di latar belakang. Penerbangan yang dihapus di AirTrail tetap punya kartu di TREK, dan labelnya berubah menjadi “Tidak tersinkron”. Perubahan yang dibuat di TREK hanya dikirim balik ke AirTrail kalau “Tulis perubahan kembali ke AirTrail” diaktifkan di “Integrasi”. Saat aktif, penerbangan yang Anda pesan di TREK juga ditambahkan ke AirTrail Anda dan ditautkan. Pemesanan dengan transit menjadi satu penerbangan AirTrail untuk setiap segmen, dan penerbangan tersebut tidak disinkronkan setelah itu.',
   'help.guide.airtrail-import.tip.3':
     'Koneksi gabungan bukan satu penerbangan AirTrail yang bisa disinkronkan, jadi impornya hanya sekali: label birunya tetap ada, dan saat kursor diarahkan ke label itu, muncul keterangan tentang hal ini. Hal yang sama terjadi pada penerbangan tersinkron kalau kamu menambahkan persinggahan secara manual.',
 
@@ -5011,7 +5011,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Push berlaku per browser: ulangi langkah ini di setiap ponsel dan komputer yang ingin menerima notifikasi. “Nonaktifkan untuk perangkat ini” hanya menghentikannya di perangkat itu.',
   'help.guide.connect-airtrail.step.2':
-    '“Izinkan sertifikat yang ditandatangani sendiri” hanya untuk instans tepercaya di jaringanmu sendiri. “Tulis perubahan kembali ke AirTrail” mati secara default, jadi TREK hanya membaca; aktifkan untuk mengirim hasil editmu kembali.',
+    '“Izinkan sertifikat yang ditandatangani sendiri” hanya untuk instans tepercaya di jaringanmu sendiri. “Tulis perubahan kembali ke AirTrail” mati secara default, jadi TREK hanya membaca; aktifkan untuk mengirim hasil editmu kembali. Ini juga menambahkan penerbangan yang Anda pesan di TREK ke AirTrail.',
   'help.guide.connect-dawarich.step.2':
     '“Periksa persinggahan baru secara otomatis” membuat TREK memeriksa sendiri. Jika dimatikan, TREK hanya membaca Dawarich saat kamu memintanya. “Izinkan sertifikat yang ditandatangani sendiri” hanya untuk instans yang tidak dipercaya servermu.',
   'help.guide.tour-connect-wanderer.step.2':

@@ -404,7 +404,7 @@ const settings: TranslationStrings = {
   'settings.airtrail.allowInsecureTlsHint': 'הפעילו רק עבור מופע מהימן ברשת שלכם.',
   'settings.airtrail.writeBack': 'כתיבת שינויים בחזרה ל-AirTrail',
   'settings.airtrail.writeBackHint':
-    'כבוי כברירת מחדל: AirTrail הוא מקור האמת ו-TREK רק קורא ממנו. הפעילו כדי לשלוח עריכות מ-TREK בחזרה ל-AirTrail.',
+    'כבוי כברירת מחדל: AirTrail הוא מקור האמת ו-TREK רק קורא ממנו. הפעילו כדי לשלוח עריכות מ-TREK בחזרה ל-AirTrail. הוא גם מוסיף ל-AirTrail את הטיסות שאתה מזמין ב-TREK.',
   'settings.airtrail.connected': 'מחובר',
   'settings.airtrail.notConnected': 'לא מחובר',
   'settings.airtrail.toast.saved': 'החיבור ל-AirTrail נשמר',

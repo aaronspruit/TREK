@@ -3999,7 +3999,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     'Chuyến bay đã có trong chuyến đi với cùng số hiệu và ngày sẽ bị bỏ qua, và một thông báo cho biết đã bỏ qua bao nhiêu chuyến. Mũi tên hoàn tác trên thanh công cụ phía trên các ngày sẽ hoàn tác toàn bộ lần nhập.',
   'help.guide.airtrail-import.tip.2':
-    'AirTrail vẫn là nguồn dữ liệu chính. TREK đọc các thay đổi từ AirTrail khi bạn mở chuyến đi và cứ vài phút một lần ở chế độ nền. Chuyến bay bị xóa trong AirTrail vẫn giữ thẻ trong TREK, và nhãn của nó đổi thành “Chưa được đồng bộ hóa”. Các chỉnh sửa trong TREK chỉ được gửi ngược lại AirTrail khi bật “Viết các thay đổi trở lại AirTrail” trong “Tích hợp”.',
+    'AirTrail vẫn là nguồn dữ liệu chính. TREK đọc các thay đổi từ AirTrail khi bạn mở chuyến đi và cứ vài phút một lần ở chế độ nền. Chuyến bay bị xóa trong AirTrail vẫn giữ thẻ trong TREK, và nhãn của nó đổi thành “Chưa được đồng bộ hóa”. Các chỉnh sửa trong TREK chỉ được gửi ngược lại AirTrail khi bật “Viết các thay đổi trở lại AirTrail” trong “Tích hợp”. Khi bật, chuyến bay bạn đặt trong TREK cũng được thêm vào AirTrail của bạn và liên kết. Một đặt chỗ có điểm dừng sẽ thành một chuyến bay AirTrail cho mỗi chặng, và các chuyến bay đó không được đồng bộ sau đó.',
   'help.guide.airtrail-import.tip.3':
     'Một tuyến nối ghép không phải là một chuyến bay AirTrail đơn lẻ để đồng bộ, nên chỉ nhập một lần: nó giữ nhãn màu xanh dương, và khi bạn di chuột lên nhãn, bạn sẽ thấy giải thích. Điều tương tự xảy ra với chuyến bay đã đồng bộ khi bạn tự thêm một điểm dừng vào đó.',
 
@@ -4923,7 +4923,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Thông báo đẩy hoạt động theo từng trình duyệt: hãy lặp lại trên mọi điện thoại và máy tính bạn muốn nhận thông báo. “Tắt cho thiết bị này” chỉ dừng trên thiết bị đó.',
   'help.guide.connect-airtrail.step.2':
-    '“Cho phép chứng chỉ tự ký” chỉ dành cho máy chủ đáng tin trong mạng của bạn. “Viết các thay đổi trở lại AirTrail” tắt theo mặc định, nên TREK chỉ đọc; bật nó để gửi các chỉnh sửa của bạn về lại.',
+    '“Cho phép chứng chỉ tự ký” chỉ dành cho máy chủ đáng tin trong mạng của bạn. “Viết các thay đổi trở lại AirTrail” tắt theo mặc định, nên TREK chỉ đọc; bật nó để gửi các chỉnh sửa của bạn về lại. Tùy chọn này cũng thêm các chuyến bay bạn đặt trong TREK vào AirTrail.',
   'help.guide.connect-dawarich.step.2':
     '“Tự động kiểm tra điểm lưu trú mới” để TREK tự kiểm tra. Khi tắt, TREK chỉ đọc Dawarich khi bạn yêu cầu. “Cho phép chứng chỉ tự ký” chỉ dành cho máy chủ mà máy chủ của bạn không tin cậy.',
   'help.guide.tour-connect-wanderer.step.2': 'Chỉ bật “Cho phép chứng chỉ tự ký” với máy chủ trong mạng của bạn.',

@@ -3511,7 +3511,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     '旅行中已有相同航班號碼和日期的航班時會被略過，並提示略過了幾趟。天數上方工具列的復原箭頭，可以復原整次匯入。',
   'help.guide.airtrail-import.tip.2':
-    'AirTrail 仍是資料的主要來源。TREK 會在你開啟旅行時，以及每隔幾分鐘在背景讀取它的變更。在 AirTrail 中刪除的航班，在 TREK 中仍會保留卡片，標籤會變成「未同步」。只有在「整合」下開啟「將變更寫回 AirTrail」時，你在 TREK 中的修改才會傳回 AirTrail。',
+    'AirTrail 仍是資料的主要來源。TREK 會在你開啟旅行時，以及每隔幾分鐘在背景讀取它的變更。在 AirTrail 中刪除的航班，在 TREK 中仍會保留卡片，標籤會變成「未同步」。只有在「整合」下開啟「將變更寫回 AirTrail」時，你在 TREK 中的修改才會傳回 AirTrail。開啟後，你在 TREK 中預訂的航班也會新增到你的 AirTrail 並建立連結。含轉機的預訂會依每個航段產生一個 AirTrail 航班，之後這些航班不再同步。',
   'help.guide.airtrail-import.tip.3':
     '合併的轉乘行程不是單一的 AirTrail 航班，無法同步，所以只能一次性匯入：它會保留藍色標籤，將滑鼠移到標籤上時會有說明。你手動為已同步的航班加入中途停靠點時，也會發生同樣的情況。',
 
@@ -4290,7 +4290,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     '推播是依瀏覽器運作的：想讓哪支手機或電腦收到，就在上面重複一次。「為此裝置關閉」只會在該裝置上停止。',
   'help.guide.connect-airtrail.step.2':
-    '「允許自簽憑證」只適用於你自己網路中受信任的執行個體。「將變更寫回 AirTrail」預設為關閉，所以 TREK 只讀取；開啟後才會把你的編輯傳回去。',
+    '「允許自簽憑證」只適用於你自己網路中受信任的執行個體。「將變更寫回 AirTrail」預設為關閉，所以 TREK 只讀取；開啟後才會把你的編輯傳回去。也會把你在 TREK 中預訂的航班新增到 AirTrail。',
   'help.guide.connect-dawarich.step.2':
     '「自動檢查新的停留點」讓 TREK 自行查看；關閉時，只有你要求時它才會讀取 Dawarich。「允許自簽憑證」只適用於你的伺服器不信任的執行個體。',
   'help.guide.tour-connect-wanderer.step.2': '只有在你自己網路中的執行個體，才需要開啟「允許自我簽署憑證」。',

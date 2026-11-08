@@ -4121,7 +4121,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     'Az a járat, amely ugyanazzal a számmal és dátummal már szerepel az utazásban, kimarad, és egy üzenet jelzi, hány ilyen volt. A napok fölötti eszköztár visszavonás nyila a teljes importálást visszavonja.',
   'help.guide.airtrail-import.tip.2':
-    'Az adatok elsődleges forrása továbbra is az AirTrail. A TREK az utazás megnyitásakor és a háttérben néhány percenként lekéri a módosításokat. Az AirTrailben törölt járat kártyája a TREK-ben megmarad, a címkéje pedig „Nincs szinkronizálva” lesz. A TREK-ben végzett módosítások csak akkor kerülnek vissza az AirTrailbe, ha az Integrációk alatt be van kapcsolva a „Módosítások visszaírása az AirTrailbe”.',
+    'Az adatok elsődleges forrása továbbra is az AirTrail. A TREK az utazás megnyitásakor és a háttérben néhány percenként lekéri a módosításokat. Az AirTrailben törölt járat kártyája a TREK-ben megmarad, a címkéje pedig „Nincs szinkronizálva” lesz. A TREK-ben végzett módosítások csak akkor kerülnek vissza az AirTrailbe, ha az Integrációk alatt be van kapcsolva a „Módosítások visszaírása az AirTrailbe”. Ha be van kapcsolva, a TREK-ben foglalt járat az AirTrailbe is bekerül, és összekapcsolódik. Az átszállásos foglalásból szakaszonként egy AirTrail-járat lesz, és ezek a járatok ezután nem szinkronizálódnak.',
   'help.guide.airtrail-import.tip.3':
     'Az összevont csatlakozás nem egyetlen AirTrail-járat, amelyet szinkronizálni lehetne, ezért egyszeri importálásként kerül be: megtartja a kék címkét, és ha fölé viszed az egeret, ezt jelzi is. Ugyanez történik egy szinkronizált járattal, ha kézzel megállót adsz hozzá.',
 
@@ -5065,7 +5065,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'A push böngészőnként működik: ismételd meg minden telefonon és számítógépen, amelyen értesítést szeretnél kapni. A „Kikapcsolás ezen az eszközön” csak azon az eszközön kapcsolja ki.',
   'help.guide.connect-airtrail.step.2':
-    'Az „Önaláírt tanúsítványok engedélyezése” csak a saját hálózatodon futó, megbízható példányhoz való. A „Módosítások visszaírása az AirTrailbe” alapból ki van kapcsolva, így a TREK csak olvas; kapcsold be, ha a szerkesztéseidet is vissza szeretnéd küldeni.',
+    'Az „Önaláírt tanúsítványok engedélyezése” csak a saját hálózatodon futó, megbízható példányhoz való. A „Módosítások visszaírása az AirTrailbe” alapból ki van kapcsolva, így a TREK csak olvas; kapcsold be, ha a szerkesztéseidet is vissza szeretnéd küldeni. A TREK-ben foglalt járatokat is hozzáadja az AirTrailhez.',
   'help.guide.connect-dawarich.step.2':
     'Az „Új tartózkodások automatikus keresése” beállítással a TREK magától ellenőrzi az újdonságokat. Kikapcsolt állapotban csak akkor olvassa a Dawarichot, ha kéred. A „Saját aláírású tanúsítvány engedélyezése” csak olyan példányhoz való, amelyben a szervered nem bízik.',
   'help.guide.tour-connect-wanderer.step.2':

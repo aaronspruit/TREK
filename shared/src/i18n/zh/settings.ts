@@ -385,7 +385,7 @@ const settings: TranslationStrings = {
   'settings.airtrail.allowInsecureTlsHint': '仅对您自己网络中受信任的实例启用。',
   'settings.airtrail.writeBack': '将更改写回 AirTrail',
   'settings.airtrail.writeBackHint':
-    '默认关闭：AirTrail 是数据来源，TREK 仅从中读取。开启后会将在 TREK 中所做的修改写回 AirTrail。',
+    '默认关闭：AirTrail 是数据来源，TREK 仅从中读取。开启后会将在 TREK 中所做的修改写回 AirTrail。还会把你在 TREK 中预订的航班添加到 AirTrail。',
   'settings.airtrail.connected': '已连接',
   'settings.airtrail.notConnected': '未连接',
   'settings.airtrail.toast.saved': 'AirTrail 连接已保存',

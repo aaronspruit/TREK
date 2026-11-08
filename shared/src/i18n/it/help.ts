@@ -4094,7 +4094,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     "Un volo già presente nel viaggio con lo stesso numero e la stessa data viene saltato, e un messaggio indica quanti voli sono stati saltati. La freccia Annulla nella barra degli strumenti sopra i giorni annulla l'intera importazione.",
   'help.guide.airtrail-import.tip.2':
-    'AirTrail resta la fonte principale dei dati. TREK legge le modifiche quando apri il viaggio e in background ogni pochi minuti. Un volo eliminato in AirTrail mantiene la sua scheda in TREK e la sua etichetta diventa «Non sincronizzato». Le modifiche fatte in TREK vengono inviate ad AirTrail solo se in «Integrazioni» è attivo «Scrivi le modifiche su AirTrail».',
+    'AirTrail resta la fonte principale dei dati. TREK legge le modifiche quando apri il viaggio e in background ogni pochi minuti. Un volo eliminato in AirTrail mantiene la sua scheda in TREK e la sua etichetta diventa «Non sincronizzato». Le modifiche fatte in TREK vengono inviate ad AirTrail solo se in «Integrazioni» è attivo «Scrivi le modifiche su AirTrail». Con questa opzione attiva, un volo prenotato in TREK viene aggiunto anche al tuo AirTrail e collegato. Una prenotazione con scali diventa un volo AirTrail per ogni tratta, e quei voli non si sincronizzano più in seguito.',
   'help.guide.airtrail-import.tip.3':
     "Un collegamento combinato non corrisponde a un singolo volo AirTrail sincronizzabile, quindi viene importato una sola volta: mantiene l'etichetta blu, che lo indica quando ci passi sopra con il mouse. Lo stesso succede a un volo sincronizzato quando gli aggiungi a mano uno scalo.",
 
@@ -5045,7 +5045,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     "Il push funziona per singolo browser: ripeti l'operazione su ogni telefono e computer su cui vuoi ricevere le notifiche. «Disattiva su questo dispositivo» lo disattiva solo su quel dispositivo.",
   'help.guide.connect-airtrail.step.2':
-    "«Consenti certificati autofirmati» serve solo per un'istanza affidabile nella tua rete. «Scrivi le modifiche su AirTrail» è disattivato per impostazione predefinita, quindi TREK si limita a leggere; attivalo per inviare le tue modifiche ad AirTrail.",
+    "«Consenti certificati autofirmati» serve solo per un'istanza affidabile nella tua rete. «Scrivi le modifiche su AirTrail» è disattivato per impostazione predefinita, quindi TREK si limita a leggere; attivalo per inviare le tue modifiche ad AirTrail. Aggiunge anche ad AirTrail i voli prenotati in TREK.",
   'help.guide.connect-dawarich.step.2':
     "«Cerca automaticamente nuove soste» permette a TREK di controllare da solo. Se è disattivato, TREK legge Dawarich solo quando glielo chiedi. «Consenti certificato autofirmato» serve solo per un'istanza di cui il tuo server non si fida.",
   'help.guide.tour-connect-wanderer.step.2':

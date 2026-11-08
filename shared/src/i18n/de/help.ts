@@ -4130,7 +4130,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     'Flüge, die mit gleicher Nummer und gleichem Datum schon in der Reise sind, werden übersprungen. Eine Meldung sagt dir, wie viele es waren. Mit dem Rückgängig-Pfeil in der Werkzeugleiste über den Tagen machst du den ganzen Import rückgängig.',
   'help.guide.airtrail-import.tip.2':
-    'AirTrail bleibt die maßgebliche Datenquelle. TREK übernimmt die Änderungen, wenn du die Reise öffnest, und alle paar Minuten im Hintergrund. Wird ein Flug in AirTrail gelöscht, bleibt seine Karte in TREK erhalten, ihr Label wechselt aber zu „Nicht synchronisiert“. Änderungen in TREK gehen nur dann zurück an AirTrail, wenn unter „Integrationen“ die Option „Änderungen zurück nach AirTrail schreiben“ eingeschaltet ist.',
+    'AirTrail bleibt die maßgebliche Datenquelle. TREK übernimmt die Änderungen, wenn du die Reise öffnest, und alle paar Minuten im Hintergrund. Wird ein Flug in AirTrail gelöscht, bleibt seine Karte in TREK erhalten, ihr Label wechselt aber zu „Nicht synchronisiert“. Änderungen in TREK gehen nur dann zurück an AirTrail, wenn unter „Integrationen“ die Option „Änderungen zurück nach AirTrail schreiben“ eingeschaltet ist. Ist die Option aktiv, wird ein in TREK gebuchter Flug auch zu deinem AirTrail hinzugefügt und verknüpft. Eine Buchung mit Zwischenstopps wird zu einem AirTrail-Flug pro Teilstrecke, und diese Flüge werden danach nicht synchronisiert.',
   'help.guide.airtrail-import.tip.3':
     'Eine zusammengefasste Verbindung ist kein einzelner AirTrail-Flug, der synchronisiert werden kann. Sie wird deshalb nur einmalig importiert: Sie behält das blaue Label, und beim Darüberfahren mit der Maus siehst du einen Hinweis darauf. Dasselbe passiert mit einem synchronisierten Flug, wenn du ihm von Hand einen Zwischenstopp hinzufügst.',
 
@@ -5087,7 +5087,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Push gilt pro Browser: Wiederhol das auf jedem Handy und Computer, auf dem du Benachrichtigungen bekommen willst. „Für dieses Gerät ausschalten“ beendet es nur dort.',
   'help.guide.connect-airtrail.step.2':
-    '„Selbstsignierte Zertifikate erlauben“ ist nur für eine vertrauenswürdige Instanz in deinem eigenen Netzwerk gedacht. „Änderungen zurück nach AirTrail schreiben“ ist standardmäßig aus, TREK liest also nur; schalte es ein, wenn deine Änderungen zurück an AirTrail gehen sollen.',
+    '„Selbstsignierte Zertifikate erlauben“ ist nur für eine vertrauenswürdige Instanz in deinem eigenen Netzwerk gedacht. „Änderungen zurück nach AirTrail schreiben“ ist standardmäßig aus, TREK liest also nur; schalte es ein, wenn deine Änderungen zurück an AirTrail gehen sollen. Außerdem werden in TREK gebuchte Flüge zu AirTrail hinzugefügt.',
   'help.guide.connect-dawarich.step.2':
     'Mit „Automatisch nach neuen Aufenthalten suchen“ sieht TREK von selbst nach; ist es aus, liest TREK Dawarich nur, wenn du es anstößt. „Selbstsigniertes Zertifikat zulassen“ brauchst du nur für eine Instanz, der dein Server nicht vertraut.',
   'help.guide.tour-connect-wanderer.step.2':

@@ -3478,7 +3478,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     '旅行中已有相同航班号和日期的航班会被跳过，并提示跳过了多少个。天数上方工具栏里的撤销箭头可以撤销整次导入。',
   'help.guide.airtrail-import.tip.2':
-    '数据仍以 AirTrail 为准。TREK 会在你打开旅行时读取它的更改，并在后台每隔几分钟读取一次。在 AirTrail 中删除的航班，卡片会保留在 TREK 中，标签变为“未同步”。只有在“集成”中开启“将更改写回 AirTrail”后，你在 TREK 中的修改才会回传给 AirTrail。',
+    '数据仍以 AirTrail 为准。TREK 会在你打开旅行时读取它的更改，并在后台每隔几分钟读取一次。在 AirTrail 中删除的航班，卡片会保留在 TREK 中，标签变为“未同步”。只有在“集成”中开启“将更改写回 AirTrail”后，你在 TREK 中的修改才会回传给 AirTrail。开启后，你在 TREK 中预订的航班也会添加到你的 AirTrail 并建立关联。含经停的预订会按每个航段生成一个 AirTrail 航班，之后这些航班不再同步。',
   'help.guide.airtrail-import.tip.3':
     '合并的联程不是 AirTrail 中可同步的单个航班，所以只能一次性导入：它会保留蓝色标签，鼠标悬停在标签上时会有说明。已同步的航班如果你手动加了经停，也会变成这样。',
 
@@ -4254,7 +4254,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     '推送按浏览器生效：想收到通知的每部手机和每台电脑都要各做一遍。“为此设备关闭”只会停止这台设备上的推送。',
   'help.guide.connect-airtrail.step.2':
-    '“允许自签名证书”仅适用于你自己网络中可信的实例。“将更改写回 AirTrail”默认关闭，所以 TREK 只读取；打开后，你的修改会同步回 AirTrail。',
+    '“允许自签名证书”仅适用于你自己网络中可信的实例。“将更改写回 AirTrail”默认关闭，所以 TREK 只读取；打开后，你的修改会同步回 AirTrail。还会把你在 TREK 中预订的航班添加到 AirTrail。',
   'help.guide.connect-dawarich.step.2':
     '“自动检查新的停留记录”让 TREK 自动检查；关闭时，只有在你要求时才会读取 Dawarich。“允许自签名证书”仅适用于你的服务器不信任的实例。',
   'help.guide.tour-connect-wanderer.step.2': '只有实例在你自己的网络中时，才打开“允许自签名证书”。',

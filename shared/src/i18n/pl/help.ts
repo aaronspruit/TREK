@@ -4037,7 +4037,7 @@ const help: TranslationStrings = {
   'help.guide.airtrail-import.tip.1':
     'Lot, który jest już w podróży z tym samym numerem i datą, zostaje pominięty, a komunikat podaje liczbę pominiętych lotów. Strzałka cofania na pasku narzędzi nad dniami cofa cały import.',
   'help.guide.airtrail-import.tip.2':
-    'Głównym źródłem danych pozostaje AirTrail. TREK pobiera z niego zmiany, gdy otwierasz podróż, oraz co kilka minut w tle. Lot usunięty w AirTrail zachowuje kartę w TREK, a jego etykieta zmienia się na „Niezsynchronizowane”. Zmiany wprowadzone w TREK trafiają do AirTrail tylko wtedy, gdy w sekcji „Integracje” włączona jest opcja „Zapisuj zmiany z powrotem w AirTrail”.',
+    'Głównym źródłem danych pozostaje AirTrail. TREK pobiera z niego zmiany, gdy otwierasz podróż, oraz co kilka minut w tle. Lot usunięty w AirTrail zachowuje kartę w TREK, a jego etykieta zmienia się na „Niezsynchronizowane”. Zmiany wprowadzone w TREK trafiają do AirTrail tylko wtedy, gdy w sekcji „Integracje” włączona jest opcja „Zapisuj zmiany z powrotem w AirTrail”. Gdy opcja jest włączona, lot zarezerwowany w TREK jest też dodawany do Twojego AirTrail i łączony. Rezerwacja z przesiadkami staje się jednym lotem w AirTrail na każdy odcinek, a te loty nie są potem synchronizowane.',
   'help.guide.airtrail-import.tip.3':
     'Połączony lot z przesiadką nie jest pojedynczym lotem AirTrail, który można synchronizować, więc jest importowany jednorazowo: zachowuje niebieską plakietkę, a po najechaniu na nią zobaczysz tę informację. To samo dzieje się z synchronizowanym lotem, gdy ręcznie dodasz do niego przystanek.',
 
@@ -4969,7 +4969,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Push działa osobno w każdej przeglądarce: powtórz to na każdym telefonie i komputerze, na którym chcesz dostawać powiadomienia. „Wyłącz na tym urządzeniu” wyłącza je tylko na tym urządzeniu.',
   'help.guide.connect-airtrail.step.2':
-    '„Zezwalaj na certyfikaty samopodpisane” włączaj tylko dla zaufanej instancji we własnej sieci. „Zapisuj zmiany z powrotem w AirTrail” jest domyślnie wyłączone, więc TREK tylko odczytuje dane; włącz tę opcję, żeby wysyłać swoje zmiany z powrotem.',
+    '„Zezwalaj na certyfikaty samopodpisane” włączaj tylko dla zaufanej instancji we własnej sieci. „Zapisuj zmiany z powrotem w AirTrail” jest domyślnie wyłączone, więc TREK tylko odczytuje dane; włącz tę opcję, żeby wysyłać swoje zmiany z powrotem. Dodaje też do AirTrail loty zarezerwowane w TREK.',
   'help.guide.connect-dawarich.step.2':
     '„Sprawdzaj nowe pobyty automatycznie” pozwala TREK samodzielnie sprawdzać nowe dane. Gdy ta opcja jest wyłączona, TREK odczytuje Dawarich tylko na twoje żądanie. „Zezwalaj na certyfikat z własnym podpisem” jest przeznaczone tylko dla instancji, której twój serwer nie ufa.',
   'help.guide.tour-connect-wanderer.step.2':

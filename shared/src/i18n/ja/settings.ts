@@ -389,7 +389,7 @@ const settings: TranslationStrings = {
     '自分のネットワーク内の信頼できるインスタンスの場合にのみ有効にしてください。',
   'settings.airtrail.writeBack': '変更を AirTrail に書き戻す',
   'settings.airtrail.writeBackHint':
-    '既定ではオフ: AirTrail が信頼できる情報源で、TREK は読み取りのみを行います。TREK で行った編集を AirTrail に書き戻すにはオンにします。',
+    '既定ではオフ: AirTrail が信頼できる情報源で、TREK は読み取りのみを行います。TREK で行った編集を AirTrail に書き戻すにはオンにします。TREK で予約したフライトも AirTrail に追加されます。',
   'settings.airtrail.connected': '接続済み',
   'settings.airtrail.notConnected': '未接続',
   'settings.airtrail.toast.saved': 'AirTrail の接続を保存しました',
