@@ -15,23 +15,25 @@ import { Injectable } from '@nestjs/common';
  * Thin HTTP client for the AirTrail REST API (github.com/johanohly/AirTrail).
  * This is the ONLY place that talks to a user's AirTrail instance.
  *
- * AirTrail 3.13.0 and later serve the versioned API under `/api/v1`, and mark
- * the `/api/flight/*` routes as deprecated, to be removed in the next major
- * release. Older instances have only `/api/flight/*`. The client asks the
- * public discovery document `GET /api/v1` which API an instance has, and keeps
- * the answer for FLAVOR_TTL_MS (see `apiFlavor`). A 404 from a flight route
- * cannot tell, because v1 also answers 404 for a flight that does not exist.
+ * AirTrail 3.13.0 and later serve the versioned API under `/api/v1`. They mark
+ * the `/api/flight/*` routes as deprecated, and the next major release removes
+ * them. Older instances have only `/api/flight/*`. The client asks the public
+ * discovery document `GET /api/v1` which API an instance has, and keeps the
+ * answer for FLAVOR_TTL_MS (see `apiFlavor`). A 404 from a flight route cannot
+ * tell the difference, because v1 also answers 404 for a flight that does not exist.
  *
  * Both APIs, verified against AirTrail source:
  *  - Auth: `Authorization: Bearer <key>`; a key maps to exactly one user. A key
  *    made before 3.13.0 holds every scope. A newer key needs `flight.read.own`,
- *    and for the write-back also `flight.update.own`, `reference_data.read`
- *    (code lookups) and `profile.read` (`GET /api/v1/me`, for a flight with no
- *    passenger). A save with no id also needs `flight.create.own`. A missing
- *    scope raises AirtrailScopeError, which names it.
+ *    and for the write-back also `flight.update.own`,
+ *    `flight.passengers.manage.own` (a PUT that changes a passenger, for example
+ *    the seat), `reference_data.read` (code lookups) and `profile.read`
+ *    (`GET /api/v1/me`, for a flight with no passenger). A save with no id also
+ *    needs `flight.create.own`. A missing scope raises AirtrailScopeError, which
+ *    names it.
  *  - The flight list defaults to scope=mine. We NEVER send a scope param so the
  *    key only ever returns its owner's own flights (isolation holds even if an
- *    admin key is pasted). v1 pages the list; the client reads every page.
+ *    admin key is pasted). v1 gives the list in pages, and the client reads every page.
  *  - Legacy: GET /api/flight/list, GET /api/flight/get/{id}, and
  *    POST /api/flight/save (`id` present => update, else create), with airports,
  *    airline and aircraft as codes and times as a local date plus `HH:MM`. An
@@ -49,7 +51,7 @@ import { Injectable } from '@nestjs/common';
  */
 
 const TIMEOUT_MS = 12000;
-/** How long the answer of the discovery probe holds, so an AirTrail upgrade is seen. */
+/** How long the client keeps the answer of the discovery probe. After this time, it sees an AirTrail upgrade. */
 const FLAVOR_TTL_MS = 10 * 60_000;
 /** The largest page `GET /api/v1/flights` gives. */
 const V1_PAGE_LIMIT = 100;
@@ -75,9 +77,9 @@ export class AirtrailAuthError extends Error {
 }
 
 /**
- * A v1 key that is valid but lacks a scope the request needs. Not an
- * AirtrailAuthError: the key still works for what it may do, so a caller must
- * not treat it as a revoked key and detach linked flights.
+ * A v1 key that is valid but does not have a scope that the request needs. It is
+ * not an AirtrailAuthError, because the key still works for its other scopes.
+ * A caller must not detach linked flights for this error.
  */
 export class AirtrailScopeError extends Error {
   readonly scope: string | null;
@@ -271,7 +273,7 @@ async function request(creds: AirtrailCreds, path: string, init: RequestInit): P
     throw new AirtrailRequestError(err instanceof Error ? err.message : 'Could not reach AirTrail');
   }
   if (resp.status === 401 || resp.status === 403) {
-    // v1 says why, e.g. which scope the key lacks; the legacy API does not.
+    // v1 gives the cause, for example the scope that the key does not have. The legacy API does not.
     const reason = await v1Error(resp);
     if (reason?.code === 'insufficient_scope') throw new AirtrailScopeError(scopeIn(reason.message));
     throw reason ? new AirtrailAuthError(`AirTrail refused the request: ${reason.message}`) : new AirtrailAuthError();
@@ -308,7 +310,18 @@ export class AirtrailClient {
   }
 
   async getFlight(creds: AirtrailCreds, id: number): Promise<AirtrailFlightRaw | null> {
-    const v1 = (await this.apiFlavor(creds)) === 'v1';
+    const flavor = await this.apiFlavor(creds);
+    const flight = await this.getFlightAs(creds, id, flavor);
+    if (flight) return flight;
+    // A 404 from a stale answer (AirTrail was upgraded or downgraded) looks like a deleted
+    // flight, and a caller detaches a deleted flight. Ask the probe again before null.
+    this.flavors.delete(apiBase(creds.baseUrl));
+    const fresh = await this.apiFlavor(creds);
+    return fresh === flavor ? null : this.getFlightAs(creds, id, fresh);
+  }
+
+  private async getFlightAs(creds: AirtrailCreds, id: number, flavor: ApiFlavor): Promise<AirtrailFlightRaw | null> {
+    const v1 = flavor === 'v1';
     const resp = await request(creds, v1 ? `/v1/flights/${id}` : `/flight/get/${id}`, { method: 'GET' });
     if (resp.status === 404) return null;
     if (!resp.ok) throw new AirtrailRequestError(`AirTrail get failed (HTTP ${resp.status})`, resp.status);
@@ -344,18 +357,28 @@ export class AirtrailClient {
 
   /**
    * Which API the instance speaks. `GET /api/v1` is public and answers a
-   * discovery document with `api.version` on 3.13.0 and later; an older
-   * instance answers 404. Only those two answers are kept. Anything else (a
-   * login page in front of AirTrail, a 5xx) is asked again on the next call:
-   * a 5xx fails this call, and a page that is not the discovery document goes
-   * to the legacy route, whose own error explains a wrong URL.
+   * discovery document with `api.version` on 3.13.0 and later. An older
+   * instance answers 404. The client keeps only these two answers. For each
+   * other answer, the client asks again on the next call:
+   *  - A 5xx, a timeout or a network error fails this call.
+   *  - A page that is not the discovery document (for example a login page in
+   *    front of AirTrail) sends this call to the legacy route. The error of
+   *    that route explains a wrong URL.
    */
   private async apiFlavor(creds: AirtrailCreds): Promise<ApiFlavor> {
     const base = apiBase(creds.baseUrl);
     const known = this.flavors.get(base);
     if (known && Date.now() - known.at < FLAVOR_TTL_MS) return known.flavor;
 
-    const resp = await request(creds, '/v1', { method: 'GET' });
+    let resp: Response;
+    try {
+      resp = await request(creds, '/v1', { method: 'GET' });
+    } catch (err) {
+      // `GET /api/v1` is public in AirTrail, so a 401 or 403 comes from a proxy in front of it.
+      // It says nothing about the key. Use the legacy route for this call, and do not keep the answer.
+      if (err instanceof AirtrailAuthError || err instanceof AirtrailScopeError) return 'legacy';
+      throw err;
+    }
     let flavor: ApiFlavor;
     let keep = true;
     if (resp.status === 404) {
@@ -397,7 +420,7 @@ export class AirtrailClient {
     for (const f of body.data ?? []) flights.push(fromV1Flight(f));
     const next = body.page?.nextCursor ?? null;
     if (!next) return flights;
-    // A cursor seen before would loop forever. AirTrail never sends one, but a caching proxy could.
+    // A cursor that came before makes an endless loop. AirTrail does not send one, but a caching proxy can.
     if (seen.has(next)) throw new AirtrailRequestError('AirTrail repeated a page cursor');
     seen.add(next);
     if (seen.size >= V1_MAX_PAGES)
@@ -438,7 +461,7 @@ export class AirtrailClient {
       body: JSON.stringify(body),
     });
     if (!resp.ok) throw await v1Failure(resp, 'save');
-    // The legacy save answered an id only for a new flight; keep that.
+    // The legacy save answers an id only for a new flight. This method does the same.
     if (update) return {};
     const data = await parseJson<{ data?: { id?: number } }>(resp);
     return { id: data.data?.id };
@@ -446,7 +469,7 @@ export class AirtrailClient {
 
   /**
    * The row whose code is `code`, from a v1 reference search. The search also
-   * matches names, so the code is checked again here: see `pickByCode`.
+   * matches names, so `pickByCode` compares the code again.
    */
   private async findByCode<T extends { id: number; icao?: string | null; iata?: string | null }>(
     creds: AirtrailCreds,

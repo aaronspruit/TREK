@@ -4,13 +4,13 @@ import type { AirtrailAirport, AirtrailFlightRaw, AirtrailSavePayload } from './
 /**
  * The translation between AirTrail's `/api/v1` and the shapes the rest of TREK
  * uses (AirtrailFlightRaw, AirtrailSavePayload), which are the shapes of the
- * legacy `/api/flight/*` routes. The callers stay on one shape whichever API the
- * instance speaks; this file is the only place that knows the difference.
+ * legacy `/api/flight/*` routes. The callers use one shape for each API that an
+ * instance speaks. This file is the only place that knows the difference.
  *
- * Verified against AirTrail 3.13.0 through 3.14.0 (`src/lib/api/v1/schemas.ts`,
- * `src/lib/api/v1/dto.ts`); the v1 contract is unchanged across them.
+ * The contract comes from AirTrail 3.13.0 to 3.14.0 (`src/lib/api/v1/schemas.ts`,
+ * `src/lib/api/v1/dto.ts`). The v1 contract is the same in these versions.
  *
- * Pure functions, so the unit test drives them with fixture objects.
+ * The functions are pure, so the unit test gives them fixture objects.
  */
 
 /** An airport as v1 returns it, on a flight and from `GET /api/v1/airports`. */
@@ -140,7 +140,7 @@ function text(value: unknown): string | null {
   return typeof value === 'string' ? value : null;
 }
 
-/** A local date and `HH:MM` at an airport, as an ISO instant; null without a time. */
+/** A local date and `HH:MM` at an airport, as an ISO instant. Null when there is no time. */
 function localInstant(date: string | null, time: unknown, zone: string | null, field: string): string | null {
   if (!date || typeof time !== 'string' || !time) return null;
   const ms = wallClockInstant(date, time, zone || 'UTC');
@@ -174,8 +174,8 @@ function carriedInstant(p: Record<string, unknown>, key: string, zone: string | 
  * both are known, else the duration AirTrail had.
  *
  * v1 replaces every field a PUT omits with its default, so the body names each
- * field. `track` is left out: an absent track keeps the stored one, and a
- * present one needs the `tracks.write` scope.
+ * field except `track`. Without a track, AirTrail keeps the stored track. A
+ * track in the body needs the `tracks.write` scope.
  */
 export function toV1FlightInput(payload: AirtrailSavePayload, refs: AirtrailV1References): Record<string, unknown> {
   const p = payload as unknown as Record<string, unknown>;

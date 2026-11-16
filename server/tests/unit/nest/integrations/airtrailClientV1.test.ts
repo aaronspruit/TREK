@@ -232,7 +232,7 @@ describe('AirtrailClient picks the API the instance speaks', () => {
     expect((err as Error).message).toContain('lacks the scope flight.read.own');
   });
 
-  it('keeps a key that v1 refuses for another reason an auth error', async () => {
+  it('gives the auth error when v1 refuses the key for a reason other than a scope', async () => {
     on('GET', '/api/v1', () => json(DISCOVERY));
     on('GET', '/api/v1/flights', () => json({ error: { code: 'unauthorized', message: 'Invalid API key' } }, 401));
 
@@ -241,7 +241,7 @@ describe('AirtrailClient picks the API the instance speaks', () => {
     expect(err).toBeInstanceOf(AirtrailAuthError);
   });
 
-  it('stops paging at the hard page limit and fails instead of answering a part of the list', async () => {
+  it('stops at the hard page limit, and fails so that it does not give a part of the list', async () => {
     v1Instance();
     on('GET', '/api/v1/flights', (url) => {
       const n = Number(url.searchParams.get('cursor') ?? '0');
@@ -329,6 +329,47 @@ describe('AirtrailClient keeps only a clear answer of the discovery probe', () =
     expect(fetchMock.mock.calls.filter(([u]) => new URL(String(u)).pathname === '/api/v1')).toHaveLength(3);
   });
 
+  it('asks the probe again on a 404 for a flight, so a stale answer does not look like a deleted flight', async () => {
+    let upgraded = false;
+    on('GET', '/api/v1', () => (upgraded ? json(DISCOVERY) : json({}, 404)));
+    on('GET', '/api/v1/flights/3', () => json({ data: v1Flight(3) }));
+    on('GET', '/api/flight/get/3', () => (upgraded ? json({}, 404) : json({ success: true, flight: { id: 3 } })));
+    const client = new AirtrailClient();
+
+    await client.getFlight(creds, 3);
+    upgraded = true; // the next major AirTrail has no /api/flight/* routes
+    const flight = await client.getFlight(creds, 3);
+
+    expect(flight?.id).toBe(3);
+    expect(calls.map((c) => c.url.pathname)).toEqual([
+      '/api/v1',
+      '/api/flight/get/3',
+      '/api/flight/get/3',
+      '/api/v1',
+      '/api/v1/flights/3',
+    ]);
+  });
+
+  it('answers null after the probe gives the same API again, because the flight is deleted', async () => {
+    v1Instance();
+    const client = new AirtrailClient();
+
+    expect(await client.getFlight(creds, 404)).toBeNull();
+    // The probe again, but no second read: the probe gave the same API.
+    expect(calls.map((c) => c.url.pathname)).toEqual(['/api/v1', '/api/v1/flights/404', '/api/v1']);
+  });
+
+  it('uses the legacy route, and does not call the key invalid, when a proxy refuses the probe', async () => {
+    on('GET', '/api/v1', () => new Response('Unauthorized', { status: 401 }));
+    on('GET', '/api/flight/get/3', () => json({ success: true, flight: { id: 3 } }));
+    const client = new AirtrailClient();
+
+    expect(await client.getFlight(creds, 3)).toEqual({ id: 3 });
+    await client.getFlight(creds, 3);
+
+    expect(calls.filter((c) => c.url.pathname === '/api/v1')).toHaveLength(2);
+  });
+
   it('keeps the answer for each AirTrail URL apart', async () => {
     on('GET', '/api/v1', (url) => (url.hostname === 'new.example' ? json(DISCOVERY) : json({}, 404)));
     on('GET', '/api/v1/flights/3', () => json({ data: v1Flight(3) }));
@@ -349,7 +390,7 @@ describe('AirtrailClient keeps only a clear answer of the discovery probe', () =
       'new.example/api/v1/flights/3',
       'new.example/api/v1/flights/3',
     ]);
-    // One probe per instance; a trailing slash or /api names the same instance.
+    // One probe for each instance. A trailing slash or /api names the same instance.
     expect(calls.filter((c) => c.url.pathname === '/api/v1').map((c) => c.url.hostname)).toEqual([
       'at.example',
       'old.example',
@@ -679,7 +720,7 @@ describe('toV1FlightInput converts the local wall clock to UTC', () => {
   });
 
   it('follows a daylight-saving change at the airport', () => {
-    // Sydney moves to UTC+11 on 2026-10-04; Los Angeles moves back to UTC-8 on 2026-11-01.
+    // Sydney moves to UTC+11 on 2026-10-04. Los Angeles moves back to UTC-8 on 2026-11-01.
     const before = toV1FlightInput(flight({ departure: '2026-10-03', departureTime: '10:00' }), refs(SYD, LHR));
     const after = toV1FlightInput(flight({ departure: '2026-10-05', departureTime: '10:00' }), refs(SYD, LHR));
     const pdt = toV1FlightInput(flight({ departure: '2026-10-31', departureTime: '22:00' }), refs(LAX, LHR));

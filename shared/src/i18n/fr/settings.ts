@@ -421,7 +421,7 @@ const settings: TranslationStrings = {
   'settings.airtrail.apiKey': 'Clé API',
   'settings.airtrail.apiKeyPlaceholder': 'Clé API Bearer',
   'settings.airtrail.apiKeyHint':
-    'Générée dans AirTrail sous Paramètres → Sécurité. Stockée chiffrée. Si vous créez la clé dans AirTrail 3.13 ou une version ultérieure, elle a besoin du scope flight.read.own pour la lecture. Pour réécrire les modifications, il lui faut aussi flight.update.own, reference_data.read et profile.read.',
+    'Générée dans AirTrail sous Paramètres → Sécurité. Stockée chiffrée. Si vous créez la clé dans AirTrail 3.13 ou une version ultérieure, elle a besoin du scope flight.read.own pour la lecture. Pour réécrire les modifications, il lui faut aussi flight.update.own, flight.passengers.manage.own, reference_data.read et profile.read.',
   'settings.airtrail.allowInsecureTls': 'Autoriser les certificats auto-signés',
   'settings.airtrail.allowInsecureTlsHint':
     'À activer uniquement pour une instance de confiance sur votre propre réseau.',
