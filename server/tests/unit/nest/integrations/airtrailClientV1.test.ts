@@ -408,6 +408,73 @@ describe('AirtrailClient keeps only a clear answer of the discovery probe', () =
   });
 });
 
+/** An instance with no /api/v1: the probe gets the default 404 route. */
+describe('AirtrailClient on the legacy routes', () => {
+  const payload: AirtrailSavePayload = {
+    id: 41,
+    from: 'KLAX',
+    to: 'YMML',
+    departure: '2026-10-04',
+    departureTime: '22:00',
+    airline: 'QFA',
+    seats: [{ userId: '<USER_ID>', guestName: null, seat: null, seatNumber: '3A', seatClass: null }],
+    passengers: [{ userId: '<USER_ID>', guestName: null, seat: null, seatNumber: '3A', seatClass: null }],
+  };
+
+  it('reads one flight, and answers null for a flight that does not exist', async () => {
+    on('GET', '/api/flight/get/3', () => json({ success: true, flight: { id: 3, flightNumber: 'QF94' } }));
+    const client = new AirtrailClient();
+
+    expect(await client.getFlight(creds, 3)).toEqual({ id: 3, flightNumber: 'QF94' });
+    expect(await client.getFlight(creds, 4)).toBeNull();
+  });
+
+  it('lists the flights with no scope parameter', async () => {
+    on('GET', '/api/flight/list', () => json({ success: true, flights: [{ id: 1 }, { id: 2 }] }));
+
+    expect(await new AirtrailClient().listFlights(creds)).toEqual([{ id: 1 }, { id: 2 }]);
+    const list = present(calls.find((c) => c.url.pathname === '/api/flight/list'));
+    expect(list.url.search).toBe('');
+  });
+
+  it('sends the save payload unchanged, with codes and local times, and answers the id', async () => {
+    on('POST', '/api/flight/save', () => json({ success: true, id: 41 }));
+
+    expect(await new AirtrailClient().saveFlight(creds, payload)).toEqual({ id: 41 });
+    const save = present(calls.find((c) => c.method === 'POST'));
+    expect(save.body).toEqual(payload);
+    // The legacy save needs no lookup and no profile read.
+    expect(calls.map((c) => c.url.pathname)).toEqual(['/api/v1', '/api/flight/save']);
+  });
+
+  it('passes the save error message through', async () => {
+    on('POST', '/api/flight/save', () => json({ success: false, message: 'Invalid airline' }, 400));
+
+    const err = await new AirtrailClient().saveFlight(creds, payload).catch((e: unknown) => e);
+
+    expect(err).toBeInstanceOf(AirtrailRequestError);
+    expect((err as AirtrailRequestError).status).toBe(400);
+    expect((err as Error).message).toBe('Invalid airline');
+  });
+
+  it('gives a refused key the auth error with the generic message', async () => {
+    on('GET', '/api/flight/list', () => new Response('Unauthorized', { status: 401 }));
+
+    const err = await new AirtrailClient().listFlights(creds).catch((e: unknown) => e);
+
+    expect(err).toBeInstanceOf(AirtrailAuthError);
+    expect((err as Error).message).toBe('AirTrail rejected the API key');
+  });
+
+  it('explains a page that is not JSON, such as a wrong URL', async () => {
+    on('GET', '/api/flight/list', () => new Response('<html>app</html>', { status: 200 }));
+
+    const err = await new AirtrailClient().listFlights(creds).catch((e: unknown) => e);
+
+    expect((err as Error).message).toContain('AirTrail returned a non-JSON response');
+  });
+});
+
 describe('AirtrailClient writes a flight through v1', () => {
   it('turns the write-back payload into a PUT with ids, UTC instants and the AirTrail-owned fields', async () => {
     v1Instance();

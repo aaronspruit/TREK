@@ -413,7 +413,7 @@ const settings: TranslationStrings = {
   'settings.airtrail.apiKey': 'API-ключ',
   'settings.airtrail.apiKeyPlaceholder': 'Bearer API-ключ',
   'settings.airtrail.apiKeyHint':
-    'Згенеровано в AirTrail у розділі Налаштування → Безпека. Зберігається в зашифрованому вигляді. Для читання ключу потрібна область flight.read.own. Для запису змін назад також потрібні flight.update.own, reference_data.read і profile.read.',
+    'Згенеровано в AirTrail у розділі Налаштування → Безпека. Зберігається в зашифрованому вигляді. Якщо ви створюєте ключ в AirTrail 3.13 або новішому, для читання йому потрібна область flight.read.own. Для запису змін назад також потрібні flight.update.own, reference_data.read і profile.read.',
   'settings.airtrail.allowInsecureTls': 'Дозволити самопідписані сертифікати',
   'settings.airtrail.allowInsecureTlsHint': 'Вмикайте лише для довіреного екземпляра у вашій власній мережі.',
   'settings.airtrail.writeBack': 'Записувати зміни назад у AirTrail',

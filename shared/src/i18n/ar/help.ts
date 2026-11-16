@@ -4354,7 +4354,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.result':
     'تعرض البطاقة «مُفعّل على هذا الجهاز»، وتصلك الأحداث المفعّلة تحت «إشعارات فورية» حتى عندما يكون TREK مغلقًا.',
   'help.guide.connect-airtrail.step.1':
-    'تحت «التكاملات»، ابحث عن AirTrail وأدخل «رابط النسخة» و«مفتاح API». تنشئ المفتاح في AirTrail من «الإعدادات»، ثم «الأمان». يحتاج المفتاح إلى النطاق flight.read.own للقراءة. ولكتابة التغييرات إلى AirTrail يحتاج أيضًا إلى flight.update.own و reference_data.read و profile.read.',
+    'تحت «التكاملات»، ابحث عن AirTrail وأدخل «رابط النسخة» و«مفتاح API». تنشئ المفتاح في AirTrail من «الإعدادات»، ثم «الأمان». إذا أنشأت المفتاح في AirTrail 3.13 أو أحدث، فإنه يحتاج إلى النطاق flight.read.own للقراءة. ولكتابة التغييرات إلى AirTrail يحتاج أيضًا إلى flight.update.own و reference_data.read و profile.read.',
   'help.guide.connect-dawarich.step.1':
     'تحت «التكاملات»، ابحث عن Dawarich وأدخل «عنوان الخادم» و«مفتاح API» الذي تجده في Dawarich تحت «الحساب»، ثم «مفتاح API».',
   'help.guide.tour-connect-wanderer.step.1':

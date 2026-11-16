@@ -390,7 +390,7 @@ const settings: TranslationStrings = {
   'settings.airtrail.apiKey': "Clau de l'API",
   'settings.airtrail.apiKeyPlaceholder': "Clau d'API Bearer",
   'settings.airtrail.apiKeyHint':
-    "Generada a AirTrail sota Ajustos → Seguretat. S'emmagatzema xifrada. La clau necessita l'abast flight.read.own per llegir. Per sincronitzar els canvis cap a AirTrail, també necessita flight.update.own, reference_data.read i profile.read.",
+    "Generada a AirTrail sota Ajustos → Seguretat. S'emmagatzema xifrada. Si crees la clau a AirTrail 3.13 o posterior, necessita l'abast flight.read.own per llegir. Per sincronitzar els canvis cap a AirTrail, també necessita flight.update.own, reference_data.read i profile.read.",
   'settings.airtrail.allowInsecureTls': 'Permetre certificats autodirigits',
   'settings.airtrail.allowInsecureTlsHint': 'Activa-ho només per a una instància de confiança a la teva pròpia xarxa.',
   'settings.airtrail.writeBack': 'Sincronitzar els canvis cap a AirTrail',

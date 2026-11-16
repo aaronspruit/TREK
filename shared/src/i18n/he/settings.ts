@@ -403,7 +403,7 @@ const settings: TranslationStrings = {
   'settings.airtrail.apiKey': 'מפתח API',
   'settings.airtrail.apiKeyPlaceholder': 'מפתח API מסוג Bearer',
   'settings.airtrail.apiKeyHint':
-    'נוצר ב-AirTrail תחת Settings ← Security. נשמר מוצפן. המפתח צריך את ההרשאה flight.read.own כדי לקרוא. כדי לכתוב שינויים בחזרה, הוא צריך גם את flight.update.own, reference_data.read ו-profile.read.',
+    'נוצר ב-AirTrail תחת Settings ← Security. נשמר מוצפן. אם יוצרים את המפתח ב-AirTrail 3.13 ואילך, הוא צריך את ההרשאה flight.read.own כדי לקרוא. כדי לכתוב שינויים בחזרה, הוא צריך גם את flight.update.own, reference_data.read ו-profile.read.',
   'settings.airtrail.allowInsecureTls': 'אפשור תעודות בחתימה עצמית',
   'settings.airtrail.allowInsecureTlsHint': 'הפעילו רק עבור מופע מהימן ברשת שלכם.',
   'settings.airtrail.writeBack': 'כתיבת שינויים בחזרה ל-AirTrail',
