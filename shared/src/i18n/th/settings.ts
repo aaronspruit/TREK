@@ -394,7 +394,8 @@ const settings: TranslationStrings = {
   'settings.airtrail.url': 'URL ของอินสแตนซ์',
   'settings.airtrail.apiKey': 'คีย์เอพีไอ',
   'settings.airtrail.apiKeyPlaceholder': 'คีย์ API ของผู้ถือ',
-  'settings.airtrail.apiKeyHint': 'สร้างใน AirTrail ภายใต้การตั้งค่า → ความปลอดภัย จัดเก็บแบบเข้ารหัส',
+  'settings.airtrail.apiKeyHint':
+    'สร้างใน AirTrail ภายใต้การตั้งค่า → ความปลอดภัย จัดเก็บแบบเข้ารหัส คีย์ต้องมีขอบเขต flight.read.own เพื่ออ่าน หากต้องการเขียนการเปลี่ยนแปลงกลับ คีย์ต้องมี flight.update.own, reference_data.read และ profile.read ด้วย',
   'settings.airtrail.allowInsecureTls': 'อนุญาตใบรับรองที่ลงนามด้วยตนเอง',
   'settings.airtrail.allowInsecureTlsHint': 'เปิดใช้งานสำหรับอินสแตนซ์ที่เชื่อถือได้บนเครือข่ายของคุณเองเท่านั้น',
   'settings.airtrail.writeBack': 'เขียนการเปลี่ยนแปลงกลับไปที่ AirTrail',

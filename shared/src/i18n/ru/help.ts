@@ -4630,7 +4630,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.result':
     'В карточке написано «Включено на этом устройстве», и события, включённые в столбце Push, приходят, даже когда TREK закрыт.',
   'help.guide.connect-airtrail.step.1':
-    'В разделе «Интеграции» найдите AirTrail и введите «URL экземпляра» и «Ключ API». Ключ создаётся в AirTrail в разделе «Настройки», «Безопасность».',
+    'В разделе «Интеграции» найдите AirTrail и введите «URL экземпляра» и «Ключ API». Ключ создаётся в AirTrail в разделе «Настройки», «Безопасность». Для чтения ключу нужна область flight.read.own. Для записи изменений обратно также нужны flight.update.own, reference_data.read и profile.read.',
   'help.guide.connect-dawarich.step.1':
     'В разделе «Интеграции» найдите Dawarich и введите «Адрес экземпляра» и ключ API, который можно найти в Dawarich в разделе «Аккаунт», «Ключ API».',
   'help.guide.tour-connect-wanderer.step.1':

@@ -383,7 +383,8 @@ const settings: TranslationStrings = {
   'settings.airtrail.url': '实例 URL',
   'settings.airtrail.apiKey': 'API 密钥',
   'settings.airtrail.apiKeyPlaceholder': 'Bearer API 密钥',
-  'settings.airtrail.apiKeyHint': '在 AirTrail 的“设置 → 安全”中生成。加密存储。',
+  'settings.airtrail.apiKeyHint':
+    '在 AirTrail 的“设置 → 安全”中生成。加密存储。密钥需要范围 flight.read.own 才能读取。若要将更改写回，还需要 flight.update.own、reference_data.read 和 profile.read。',
   'settings.airtrail.allowInsecureTls': '允许自签名证书',
   'settings.airtrail.allowInsecureTlsHint': '仅对您自己网络中受信任的实例启用。',
   'settings.airtrail.writeBack': '将更改写回 AirTrail',

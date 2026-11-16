@@ -385,7 +385,8 @@ const settings: TranslationStrings = {
   'settings.airtrail.url': '執行個體網址',
   'settings.airtrail.apiKey': 'API 金鑰',
   'settings.airtrail.apiKeyPlaceholder': 'Bearer API 金鑰',
-  'settings.airtrail.apiKeyHint': '在 AirTrail 的「設定 → 安全性」中產生。以加密方式儲存。',
+  'settings.airtrail.apiKeyHint':
+    '在 AirTrail 的「設定 → 安全性」中產生。以加密方式儲存。金鑰需要範圍 flight.read.own 才能讀取。若要將變更寫回，還需要 flight.update.own、reference_data.read 和 profile.read。',
   'settings.airtrail.allowInsecureTls': '允許自簽憑證',
   'settings.airtrail.allowInsecureTlsHint': '僅在你自己網路上受信任的執行個體啟用。',
   'settings.airtrail.writeBack': '將變更寫回 AirTrail',

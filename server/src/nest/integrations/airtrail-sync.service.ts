@@ -3,7 +3,7 @@ import { ReservationsRepository } from '../../db/repositories/Reservations.repos
 import { logError, logInfo } from '../audit/audit-log.logger';
 import { ReservationsService } from '../reservations/reservations.service';
 import { AirtrailLinkService } from './airtrail-link.service';
-import { AirtrailAuthError, type AirtrailFlightRaw } from './airtrail.client';
+import { AirtrailAuthError, AirtrailScopeError, type AirtrailFlightRaw } from './airtrail.client';
 import { AirtrailClient } from './airtrail.client';
 import { canonicalHash, mapFlightToReservation } from './airtrail.mapper';
 import { AirtrailService } from './airtrail.service';
@@ -62,6 +62,7 @@ export class AirtrailSyncService {
       flights = await this.client.listFlights(creds);
     } catch (err) {
       if (err instanceof AirtrailAuthError) logError(`AirTrail sync: invalid API key for user ${uid}`);
+      else if (err instanceof AirtrailScopeError) logError(`AirTrail sync for user ${uid}: ${err.message}`);
       return 0;
     }
     const byId = new Map(flights.map((f) => [String(f.id), f]));

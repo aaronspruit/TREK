@@ -411,7 +411,7 @@ const settings: TranslationStrings = {
   'settings.airtrail.apiKey': 'Klucz API',
   'settings.airtrail.apiKeyPlaceholder': 'Klucz API typu Bearer',
   'settings.airtrail.apiKeyHint':
-    'Wygenerowany w AirTrail w sekcji Ustawienia → Bezpieczeństwo. Przechowywany w postaci zaszyfrowanej.',
+    'Wygenerowany w AirTrail w sekcji Ustawienia → Bezpieczeństwo. Przechowywany w postaci zaszyfrowanej. Do odczytu klucz potrzebuje zakresu flight.read.own. Do zapisywania zmian z powrotem potrzebuje też flight.update.own, reference_data.read i profile.read.',
   'settings.airtrail.allowInsecureTls': 'Zezwalaj na certyfikaty samopodpisane',
   'settings.airtrail.allowInsecureTlsHint': 'Włącz tylko dla zaufanej instancji we własnej sieci.',
   'settings.airtrail.writeBack': 'Zapisuj zmiany z powrotem w AirTrail',

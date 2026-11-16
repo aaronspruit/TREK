@@ -4,7 +4,7 @@ import type { ReservationsRepository } from '../../../../src/db/repositories/Res
 import type { AddonsService } from '../../../../src/nest/addons/addons.service';
 import { AirtrailLinkService } from '../../../../src/nest/integrations/airtrail-link.service';
 import { AirtrailSyncService } from '../../../../src/nest/integrations/airtrail-sync.service';
-import { AirtrailAuthError } from '../../../../src/nest/integrations/airtrail.client';
+import { AirtrailAuthError, AirtrailScopeError } from '../../../../src/nest/integrations/airtrail.client';
 import type { AirtrailClient } from '../../../../src/nest/integrations/airtrail.client';
 import type { AirtrailService } from '../../../../src/nest/integrations/airtrail.service';
 import type { RealtimeService } from '../../../../src/nest/realtime/realtime.service';
@@ -182,6 +182,14 @@ describe('pushReservationToAirtrail write gate (#1240)', () => {
     await svc.link.pushReservationToAirtrail(5, 9);
     expect(saveFlight).not.toHaveBeenCalled();
     expect(detachSpy).toHaveBeenCalledWith(5);
+  });
+
+  it('keeps the link when the key only lacks a scope, because the key still works', async () => {
+    isAirtrailWriteEnabled.mockReturnValue(true);
+    getFlight.mockRejectedValue(new AirtrailScopeError('flight.read.own'));
+    await svc.link.pushReservationToAirtrail(5, 9);
+    expect(saveFlight).not.toHaveBeenCalled();
+    expect(detachSpy).not.toHaveBeenCalled();
   });
 
   it('detaches when the flight is gone from AirTrail — the same as a remote delete', async () => {

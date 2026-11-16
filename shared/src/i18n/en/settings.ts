@@ -414,7 +414,8 @@ const settings: TranslationStrings = {
   'settings.airtrail.url': 'Instance URL',
   'settings.airtrail.apiKey': 'API key',
   'settings.airtrail.apiKeyPlaceholder': 'Bearer API key',
-  'settings.airtrail.apiKeyHint': 'Generated in AirTrail under Settings → Security. Stored encrypted.',
+  'settings.airtrail.apiKeyHint':
+    'Generated in AirTrail under Settings → Security. Stored encrypted. The key needs the scope flight.read.own to read. To write changes back, it also needs flight.update.own, reference_data.read and profile.read.',
   'settings.airtrail.allowInsecureTls': 'Allow self-signed certificates',
   'settings.airtrail.allowInsecureTlsHint': 'Enable only for a trusted instance on your own network.',
   'settings.airtrail.writeBack': 'Write changes back to AirTrail',

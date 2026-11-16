@@ -411,7 +411,8 @@ const settings: TranslationStrings = {
   'settings.airtrail.url': 'Instans URL',
   'settings.airtrail.apiKey': 'API nyckel',
   'settings.airtrail.apiKeyPlaceholder': 'API-nyckel för innehavare',
-  'settings.airtrail.apiKeyHint': 'Skapad i AirTrail under Inställningar → Säkerhet. Lagras i krypterad form.',
+  'settings.airtrail.apiKeyHint':
+    'Skapad i AirTrail under Inställningar → Säkerhet. Lagras i krypterad form. Nyckeln behöver behörigheten flight.read.own för att läsa. För att skriva tillbaka ändringar behöver den även flight.update.own, reference_data.read och profile.read.',
   'settings.airtrail.allowInsecureTls': 'Tillåt självsignerade certifikat',
   'settings.airtrail.allowInsecureTlsHint': 'Aktivera endast för en betrodd instans i ditt eget nätverk.',
   'settings.airtrail.writeBack': 'Skriv tillbaka ändringarna till AirTrail',

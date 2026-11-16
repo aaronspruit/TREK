@@ -413,7 +413,8 @@ const settings: TranslationStrings = {
   'settings.airtrail.url': 'Instantie-URL',
   'settings.airtrail.apiKey': 'API-sleutel',
   'settings.airtrail.apiKeyPlaceholder': 'Bearer API-sleutel',
-  'settings.airtrail.apiKeyHint': 'Aangemaakt in AirTrail onder Instellingen → Beveiliging. Versleuteld opgeslagen.',
+  'settings.airtrail.apiKeyHint':
+    'Aangemaakt in AirTrail onder Instellingen → Beveiliging. Versleuteld opgeslagen. De sleutel heeft de scope flight.read.own nodig om te lezen. Om wijzigingen terug te schrijven, heeft hij ook flight.update.own, reference_data.read en profile.read nodig.',
   'settings.airtrail.allowInsecureTls': 'Zelfondertekende certificaten toestaan',
   'settings.airtrail.allowInsecureTlsHint': 'Schakel dit alleen in voor een vertrouwde instantie op je eigen netwerk.',
   'settings.airtrail.writeBack': 'Wijzigingen terugschrijven naar AirTrail',
