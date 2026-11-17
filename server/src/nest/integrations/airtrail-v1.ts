@@ -73,7 +73,7 @@ export class AirtrailV1InputError extends Error {
 }
 
 /** The placeholder the legacy save resolved to the key owner. */
-export const SELF_USER_PLACEHOLDER = '<USER_ID>';
+export const AIRTRAIL_SELF_USER_PLACEHOLDER = '<USER_ID>';
 
 function toAirport(a: AirtrailV1Airport | null): AirtrailAirport | null {
   if (!a) return null;
@@ -96,7 +96,7 @@ function toAirport(a: AirtrailV1Airport | null): AirtrailAirport | null {
  * AirTrail-owned fields (terminal, gate, takeoff and landing times) it does not
  * model.
  */
-export function fromV1Flight(f: AirtrailV1Flight): AirtrailFlightRaw {
+export function fromAirtrailV1Flight(f: AirtrailV1Flight): AirtrailFlightRaw {
   return {
     ...(f as unknown as AirtrailFlightRaw),
     from: toAirport(f.from),
@@ -118,7 +118,7 @@ export function fromV1Flight(f: AirtrailV1Flight): AirtrailFlightRaw {
  * IATA match does not count, as the legacy save looked up an airline and an
  * aircraft.
  */
-export function pickByCode<T extends { icao?: string | null; iata?: string | null }>(
+export function pickAirtrailByCode<T extends { icao?: string | null; iata?: string | null }>(
   rows: T[],
   code: string,
   icaoOnly: boolean,
@@ -177,7 +177,10 @@ function carriedInstant(p: Record<string, unknown>, key: string, zone: string | 
  * field except `track`. Without a track, AirTrail keeps the stored track. A
  * track in the body needs the `tracks.write` scope.
  */
-export function toV1FlightInput(payload: AirtrailSavePayload, refs: AirtrailV1References): Record<string, unknown> {
+export function toAirtrailV1FlightInput(
+  payload: AirtrailSavePayload,
+  refs: AirtrailV1References,
+): Record<string, unknown> {
   const p = payload as unknown as Record<string, unknown>;
   const fromTz = refs.from.timezone;
   const toTz = refs.to.timezone;
@@ -188,8 +191,8 @@ export function toV1FlightInput(payload: AirtrailSavePayload, refs: AirtrailV1Re
 
   const datePrecision = text(p.datePrecision) ?? 'day';
   const passengers = (payload.passengers ?? payload.seats ?? []).map((s) => {
-    const userId = s.userId === SELF_USER_PLACEHOLDER ? refs.selfUserId : s.userId;
-    if (s.userId === SELF_USER_PLACEHOLDER && !userId)
+    const userId = s.userId === AIRTRAIL_SELF_USER_PLACEHOLDER ? refs.selfUserId : s.userId;
+    if (s.userId === AIRTRAIL_SELF_USER_PLACEHOLDER && !userId)
       throw new AirtrailV1InputError('The AirTrail user of this API key is unknown');
     return {
       userId: userId ?? null,

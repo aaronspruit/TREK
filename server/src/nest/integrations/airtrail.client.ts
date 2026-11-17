@@ -1,10 +1,10 @@
 import { safeFetch } from '../../utils/ssrfGuard';
 import {
   AirtrailV1InputError,
-  fromV1Flight,
-  pickByCode,
-  SELF_USER_PLACEHOLDER,
-  toV1FlightInput,
+  fromAirtrailV1Flight,
+  pickAirtrailByCode,
+  AIRTRAIL_SELF_USER_PLACEHOLDER,
+  toAirtrailV1FlightInput,
   type AirtrailV1Airport,
   type AirtrailV1Entity,
   type AirtrailV1Flight,
@@ -234,7 +234,7 @@ async function parseJson<T>(resp: Response): Promise<T> {
 }
 
 /** The error of a v1 error body (`{error:{code,message,details}}`), when the response holds one. */
-async function v1Error(resp: Response): Promise<{ code: string | null; message: string } | null> {
+async function airtrailV1Error(resp: Response): Promise<{ code: string | null; message: string } | null> {
   try {
     const body = JSON.parse(await resp.text()) as { error?: { code?: unknown; message?: unknown; details?: unknown } };
     const message = typeof body?.error?.message === 'string' ? body.error.message : null;
@@ -274,15 +274,15 @@ async function request(creds: AirtrailCreds, path: string, init: RequestInit): P
   }
   if (resp.status === 401 || resp.status === 403) {
     // v1 gives the cause, for example the scope that the key does not have. The legacy API does not.
-    const reason = await v1Error(resp);
+    const reason = await airtrailV1Error(resp);
     if (reason?.code === 'insufficient_scope') throw new AirtrailScopeError(scopeIn(reason.message));
     throw reason ? new AirtrailAuthError(`AirTrail refused the request: ${reason.message}`) : new AirtrailAuthError();
   }
   return resp;
 }
 
-async function v1Failure(resp: Response, action: string): Promise<AirtrailRequestError> {
-  const reason = await v1Error(resp);
+async function airtrailV1Failure(resp: Response, action: string): Promise<AirtrailRequestError> {
+  const reason = await airtrailV1Error(resp);
   return new AirtrailRequestError(reason?.message ?? `AirTrail ${action} failed (HTTP ${resp.status})`, resp.status);
 }
 
@@ -327,7 +327,7 @@ export class AirtrailClient {
     if (!resp.ok) throw new AirtrailRequestError(`AirTrail get failed (HTTP ${resp.status})`, resp.status);
     if (v1) {
       const data = await parseJson<{ data?: AirtrailV1Flight }>(resp);
-      return data.data ? fromV1Flight(data.data) : null;
+      return data.data ? fromAirtrailV1Flight(data.data) : null;
     }
     const data = await parseJson<{ flight?: AirtrailFlightRaw }>(resp);
     return data.flight ?? null;
@@ -417,7 +417,7 @@ export class AirtrailClient {
     const resp = await request(creds, `/v1/flights?${query}`, { method: 'GET' });
     if (!resp.ok) throw new AirtrailRequestError(`AirTrail list failed (HTTP ${resp.status})`, resp.status);
     const body = await parseJson<{ data?: AirtrailV1Flight[]; page?: { nextCursor?: string | null } }>(resp);
-    for (const f of body.data ?? []) flights.push(fromV1Flight(f));
+    for (const f of body.data ?? []) flights.push(fromAirtrailV1Flight(f));
     const next = body.page?.nextCursor ?? null;
     if (!next) return flights;
     // A cursor that came before makes an endless loop. AirTrail does not send one, but a caching proxy can.
@@ -438,11 +438,13 @@ export class AirtrailClient {
         : null,
     ]);
     const people = payload.passengers ?? payload.seats ?? [];
-    const selfUserId = people.some((s) => s.userId === SELF_USER_PLACEHOLDER) ? await this.selfUserId(creds) : null;
+    const selfUserId = people.some((s) => s.userId === AIRTRAIL_SELF_USER_PLACEHOLDER)
+      ? await this.selfUserId(creds)
+      : null;
 
     let body: Record<string, unknown>;
     try {
-      body = toV1FlightInput(payload, {
+      body = toAirtrailV1FlightInput(payload, {
         from,
         to,
         airlineId: airline?.id ?? null,
@@ -460,7 +462,7 @@ export class AirtrailClient {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     });
-    if (!resp.ok) throw await v1Failure(resp, 'save');
+    if (!resp.ok) throw await airtrailV1Failure(resp, 'save');
     // The legacy save answers an id only for a new flight. This method does the same.
     if (update) return {};
     const data = await parseJson<{ data?: { id?: number } }>(resp);
@@ -469,7 +471,7 @@ export class AirtrailClient {
 
   /**
    * The row whose code is `code`, from a v1 reference search. The search also
-   * matches names, so `pickByCode` compares the code again.
+   * matches names, so `pickAirtrailByCode` compares the code again.
    */
   private async findByCode<T extends { id: number; icao?: string | null; iata?: string | null }>(
     creds: AirtrailCreds,
@@ -481,9 +483,9 @@ export class AirtrailClient {
     const resp = await request(creds, `/v1/${kind}?${new URLSearchParams({ query: code.trim() })}`, {
       method: 'GET',
     });
-    if (!resp.ok) throw await v1Failure(resp, `${label} lookup`);
+    if (!resp.ok) throw await airtrailV1Failure(resp, `${label} lookup`);
     const body = await parseJson<{ data?: T[] }>(resp);
-    const row = pickByCode(body.data ?? [], code, icaoOnly);
+    const row = pickAirtrailByCode(body.data ?? [], code, icaoOnly);
     if (!row) throw new AirtrailRequestError(`Invalid ${label}: ${code}`, 400);
     return row;
   }
@@ -491,7 +493,7 @@ export class AirtrailClient {
   /** The AirTrail user id of the key owner, which v1 needs where the legacy save took '<USER_ID>'. */
   private async selfUserId(creds: AirtrailCreds): Promise<string> {
     const resp = await request(creds, '/v1/me', { method: 'GET' });
-    if (!resp.ok) throw await v1Failure(resp, 'profile read');
+    if (!resp.ok) throw await airtrailV1Failure(resp, 'profile read');
     const body = await parseJson<{ data?: { id?: unknown } }>(resp);
     if (typeof body.data?.id !== 'string') throw new AirtrailRequestError('AirTrail did not name the key owner');
     return body.data.id;

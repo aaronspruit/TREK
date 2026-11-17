@@ -1,5 +1,5 @@
 import { buildSavePayload } from '../../../../src/nest/integrations/airtrail-sync.helpers';
-import { toV1FlightInput, type AirtrailV1Airport } from '../../../../src/nest/integrations/airtrail-v1';
+import { toAirtrailV1FlightInput, type AirtrailV1Airport } from '../../../../src/nest/integrations/airtrail-v1';
 import {
   AirtrailAuthError,
   AirtrailClient,
@@ -642,7 +642,7 @@ describe('AirtrailClient writes a flight through v1', () => {
   });
 });
 
-describe('toV1FlightInput keeps the rules of the legacy save', () => {
+describe('toAirtrailV1FlightInput keeps the rules of the legacy save', () => {
   const refs = { from: LAX, to: MEL, airlineId: null, aircraftId: null, selfUserId: 'u-self' };
   const base = {
     from: 'LAX',
@@ -653,31 +653,34 @@ describe('toV1FlightInput keeps the rules of the legacy save', () => {
   };
 
   it('gives no instant for a date without a time, and keeps the date', () => {
-    const body = toV1FlightInput({ ...base, departureTime: null, arrival: '2026-10-06', arrivalTime: null }, refs);
+    const body = toAirtrailV1FlightInput(
+      { ...base, departureTime: null, arrival: '2026-10-06', arrivalTime: null },
+      refs,
+    );
     expect(body).toMatchObject({ date: '2026-10-04', departure: null, arrival: null, duration: null });
   });
 
   it('puts an arrival time without an arrival date on the departure date', () => {
-    const body = toV1FlightInput({ ...base, departureTime: '06:00', arrivalTime: '23:00' }, refs);
+    const body = toAirtrailV1FlightInput({ ...base, departureTime: '06:00', arrivalTime: '23:00' }, refs);
     expect(body.arrival).toBe(new Date('2026-10-04T23:00:00+11:00').toISOString());
   });
 
   it('keeps only the departure for a flight known to the month, at 10:00 UTC', () => {
-    const body = toV1FlightInput({ ...base, datePrecision: 'month', departureTime: '22:00' }, refs);
+    const body = toAirtrailV1FlightInput({ ...base, datePrecision: 'month', departureTime: '22:00' }, refs);
     expect(body).toMatchObject({ datePrecision: 'month', departure: '2026-10-04T10:00:00.000+00:00', arrival: null });
   });
 
   it('gives each passenger without a reason the flight-level reason', () => {
-    const body = toV1FlightInput({ ...base, flightReason: 'leisure' }, refs);
+    const body = toAirtrailV1FlightInput({ ...base, flightReason: 'leisure' }, refs);
     expect(body.passengers).toEqual([expect.objectContaining({ flightReason: 'leisure' })]);
   });
 
   it('refuses a time the clock cannot show', () => {
-    expect(() => toV1FlightInput({ ...base, departureTime: '25:00' }, refs)).toThrow('Invalid departure time');
+    expect(() => toAirtrailV1FlightInput({ ...base, departureTime: '25:00' }, refs)).toThrow('Invalid departure time');
   });
 });
 
-describe('toV1FlightInput converts the local wall clock to UTC', () => {
+describe('toAirtrailV1FlightInput converts the local wall clock to UTC', () => {
   const SYD: AirtrailV1Airport = { ...MEL, id: 33, icao: 'YSSY', iata: 'SYD', timezone: 'Australia/Sydney' };
   const LHR: AirtrailV1Airport = { ...LAX, id: 44, icao: 'EGLL', iata: 'LHR', timezone: 'Europe/London' };
   const NOZONE: AirtrailV1Airport = { ...LAX, id: 55, timezone: null };
@@ -697,18 +700,18 @@ describe('toV1FlightInput converts the local wall clock to UTC', () => {
   });
 
   it('moves a late-evening departure west of UTC onto the next UTC day, and keeps the local date', () => {
-    const body = toV1FlightInput(flight({ departure: '2026-10-04', departureTime: '23:30' }), refs(LAX, MEL));
+    const body = toAirtrailV1FlightInput(flight({ departure: '2026-10-04', departureTime: '23:30' }), refs(LAX, MEL));
     expect(body).toMatchObject({ date: '2026-10-04', departure: '2026-10-05T06:30:00.000Z' });
   });
 
   it('moves an early-morning departure east of UTC onto the previous UTC day, and keeps the local date', () => {
-    const body = toV1FlightInput(flight({ departure: '2026-10-06', departureTime: '00:30' }), refs(MEL, LAX));
+    const body = toAirtrailV1FlightInput(flight({ departure: '2026-10-06', departureTime: '00:30' }), refs(MEL, LAX));
     expect(body).toMatchObject({ date: '2026-10-06', departure: '2026-10-05T13:30:00.000Z' });
   });
 
   it('puts each end in the zone of its own airport, across the date line', () => {
     // QF94: Oct 4 22:00 in Los Angeles (PDT, UTC-7), lands Oct 6 07:30 in Melbourne (AEDT, UTC+11).
-    const body = toV1FlightInput(
+    const body = toAirtrailV1FlightInput(
       flight({ departure: '2026-10-04', departureTime: '22:00', arrival: '2026-10-06', arrivalTime: '07:30' }),
       refs(LAX, MEL),
     );
@@ -721,10 +724,10 @@ describe('toV1FlightInput converts the local wall clock to UTC', () => {
 
   it('follows a daylight-saving change at the airport', () => {
     // Sydney moves to UTC+11 on 2026-10-04. Los Angeles moves back to UTC-8 on 2026-11-01.
-    const before = toV1FlightInput(flight({ departure: '2026-10-03', departureTime: '10:00' }), refs(SYD, LHR));
-    const after = toV1FlightInput(flight({ departure: '2026-10-05', departureTime: '10:00' }), refs(SYD, LHR));
-    const pdt = toV1FlightInput(flight({ departure: '2026-10-31', departureTime: '22:00' }), refs(LAX, LHR));
-    const pst = toV1FlightInput(flight({ departure: '2026-11-02', departureTime: '22:00' }), refs(LAX, LHR));
+    const before = toAirtrailV1FlightInput(flight({ departure: '2026-10-03', departureTime: '10:00' }), refs(SYD, LHR));
+    const after = toAirtrailV1FlightInput(flight({ departure: '2026-10-05', departureTime: '10:00' }), refs(SYD, LHR));
+    const pdt = toAirtrailV1FlightInput(flight({ departure: '2026-10-31', departureTime: '22:00' }), refs(LAX, LHR));
+    const pst = toAirtrailV1FlightInput(flight({ departure: '2026-11-02', departureTime: '22:00' }), refs(LAX, LHR));
     expect(before.departure).toBe('2026-10-03T00:00:00.000Z');
     expect(after.departure).toBe('2026-10-04T23:00:00.000Z');
     expect(pdt.departure).toBe('2026-11-01T05:00:00.000Z');
@@ -732,7 +735,7 @@ describe('toV1FlightInput converts the local wall clock to UTC', () => {
   });
 
   it('converts the scheduled times in the same zones as the actual times', () => {
-    const body = toV1FlightInput(
+    const body = toAirtrailV1FlightInput(
       flight({
         departure: '2026-10-04',
         departureScheduled: '2026-10-04',
@@ -749,12 +752,15 @@ describe('toV1FlightInput converts the local wall clock to UTC', () => {
   });
 
   it('reads the time as UTC at an airport with no zone', () => {
-    const body = toV1FlightInput(flight({ departure: '2026-10-04', departureTime: '23:30' }), refs(NOZONE, MEL));
+    const body = toAirtrailV1FlightInput(
+      flight({ departure: '2026-10-04', departureTime: '23:30' }),
+      refs(NOZONE, MEL),
+    );
     expect(body.departure).toBe('2026-10-04T23:30:00.000Z');
   });
 
   it('keeps the stored duration for an arrival before the departure', () => {
-    const body = toV1FlightInput(
+    const body = toAirtrailV1FlightInput(
       // `duration` is not a payload field; it passes through from the AirTrail flight.
       {
         ...flight({ departure: '2026-10-05', departureTime: '10:00', arrival: '2026-10-05', arrivalTime: '09:00' }),
