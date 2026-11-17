@@ -140,12 +140,18 @@ function text(value: unknown): string | null {
   return typeof value === 'string' ? value : null;
 }
 
-/** A local date and `HH:MM` at an airport, as an ISO instant. Null when there is no time. */
+/**
+ * A local date and `HH:MM` at an airport, as an ISO instant. Null when there is no time.
+ *
+ * AirTrail stores the string as it gets it, and the sync hash reads that string.
+ * The instant ends in `+00:00`, as the legacy save wrote it, so that a save
+ * that changes no time keeps the hash.
+ */
 function localInstant(date: string | null, time: unknown, zone: string | null, field: string): string | null {
   if (!date || typeof time !== 'string' || !time) return null;
   const ms = wallClockInstant(date, time, zone || 'UTC');
   if (ms === null) throw new AirtrailV1InputError(`Invalid ${field} time "${time}" on ${date}`);
-  return new Date(ms).toISOString();
+  return new Date(ms).toISOString().replace(/Z$/, '+00:00');
 }
 
 /**

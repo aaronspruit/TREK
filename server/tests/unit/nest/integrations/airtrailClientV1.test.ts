@@ -1,5 +1,9 @@
 import { buildSavePayload } from '../../../../src/nest/integrations/airtrail-sync.helpers';
-import { toAirtrailV1FlightInput, type AirtrailV1Airport } from '../../../../src/nest/integrations/airtrail-v1';
+import {
+  fromAirtrailV1Flight,
+  toAirtrailV1FlightInput,
+  type AirtrailV1Airport,
+} from '../../../../src/nest/integrations/airtrail-v1';
 import {
   AirtrailAuthError,
   AirtrailClient,
@@ -70,12 +74,12 @@ function v1Flight(id: number, overrides: Record<string, unknown> = {}) {
     id,
     date: '2026-10-04',
     datePrecision: 'day',
-    departure: '2026-10-05T05:00:00.000Z',
-    arrival: '2026-10-05T20:30:00.000Z',
-    departureScheduled: '2026-10-05T05:00:00.000Z',
-    arrivalScheduled: '2026-10-05T20:30:00.000Z',
+    departure: '2026-10-05T05:00:00.000+00:00',
+    arrival: '2026-10-05T20:30:00.000+00:00',
+    departureScheduled: '2026-10-05T05:00:00.000+00:00',
+    arrivalScheduled: '2026-10-05T20:30:00.000+00:00',
     takeoffScheduled: null,
-    takeoffActual: '2026-10-05T05:21:00.000Z',
+    takeoffActual: '2026-10-05T05:21:00.000+00:00',
     landingScheduled: null,
     landingActual: null,
     duration: 55800,
@@ -547,12 +551,12 @@ describe('AirtrailClient writes a flight through v1', () => {
       airlineId: 7,
       aircraftId: null,
       // 22:00 in Los Angeles (UTC-7) and 07:30 in Melbourne (UTC+11).
-      departure: '2026-10-05T05:00:00.000Z',
-      departureScheduled: '2026-10-05T05:00:00.000Z',
-      arrival: '2026-10-05T20:30:00.000Z',
-      arrivalScheduled: '2026-10-05T20:30:00.000Z',
+      departure: '2026-10-05T05:00:00.000+00:00',
+      departureScheduled: '2026-10-05T05:00:00.000+00:00',
+      arrival: '2026-10-05T20:30:00.000+00:00',
+      arrivalScheduled: '2026-10-05T20:30:00.000+00:00',
       duration: 55800,
-      takeoffActual: '2026-10-05T05:21:00.000Z',
+      takeoffActual: '2026-10-05T05:21:00.000+00:00',
       departureTerminal: 'B',
       departureGate: '148',
       flightNumber: 'QF94',
@@ -571,6 +575,32 @@ describe('AirtrailClient writes a flight through v1', () => {
     expect(put.body).not.toHaveProperty('track');
     // The owner is named on the flight already, so the profile is not read.
     expect(calls.some((c) => c.url.pathname === '/api/v1/me')).toBe(false);
+  });
+
+  it('keeps the sync hash when a save changes no time, because AirTrail stores the time string as it gets it', async () => {
+    v1Instance();
+    on('GET', '/api/v1/flights/41', () => json({ data: v1Flight(41) }));
+    on('PUT', '/api/v1/flights/41', () => json({ data: v1Flight(41) }));
+    const existing = present(await new AirtrailClient().getFlight(creds, 41));
+    const reservation = {
+      id: 1,
+      external_id: '41',
+      reservation_time: '2026-10-04T22:00',
+      reservation_end_time: '2026-10-06T07:30',
+      endpoints: [
+        { role: 'from', code: 'LAX' },
+        { role: 'to', code: 'MEL' },
+      ],
+      metadata: JSON.stringify({ seat: '4D', airline_code: 'QFA', flight_number: 'QF94' }),
+    };
+
+    await new AirtrailClient().saveFlight(creds, present(buildSavePayload(reservation, existing)));
+
+    const body = present(calls.find((c) => c.method === 'PUT')).body as Record<string, unknown>;
+    const times = ['departure', 'arrival', 'departureScheduled', 'arrivalScheduled'];
+    const stored = fromAirtrailV1Flight(v1Flight(41, Object.fromEntries(times.map((k) => [k, body[k]]))) as never);
+    expect(times.map((k) => body[k])).toEqual(times.map((k) => (existing as unknown as Record<string, unknown>)[k]));
+    expect(canonicalHash(stored)).toBe(canonicalHash(existing));
   });
 
   it('creates a flight for the key owner with POST and answers its id', async () => {
@@ -662,7 +692,7 @@ describe('toAirtrailV1FlightInput keeps the rules of the legacy save', () => {
 
   it('puts an arrival time without an arrival date on the departure date', () => {
     const body = toAirtrailV1FlightInput({ ...base, departureTime: '06:00', arrivalTime: '23:00' }, refs);
-    expect(body.arrival).toBe(new Date('2026-10-04T23:00:00+11:00').toISOString());
+    expect(body.arrival).toBe('2026-10-04T12:00:00.000+00:00');
   });
 
   it('keeps only the departure for a flight known to the month, at 10:00 UTC', () => {
@@ -701,12 +731,12 @@ describe('toAirtrailV1FlightInput converts the local wall clock to UTC', () => {
 
   it('moves a late-evening departure west of UTC onto the next UTC day, and keeps the local date', () => {
     const body = toAirtrailV1FlightInput(flight({ departure: '2026-10-04', departureTime: '23:30' }), refs(LAX, MEL));
-    expect(body).toMatchObject({ date: '2026-10-04', departure: '2026-10-05T06:30:00.000Z' });
+    expect(body).toMatchObject({ date: '2026-10-04', departure: '2026-10-05T06:30:00.000+00:00' });
   });
 
   it('moves an early-morning departure east of UTC onto the previous UTC day, and keeps the local date', () => {
     const body = toAirtrailV1FlightInput(flight({ departure: '2026-10-06', departureTime: '00:30' }), refs(MEL, LAX));
-    expect(body).toMatchObject({ date: '2026-10-06', departure: '2026-10-05T13:30:00.000Z' });
+    expect(body).toMatchObject({ date: '2026-10-06', departure: '2026-10-05T13:30:00.000+00:00' });
   });
 
   it('puts each end in the zone of its own airport, across the date line', () => {
@@ -716,8 +746,8 @@ describe('toAirtrailV1FlightInput converts the local wall clock to UTC', () => {
       refs(LAX, MEL),
     );
     expect(body).toMatchObject({
-      departure: '2026-10-05T05:00:00.000Z',
-      arrival: '2026-10-05T20:30:00.000Z',
+      departure: '2026-10-05T05:00:00.000+00:00',
+      arrival: '2026-10-05T20:30:00.000+00:00',
       duration: 15.5 * 3600,
     });
   });
@@ -728,10 +758,10 @@ describe('toAirtrailV1FlightInput converts the local wall clock to UTC', () => {
     const after = toAirtrailV1FlightInput(flight({ departure: '2026-10-05', departureTime: '10:00' }), refs(SYD, LHR));
     const pdt = toAirtrailV1FlightInput(flight({ departure: '2026-10-31', departureTime: '22:00' }), refs(LAX, LHR));
     const pst = toAirtrailV1FlightInput(flight({ departure: '2026-11-02', departureTime: '22:00' }), refs(LAX, LHR));
-    expect(before.departure).toBe('2026-10-03T00:00:00.000Z');
-    expect(after.departure).toBe('2026-10-04T23:00:00.000Z');
-    expect(pdt.departure).toBe('2026-11-01T05:00:00.000Z');
-    expect(pst.departure).toBe('2026-11-03T06:00:00.000Z');
+    expect(before.departure).toBe('2026-10-03T00:00:00.000+00:00');
+    expect(after.departure).toBe('2026-10-04T23:00:00.000+00:00');
+    expect(pdt.departure).toBe('2026-11-01T05:00:00.000+00:00');
+    expect(pst.departure).toBe('2026-11-03T06:00:00.000+00:00');
   });
 
   it('converts the scheduled times in the same zones as the actual times', () => {
@@ -746,8 +776,8 @@ describe('toAirtrailV1FlightInput converts the local wall clock to UTC', () => {
       refs(LAX, LHR),
     );
     expect(body).toMatchObject({
-      departureScheduled: '2026-10-05T06:45:00.000Z',
-      arrivalScheduled: '2026-10-05T05:10:00.000Z',
+      departureScheduled: '2026-10-05T06:45:00.000+00:00',
+      arrivalScheduled: '2026-10-05T05:10:00.000+00:00',
     });
   });
 
@@ -756,7 +786,7 @@ describe('toAirtrailV1FlightInput converts the local wall clock to UTC', () => {
       flight({ departure: '2026-10-04', departureTime: '23:30' }),
       refs(NOZONE, MEL),
     );
-    expect(body.departure).toBe('2026-10-04T23:30:00.000Z');
+    expect(body.departure).toBe('2026-10-04T23:30:00.000+00:00');
   });
 
   it('keeps the stored duration for an arrival before the departure', () => {
