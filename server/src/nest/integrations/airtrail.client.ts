@@ -372,6 +372,11 @@ export class AirtrailClient {
     return { id: data.id };
   }
 
+  /** Whether the instance speaks `/api/v1`. TREK adds a new flight to AirTrail only through v1. */
+  async speaksV1(creds: AirtrailCreds): Promise<boolean> {
+    return (await this.apiFlavor(creds)) === 'v1';
+  }
+
   /**
    * Which API the instance speaks. `GET /api/v1` is public and answers a
    * discovery document with `api.version` on 3.13.0 and later. An older
@@ -446,14 +451,23 @@ export class AirtrailClient {
   }
 
   private async saveFlightV1(creds: AirtrailCreds, payload: AirtrailSavePayload): Promise<{ id?: number }> {
+    const update = payload.id !== undefined && payload.id !== null;
+    // A new flight goes without an airline or an aircraft that AirTrail does not know.
+    // An update fails instead, as the legacy save does.
+    const optional = <T>(lookup: Promise<T>): Promise<T | null> =>
+      update
+        ? lookup
+        : lookup.catch((err: unknown) =>
+            err instanceof AirtrailRequestError && err.status === 400 ? null : Promise.reject(err),
+          );
     const [from, to, airline, aircraft] = await Promise.all([
       this.findByCode(creds, 'airports', payload.from, false, 'departure airport', airtrailV1AirportSchema),
       this.findByCode(creds, 'airports', payload.to, false, 'arrival airport', airtrailV1AirportSchema),
       payload.airline
-        ? this.findByCode(creds, 'airlines', payload.airline, true, 'airline', airtrailV1EntitySchema)
+        ? optional(this.findByCode(creds, 'airlines', payload.airline, true, 'airline', airtrailV1EntitySchema))
         : null,
       payload.aircraft
-        ? this.findByCode(creds, 'aircraft', payload.aircraft, true, 'aircraft', airtrailV1EntitySchema)
+        ? optional(this.findByCode(creds, 'aircraft', payload.aircraft, true, 'aircraft', airtrailV1EntitySchema))
         : null,
     ]);
     const people = payload.passengers ?? payload.seats ?? [];
@@ -475,7 +489,6 @@ export class AirtrailClient {
       throw err;
     }
 
-    const update = payload.id !== undefined && payload.id !== null;
     const resp = await request(creds, update ? `/v1/flights/${payload.id}` : '/v1/flights', {
       method: update ? 'PUT' : 'POST',
       headers: { 'Content-Type': 'application/json' },

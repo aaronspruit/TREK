@@ -416,12 +416,12 @@ const settings: TranslationStrings = {
   'settings.airtrail.apiKey': 'מפתח API',
   'settings.airtrail.apiKeyPlaceholder': 'מפתח API מסוג Bearer',
   'settings.airtrail.apiKeyHint':
-    'נוצר ב-AirTrail תחת Settings ← Security. נשמר מוצפן. אם יוצרים את המפתח ב-AirTrail 3.13 ואילך, הוא צריך את ההרשאה flight.read.own כדי לקרוא. כדי לכתוב שינויים בחזרה, הוא צריך גם את flight.update.own, flight.passengers.manage.own, reference_data.read ו-profile.read.',
+    'נוצר ב-AirTrail תחת Settings ← Security. נשמר מוצפן. אם יוצרים את המפתח ב-AirTrail 3.13 ואילך, הוא צריך את ההרשאה flight.read.own כדי לקרוא. כדי לכתוב שינויים בחזרה, הוא צריך גם את flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read ו-profile.read.',
   'settings.airtrail.allowInsecureTls': 'אפשור תעודות בחתימה עצמית',
   'settings.airtrail.allowInsecureTlsHint': 'הפעילו רק עבור מופע מהימן ברשת שלכם.',
   'settings.airtrail.writeBack': 'כתיבת שינויים בחזרה ל-AirTrail',
   'settings.airtrail.writeBackHint':
-    'כבוי כברירת מחדל: AirTrail הוא מקור האמת ו-TREK רק קורא ממנו. הפעילו כדי לשלוח עריכות מ-TREK בחזרה ל-AirTrail.',
+    'כבוי כברירת מחדל: AirTrail הוא מקור האמת ו-TREK רק קורא ממנו. הפעילו כדי לשלוח עריכות מ-TREK בחזרה ל-AirTrail. הוא גם מוסיף ל-AirTrail את הטיסות שאתה מזמין ב-TREK.',
   'settings.airtrail.connected': 'מחובר',
   'settings.airtrail.notConnected': 'לא מחובר',
   'settings.airtrail.toast.saved': 'החיבור ל-AirTrail נשמר',

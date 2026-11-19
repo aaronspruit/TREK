@@ -426,12 +426,12 @@ const settings: TranslationStrings = {
   'settings.airtrail.apiKey': 'API-kulcs',
   'settings.airtrail.apiKeyPlaceholder': 'Bearer API-kulcs',
   'settings.airtrail.apiKeyHint':
-    'Az AirTrailben a Beállítások → Biztonság menüpontban generálva. Titkosítva tárolva. Ha a kulcsot az AirTrail 3.13-as vagy újabb verziójában hozod létre, olvasáshoz a(z) flight.read.own jogosultság kell. A módosítások visszaírásához ezek is kellenek: flight.update.own, flight.passengers.manage.own, reference_data.read és profile.read.',
+    'Az AirTrailben a Beállítások → Biztonság menüpontban generálva. Titkosítva tárolva. Ha a kulcsot az AirTrail 3.13-as vagy újabb verziójában hozod létre, olvasáshoz a(z) flight.read.own jogosultság kell. A módosítások visszaírásához ezek is kellenek: flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read és profile.read.',
   'settings.airtrail.allowInsecureTls': 'Önaláírt tanúsítványok engedélyezése',
   'settings.airtrail.allowInsecureTlsHint': 'Csak megbízható, saját hálózaton futó példány esetén engedélyezd.',
   'settings.airtrail.writeBack': 'Módosítások visszaírása az AirTrailbe',
   'settings.airtrail.writeBackHint':
-    'Alapértelmezés szerint kikapcsolva: az AirTrail a hiteles forrás, és a TREK csak olvas belőle. Kapcsold be, hogy a TREK-ben végzett módosításokat visszaküldje az AirTrailbe.',
+    'Alapértelmezés szerint kikapcsolva: az AirTrail a hiteles forrás, és a TREK csak olvas belőle. Kapcsold be, hogy a TREK-ben végzett módosításokat visszaküldje az AirTrailbe. A TREK-ben foglalt járatokat is hozzáadja az AirTrailhez.',
   'settings.airtrail.connected': 'Csatlakoztatva',
   'settings.airtrail.notConnected': 'Nincs csatlakoztatva',
   'settings.airtrail.toast.saved': 'AirTrail-kapcsolat mentve',

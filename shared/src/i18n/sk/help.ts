@@ -4591,7 +4591,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.result':
     'Karta ukazuje Zapnuté pre toto zariadenie a udalosti zapnuté pod Push vám prídu, aj keď je TREK zatvorený.',
   'help.guide.connect-airtrail.step.1':
-    'V časti Integrácie nájdite AirTrail a zadajte jeho URL inštancie a API kľúč. Kľúč vytvoríte v AirTrail v časti Nastavenia, Zabezpečenie. Ak kľúč vytvoríte v AirTrail 3.13 alebo novšom, potrebuje oprávnenie flight.read.own na čítanie. Na zápis zmien späť potrebuje aj flight.update.own, flight.passengers.manage.own, reference_data.read a profile.read.',
+    'V časti Integrácie nájdite AirTrail a zadajte jeho URL inštancie a API kľúč. Kľúč vytvoríte v AirTrail v časti Nastavenia, Zabezpečenie. Ak kľúč vytvoríte v AirTrail 3.13 alebo novšom, potrebuje oprávnenie flight.read.own na čítanie. Na zápis zmien späť potrebuje aj flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read a profile.read.',
   'help.guide.connect-dawarich.step.1':
     'V časti Integrácie nájdite Dawarich a zadajte jeho Adresu inštancie a API kľúč z Dawarich z časti Účet, API kľúč.',
   'help.guide.tour-connect-wanderer.step.1':
@@ -4908,7 +4908,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Push funguje pre každý prehliadač zvlášť: zopakujte postup na každom telefóne a počítači, na ktorom chcete dostávať oznámenia. Vypnúť pre toto zariadenie ho zastaví iba na tom zariadení.',
   'help.guide.connect-airtrail.step.2':
-    'Povoliť certifikáty podpísané sebou samým používajte iba pre dôveryhodnú inštanciu vo vlastnej sieti. Zapisovať zmeny späť do AirTrail je predvolene vypnuté, takže TREK iba číta. Zapnite to, ak chcete svoje úpravy posielať späť.',
+    'Povoliť certifikáty podpísané sebou samým používajte iba pre dôveryhodnú inštanciu vo vlastnej sieti. Zapisovať zmeny späť do AirTrail je predvolene vypnuté, takže TREK iba číta. Zapnite to, ak chcete svoje úpravy posielať späť. Tiež pridá do AirTrail lety, ktoré si rezervujete v TREK.',
   'help.guide.connect-dawarich.step.2':
     'Automaticky hľadať nové pobyty nechá TREK kontrolovať samo. Keď je vypnuté, TREK číta Dawarich, iba keď o to požiadate. Povoliť vlastnoručne podpísaný certifikát používajte iba pre inštanciu, ktorej váš server nedôveruje.',
   'help.guide.tour-connect-wanderer.step.2':

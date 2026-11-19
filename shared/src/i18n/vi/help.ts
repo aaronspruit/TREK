@@ -4592,7 +4592,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.result':
     'Thẻ hiện “Đã bật cho thiết bị này”, và các sự kiện bật trong “Thông báo đẩy” sẽ đến ngay cả khi TREK đã đóng.',
   'help.guide.connect-airtrail.step.1':
-    'Trong “Tích hợp”, tìm AirTrail và nhập “Ví dụ URL” cùng một khóa API. Bạn tạo khóa trong AirTrail ở “Cài đặt”, “Bảo mật”. Nếu bạn tạo khóa trong AirTrail 3.13 trở lên, khóa cần phạm vi flight.read.own để đọc. Để ghi các thay đổi trở lại, khóa cũng cần flight.update.own, flight.passengers.manage.own, reference_data.read và profile.read.',
+    'Trong “Tích hợp”, tìm AirTrail và nhập “Ví dụ URL” cùng một khóa API. Bạn tạo khóa trong AirTrail ở “Cài đặt”, “Bảo mật”. Nếu bạn tạo khóa trong AirTrail 3.13 trở lên, khóa cần phạm vi flight.read.own để đọc. Để ghi các thay đổi trở lại, khóa cũng cần flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read và profile.read.',
   'help.guide.connect-dawarich.step.1':
     'Trong “Tích hợp”, tìm Dawarich và nhập “Địa chỉ phiên bản” cùng khóa API từ Dawarich ở “Tài khoản”, “Khóa API”.',
   'help.guide.tour-connect-wanderer.step.1':
@@ -4923,7 +4923,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Thông báo đẩy hoạt động theo từng trình duyệt: hãy lặp lại trên mọi điện thoại và máy tính bạn muốn nhận thông báo. “Tắt cho thiết bị này” chỉ dừng trên thiết bị đó.',
   'help.guide.connect-airtrail.step.2':
-    '“Cho phép chứng chỉ tự ký” chỉ dành cho máy chủ đáng tin trong mạng của bạn. “Viết các thay đổi trở lại AirTrail” tắt theo mặc định, nên TREK chỉ đọc; bật nó để gửi các chỉnh sửa của bạn về lại.',
+    '“Cho phép chứng chỉ tự ký” chỉ dành cho máy chủ đáng tin trong mạng của bạn. “Viết các thay đổi trở lại AirTrail” tắt theo mặc định, nên TREK chỉ đọc; bật nó để gửi các chỉnh sửa của bạn về lại. Tùy chọn này cũng thêm các chuyến bay bạn đặt trong TREK vào AirTrail.',
   'help.guide.connect-dawarich.step.2':
     '“Tự động kiểm tra điểm lưu trú mới” để TREK tự kiểm tra. Khi tắt, TREK chỉ đọc Dawarich khi bạn yêu cầu. “Cho phép chứng chỉ tự ký” chỉ dành cho máy chủ mà máy chủ của bạn không tin cậy.',
   'help.guide.tour-connect-wanderer.step.2': 'Chỉ bật “Cho phép chứng chỉ tự ký” với máy chủ trong mạng của bạn.',

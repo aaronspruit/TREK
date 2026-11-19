@@ -431,12 +431,12 @@ const settings: TranslationStrings = {
   'settings.airtrail.apiKey': 'API kľúč',
   'settings.airtrail.apiKeyPlaceholder': 'API kľúč Bearer',
   'settings.airtrail.apiKeyHint':
-    'Vygenerovaný v AirTrail v Nastavenia → Zabezpečenie. Uložený šifrovane. Ak kľúč vytvoríte v AirTrail 3.13 alebo novšom, potrebuje oprávnenie flight.read.own na čítanie. Na zápis zmien späť potrebuje aj flight.update.own, flight.passengers.manage.own, reference_data.read a profile.read.',
+    'Vygenerovaný v AirTrail v Nastavenia → Zabezpečenie. Uložený šifrovane. Ak kľúč vytvoríte v AirTrail 3.13 alebo novšom, potrebuje oprávnenie flight.read.own na čítanie. Na zápis zmien späť potrebuje aj flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read a profile.read.',
   'settings.airtrail.allowInsecureTls': 'Povoliť certifikáty podpísané sebou samým',
   'settings.airtrail.allowInsecureTlsHint': 'Povoľte iba pre dôveryhodnú inštanciu vo vlastnej sieti.',
   'settings.airtrail.writeBack': 'Zapisovať zmeny späť do AirTrail',
   'settings.airtrail.writeBackHint':
-    'V predvolenom stave vypnuté: AirTrail je zdrojom pravdy a TREK z neho iba číta. Zapnite, ak chcete odosielať úpravy vykonané v TREK späť do AirTrail.',
+    'V predvolenom stave vypnuté: AirTrail je zdrojom pravdy a TREK z neho iba číta. Zapnite, ak chcete odosielať úpravy vykonané v TREK späť do AirTrail. Tiež pridá do AirTrail lety, ktoré si rezervujete v TREK.',
   'settings.airtrail.connected': 'Pripojené',
   'settings.airtrail.notConnected': 'Nepripojené',
   'settings.airtrail.toast.saved': 'Pripojenie k AirTrail uložené',

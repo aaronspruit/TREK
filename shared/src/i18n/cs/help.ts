@@ -4568,7 +4568,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.result':
     'Karta ukazuje „Zapnuto pro toto zařízení“ a události zapnuté ve sloupci Push vám přijdou, i když je TREK zavřený.',
   'help.guide.connect-airtrail.step.1':
-    'V části „Integrace“ najděte AirTrail a zadejte jeho „URL instance“ a API klíč. Klíč vytvoříte v AirTrail v části Nastavení, Zabezpečení. Pokud klíč vytvoříte v AirTrail 3.13 nebo novějším, potřebuje oprávnění flight.read.own pro čtení. Pro zápis změn zpět potřebuje také flight.update.own, flight.passengers.manage.own, reference_data.read a profile.read.',
+    'V části „Integrace“ najděte AirTrail a zadejte jeho „URL instance“ a API klíč. Klíč vytvoříte v AirTrail v části Nastavení, Zabezpečení. Pokud klíč vytvoříte v AirTrail 3.13 nebo novějším, potřebuje oprávnění flight.read.own pro čtení. Pro zápis změn zpět potřebuje také flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read a profile.read.',
   'help.guide.connect-dawarich.step.1':
     'V části „Integrace“ najděte Dawarich a zadejte jeho „Adresa instance“ a API klíč, který najdete v Dawarich v části Účet, API klíč.',
   'help.guide.tour-connect-wanderer.step.1':
@@ -4894,7 +4894,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Push funguje v každém prohlížeči zvlášť: zopakujte to na každém telefonu a počítači, kde chcete oznámení dostávat. „Vypnout pro toto zařízení“ ho vypne jen na daném zařízení.',
   'help.guide.connect-airtrail.step.2':
-    '„Povolit certifikáty podepsané sebou samým“ je jen pro důvěryhodnou instanci ve vaší vlastní síti. „Zapisovat změny zpět do AirTrail“ je ve výchozím stavu vypnuté, takže TREK jen čte; pokud chcete své úpravy posílat zpět, zapněte ho.',
+    '„Povolit certifikáty podepsané sebou samým“ je jen pro důvěryhodnou instanci ve vaší vlastní síti. „Zapisovat změny zpět do AirTrail“ je ve výchozím stavu vypnuté, takže TREK jen čte; pokud chcete své úpravy posílat zpět, zapněte ho. Také přidá do AirTrail lety, které zarezervujete v TREK.',
   'help.guide.connect-dawarich.step.2':
     '„Automaticky hledat nové pobyty“ nechá TREK kontrolovat sám. Když je vypnuté, čte TREK Dawarich jen na vaši žádost. „Povolit vlastnoručně podepsaný certifikát“ je jen pro instanci, které váš server nedůvěřuje.',
   'help.guide.tour-connect-wanderer.step.2':

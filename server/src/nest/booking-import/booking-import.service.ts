@@ -15,6 +15,7 @@ import { PlaceOriginsService } from '../places/place-origins.service';
 import { PlacesService } from '../places/places.service';
 import { RealtimeService } from '../realtime/realtime.service';
 import { withoutOrigin } from '../reservations/reservation-origin.contract';
+import { ReservationWritesService } from '../reservations/reservation-writes.service';
 import { ReservationsService, type CreateAccommodation } from '../reservations/reservations.service';
 import { IMPORT_SOURCE, importExternalId } from './booking-origin';
 import { KitineraryExtractorService } from './kitinerary-extractor.service';
@@ -51,6 +52,7 @@ export class BookingImportService {
     private readonly places: PlacesService,
     private readonly uow: UnitOfWork,
     private readonly origins: PlaceOriginsService,
+    private readonly writes: ReservationWritesService,
   ) {}
 
   /**
@@ -391,6 +393,7 @@ export class BookingImportService {
 
     // The venues' websites and phones come from the bookings, not from a person: an import, never shared.
     if (venues.length > 0) await this.origins.recordImported(venues);
+    for (const reservation of created) this.writes.addToAirtrail(reservation, tripId, userId);
     return { created, failed };
   }
 

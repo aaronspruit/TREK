@@ -232,13 +232,23 @@ KDE Itinerary only recognises structured tickets. For confirmations it cannot re
 
 With the **AirTrail** integration addon enabled and your instance connected under **Settings → Integrations**, the **Transports** tab shows **Import from AirTrail** (the plane icon in the bar, or an **AirTrail** button on an empty tab). It lists the flights in your AirTrail account, with the ones inside the trip dates under *During this trip* and already selected. Each imported flight becomes a flight booking that stays in sync with AirTrail both ways.
 
-TREK talks to AirTrail 3.13 and later through its `/api/v1` routes and to older instances through the legacy routes; it finds out which on its own. AirTrail 3.13 checks the scopes of an API key, so a key created there needs `flight.read.own` (import, sync and **Test connection**), `flight.update.own` (changes made in TREK going back to AirTrail), `flight.passengers.manage.own` (a changed seat or passenger), `reference_data.read` (the airport, airline and aircraft codes of a change) and `profile.read` (a change to a flight without a passenger). A key created before 3.13 has every scope and needs nothing. A missing scope does not unlink a flight: the change is not sent, and the server log names the scope to add to the key.
+TREK talks to AirTrail 3.13 and later through its `/api/v1` routes and to older instances through the legacy routes; it finds out which on its own. AirTrail 3.13 checks the scopes of an API key, so a key created there needs `flight.read.own` (import, sync and **Test connection**), `flight.create.own` (a flight booked in TREK going to AirTrail), `flight.update.own` (changes made in TREK going back to AirTrail), `flight.passengers.manage.own` (a changed seat or passenger), `reference_data.read` (the airport, airline and aircraft codes of a change) and `profile.read` (a change to a flight without a passenger). A key created before 3.13 has every scope and needs nothing. A missing scope does not unlink a flight: the change is not sent, and the server log names the scope to add to the key.
 
 ### Connecting flights (layovers)
 
 When selected flights form a connection (each leg leaves from the airport the previous one landed at, within 24 hours) the picker groups them and offers to **import them as one flight with a layover**. The offer is ticked by default; untick it to keep separate bookings. A joined booking keeps each leg's airline, flight number, times and seat, the connecting airport becomes a stop on the route, and each leg shows up on its own day in the plan. Since a stop is not a destination, the layover country is not counted as visited in Atlas.
 
 AirTrail has no multi-leg flights, so a joined booking is imported **without live sync**. It keeps the blue **AirTrail** pill; its tooltip says the layover has no single AirTrail flight to sync back to. The grey **Not synced** pill means something else: that flight was removed in AirTrail. The source flights of a joined booking stay known, so the picker will not offer them again. The same happens when you add a stop to a synced flight by hand: the booking detaches from AirTrail rather than sync a route AirTrail cannot represent.
+
+### Flights booked in TREK
+
+When **Write changes back to AirTrail** is on under **Settings → Integrations**, TREK also adds each new flight you book in TREK to your AirTrail. This includes flights from the booking form, MCP, the file import and the mail import, on AirTrail 3.13 and later. If your AirTrail has the flight already (the same airports, date and flight number), TREK uses that flight and does not add a second one.
+
+- A flight from the booking form or MCP, or from a file import without a booking reference, is linked, and syncs both ways like an imported one.
+- A flight from the mail import, or from a file import with a booking reference, is added but not linked, because the import knows the booking by that reference.
+- A booking with stops is not added.
+
+If AirTrail refuses the flight, the server log says why, and TREK does not try again.
 
 ## Permissions
 

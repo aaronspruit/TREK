@@ -396,12 +396,12 @@ const settings: TranslationStrings = {
   'settings.airtrail.apiKey': 'คีย์เอพีไอ',
   'settings.airtrail.apiKeyPlaceholder': 'คีย์ API ของผู้ถือ',
   'settings.airtrail.apiKeyHint':
-    'สร้างใน AirTrail ภายใต้การตั้งค่า → ความปลอดภัย จัดเก็บแบบเข้ารหัส หากคุณสร้างคีย์ใน AirTrail 3.13 ขึ้นไป คีย์ต้องมีขอบเขต flight.read.own เพื่ออ่าน หากต้องการเขียนการเปลี่ยนแปลงกลับ คีย์ต้องมี flight.update.own, flight.passengers.manage.own, reference_data.read และ profile.read ด้วย',
+    'สร้างใน AirTrail ภายใต้การตั้งค่า → ความปลอดภัย จัดเก็บแบบเข้ารหัส หากคุณสร้างคีย์ใน AirTrail 3.13 ขึ้นไป คีย์ต้องมีขอบเขต flight.read.own เพื่ออ่าน หากต้องการเขียนการเปลี่ยนแปลงกลับ คีย์ต้องมี flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read และ profile.read ด้วย',
   'settings.airtrail.allowInsecureTls': 'อนุญาตใบรับรองที่ลงนามด้วยตนเอง',
   'settings.airtrail.allowInsecureTlsHint': 'เปิดใช้งานสำหรับอินสแตนซ์ที่เชื่อถือได้บนเครือข่ายของคุณเองเท่านั้น',
   'settings.airtrail.writeBack': 'เขียนการเปลี่ยนแปลงกลับไปที่ AirTrail',
   'settings.airtrail.writeBackHint':
-    'ปิดโดยค่าเริ่มต้น: AirTrail คือแหล่งที่มาของความจริง และ TREK จะอ่านจากข้อมูลนั้นเท่านั้น เปิดเพื่อส่งการแก้ไขที่ทำใน TREK กลับไปยัง AirTrail',
+    'ปิดโดยค่าเริ่มต้น: AirTrail คือแหล่งที่มาของความจริง และ TREK จะอ่านจากข้อมูลนั้นเท่านั้น เปิดเพื่อส่งการแก้ไขที่ทำใน TREK กลับไปยัง AirTrail และยังเพิ่มเที่ยวบินที่คุณจองใน TREK ลงใน AirTrail ด้วย',
   'settings.airtrail.connected': 'เชื่อมต่อแล้ว',
   'settings.airtrail.notConnected': 'ไม่ได้เชื่อมต่อ',
   'settings.airtrail.toast.saved': 'บันทึกการเชื่อมต่อ AirTrail แล้ว',

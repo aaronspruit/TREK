@@ -4699,7 +4699,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.result':
     'De kaart toont ‘Ingeschakeld op dit apparaat’, en de gebeurtenissen die onder Push aanstaan, komen binnen, ook als TREK gesloten is.',
   'help.guide.connect-airtrail.step.1':
-    'Zoek onder Integraties AirTrail en vul de ‘Instantie-URL’ en een API-sleutel in. De sleutel maak je in AirTrail aan onder Instellingen, Beveiliging. Als je de sleutel in AirTrail 3.13 of nieuwer aanmaakt, heeft hij de scope flight.read.own nodig om te lezen. Om wijzigingen terug te schrijven, heeft hij ook flight.update.own, flight.passengers.manage.own, reference_data.read en profile.read nodig.',
+    'Zoek onder Integraties AirTrail en vul de ‘Instantie-URL’ en een API-sleutel in. De sleutel maak je in AirTrail aan onder Instellingen, Beveiliging. Als je de sleutel in AirTrail 3.13 of nieuwer aanmaakt, heeft hij de scope flight.read.own nodig om te lezen. Om wijzigingen terug te schrijven, heeft hij ook flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read en profile.read nodig.',
   'help.guide.connect-dawarich.step.1':
     'Zoek onder Integraties Dawarich en vul het ‘Adres van de instantie’ in, plus de API-sleutel die je in Dawarich vindt onder Account, API-sleutel.',
   'help.guide.tour-connect-wanderer.step.1':
@@ -5038,7 +5038,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Push werkt per browser: herhaal dit op elke telefoon en computer waarop je meldingen wilt. ‘Uitschakelen op dit apparaat’ zet het alleen op dat apparaat uit.',
   'help.guide.connect-airtrail.step.2':
-    '‘Zelfondertekende certificaten toestaan’ is alleen bedoeld voor een vertrouwde instantie op je eigen netwerk. ‘Wijzigingen terugschrijven naar AirTrail’ staat standaard uit, dus TREK leest alleen; zet het aan om je wijzigingen terug te sturen.',
+    '‘Zelfondertekende certificaten toestaan’ is alleen bedoeld voor een vertrouwde instantie op je eigen netwerk. ‘Wijzigingen terugschrijven naar AirTrail’ staat standaard uit, dus TREK leest alleen; zet het aan om je wijzigingen terug te sturen. Het voegt ook de vluchten die je in TREK boekt toe aan AirTrail.',
   'help.guide.connect-dawarich.step.2':
     'Met ‘Automatisch op nieuwe bezoeken controleren’ controleert TREK zelf. Staat het uit, dan leest TREK Dawarich alleen als jij daarom vraagt. ‘Zelfondertekend certificaat toestaan’ is alleen bedoeld voor een instantie die je server niet vertrouwt.',
   'help.guide.tour-connect-wanderer.step.2':

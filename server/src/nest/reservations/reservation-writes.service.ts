@@ -53,7 +53,14 @@ export class ReservationWritesService {
     return restTripWriter(this.realtime, tripId, user, socketId);
   }
 
-  /** A new booking with its linked cost, and the stay a hotel booking brings. */
+  /**
+   * A new booking with its linked cost, and the stay a hotel booking brings. A
+   * new flight also goes to the AirTrail of the person who made it.
+   *
+   * @txIndependent the booking write commits in one transaction; the AirTrail
+   * send after it is network I/O against another system, so it never shares
+   * that transaction.
+   */
   async createBooking(tripId: string, data: CreateReservationData, entry: BudgetEntry, writer: TripWriter) {
     const { reservation, accommodationCreated, costEvents } = await this.reservations.createWithCost(
       tripId,
@@ -63,8 +70,20 @@ export class ReservationWritesService {
     if (accommodationCreated) writer.events.emit('accommodation:created', {});
     this.sendCost(costEvents, writer);
     writer.events.emit('reservation:created', { reservation });
+    this.addToAirtrail(reservation, tripId, writer.userId);
     await this.reservations.notifyBookingChange(tripId, writer.userId, data.title, data.type ?? '');
     return { reservation };
+  }
+
+  /**
+   * Sends a new flight booking to the AirTrail of the person who made it. The
+   * booking form, MCP, the file import and the mail import call it after the
+   * booking committed. It does not wait, because the send is network I/O
+   * against another system and logs its own failure.
+   */
+  addToAirtrail(reservation: { id: number; type?: string | null }, tripId: string | number, userId: number): void {
+    if (reservation.type !== 'flight') return;
+    void this.airtrailLink.addNewFlightToAirtrail(Number(reservation.id), Number(tripId), userId).catch(() => {});
   }
 
   /**

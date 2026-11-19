@@ -4704,7 +4704,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.result':
     "La targeta mostra «Activat en aquest dispositiu», i els esdeveniments activats a Push t'arriben encara que TREK estigui tancat.",
   'help.guide.connect-airtrail.step.1':
-    "A «Integracions», busca AirTrail i introdueix la «URL de la instància» i una clau API. La clau es crea a AirTrail, a «Settings», «Security». Si crees la clau a AirTrail 3.13 o posterior, necessita l'abast flight.read.own per llegir. Per sincronitzar els canvis cap a AirTrail, també necessita flight.update.own, flight.passengers.manage.own, reference_data.read i profile.read.",
+    "A «Integracions», busca AirTrail i introdueix la «URL de la instància» i una clau API. La clau es crea a AirTrail, a «Settings», «Security». Si crees la clau a AirTrail 3.13 o posterior, necessita l'abast flight.read.own per llegir. Per sincronitzar els canvis cap a AirTrail, també necessita flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read i profile.read.",
   'help.guide.connect-dawarich.step.1':
     "A «Integracions», busca Dawarich i introdueix l'«Adreça de la instància» i la clau API que trobaràs a Dawarich, a «Account», «API key».",
   'help.guide.tour-connect-wanderer.step.1':
@@ -5041,7 +5041,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     "Push funciona per navegador: repeteix-ho a cada telèfon i ordinador on vulguis rebre notificacions. «Desactiva en aquest dispositiu» l'atura només en aquell dispositiu.",
   'help.guide.connect-airtrail.step.2':
-    "«Permetre certificats autodirigits» només és per a una instància de confiança de la teva pròpia xarxa. «Sincronitzar els canvis cap a AirTrail» està desactivat per defecte, de manera que TREK només llegeix; activa'l per enviar-hi les teves modificacions.",
+    "«Permetre certificats autodirigits» només és per a una instància de confiança de la teva pròpia xarxa. «Sincronitzar els canvis cap a AirTrail» està desactivat per defecte, de manera que TREK només llegeix; activa'l per enviar-hi les teves modificacions. També afegeix a AirTrail els vols que reserves a TREK.",
   'help.guide.connect-dawarich.step.2':
     '«Comprova automàticament si hi ha estades noves» fa que TREK ho comprovi pel seu compte. Si està desactivat, TREK només consulta Dawarich quan tu ho demanes. «Permet un certificat autosignat» només és per a una instància en què el teu servidor no confia.',
   'help.guide.tour-connect-wanderer.step.2':

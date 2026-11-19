@@ -436,12 +436,12 @@ const settings: TranslationStrings = {
   'settings.airtrail.apiKey': 'Κλειδί API',
   'settings.airtrail.apiKeyPlaceholder': 'Κλειδί API τύπου Bearer',
   'settings.airtrail.apiKeyHint':
-    'Δημιουργείται στο AirTrail από Ρυθμίσεις → Ασφάλεια. Αποθηκεύεται κρυπτογραφημένο. Αν δημιουργήσετε το κλειδί στο AirTrail 3.13 ή νεότερο, χρειάζεται το δικαίωμα flight.read.own για ανάγνωση. Για εγγραφή αλλαγών πίσω χρειάζεται επίσης flight.update.own, flight.passengers.manage.own, reference_data.read και profile.read.',
+    'Δημιουργείται στο AirTrail από Ρυθμίσεις → Ασφάλεια. Αποθηκεύεται κρυπτογραφημένο. Αν δημιουργήσετε το κλειδί στο AirTrail 3.13 ή νεότερο, χρειάζεται το δικαίωμα flight.read.own για ανάγνωση. Για εγγραφή αλλαγών πίσω χρειάζεται επίσης flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read και profile.read.',
   'settings.airtrail.allowInsecureTls': 'Να επιτρέπονται αυτο-υπογεγραμμένα πιστοποιητικά',
   'settings.airtrail.allowInsecureTlsHint': 'Ενεργοποιήστε το μόνο για μια αξιόπιστη εγκατάσταση στο δικό σας δίκτυο.',
   'settings.airtrail.writeBack': 'Εγγραφή αλλαγών πίσω στο AirTrail',
   'settings.airtrail.writeBackHint':
-    'Απενεργοποιημένο από προεπιλογή: το AirTrail είναι η πηγή αλήθειας και το TREK μόνο διαβάζει από αυτό. Ενεργοποιήστε το για να στέλνετε πίσω στο AirTrail τις αλλαγές που κάνετε στο TREK.',
+    'Απενεργοποιημένο από προεπιλογή: το AirTrail είναι η πηγή αλήθειας και το TREK μόνο διαβάζει από αυτό. Ενεργοποιήστε το για να στέλνετε πίσω στο AirTrail τις αλλαγές που κάνετε στο TREK. Προσθέτει επίσης στο AirTrail τις πτήσεις που κλείνετε στο TREK.',
   'settings.airtrail.connected': 'Συνδέθηκε',
   'settings.airtrail.notConnected': 'Δεν συνδέθηκε',
   'settings.airtrail.toast.saved': 'Η σύνδεση με το AirTrail αποθηκεύτηκε',

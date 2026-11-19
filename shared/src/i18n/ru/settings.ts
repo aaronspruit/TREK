@@ -427,12 +427,12 @@ const settings: TranslationStrings = {
   'settings.airtrail.apiKey': 'Ключ API',
   'settings.airtrail.apiKeyPlaceholder': 'Bearer-ключ API',
   'settings.airtrail.apiKeyHint':
-    'Создаётся в AirTrail в разделе «Настройки → Безопасность». Хранится в зашифрованном виде. Если вы создаёте ключ в AirTrail 3.13 или новее, для чтения ему нужна область flight.read.own. Для записи изменений обратно также нужны flight.update.own, flight.passengers.manage.own, reference_data.read и profile.read.',
+    'Создаётся в AirTrail в разделе «Настройки → Безопасность». Хранится в зашифрованном виде. Если вы создаёте ключ в AirTrail 3.13 или новее, для чтения ему нужна область flight.read.own. Для записи изменений обратно также нужны flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read и profile.read.',
   'settings.airtrail.allowInsecureTls': 'Разрешить самоподписанные сертификаты',
   'settings.airtrail.allowInsecureTlsHint': 'Включайте только для доверенного экземпляра в вашей собственной сети.',
   'settings.airtrail.writeBack': 'Записывать изменения обратно в AirTrail',
   'settings.airtrail.writeBackHint':
-    'По умолчанию выключено: AirTrail является источником истины, а TREK только читает из него. Включите, чтобы отправлять изменения, сделанные в TREK, обратно в AirTrail.',
+    'По умолчанию выключено: AirTrail является источником истины, а TREK только читает из него. Включите, чтобы отправлять изменения, сделанные в TREK, обратно в AirTrail. Также добавляет в AirTrail рейсы, забронированные в TREK.',
   'settings.airtrail.connected': 'Подключено',
   'settings.airtrail.notConnected': 'Не подключено',
   'settings.airtrail.toast.saved': 'Подключение к AirTrail сохранено',

@@ -398,13 +398,13 @@ const settings: TranslationStrings = {
   'settings.airtrail.apiKey': 'API キー',
   'settings.airtrail.apiKeyPlaceholder': 'Bearer API キー',
   'settings.airtrail.apiKeyHint':
-    'AirTrail の「設定 → セキュリティ」で生成します。暗号化して保存されます。AirTrail 3.13 以降でキーを作成する場合、読み取りにはスコープ flight.read.own が必要です。変更を書き戻すには、flight.update.own、flight.passengers.manage.own、reference_data.read、profile.read も必要です。',
+    'AirTrail の「設定 → セキュリティ」で生成します。暗号化して保存されます。AirTrail 3.13 以降でキーを作成する場合、読み取りにはスコープ flight.read.own が必要です。変更を書き戻すには、flight.create.own、flight.update.own、flight.passengers.manage.own、reference_data.read、profile.read も必要です。',
   'settings.airtrail.allowInsecureTls': '自己署名証明書を許可する',
   'settings.airtrail.allowInsecureTlsHint':
     '自分のネットワーク内の信頼できるインスタンスの場合にのみ有効にしてください。',
   'settings.airtrail.writeBack': '変更を AirTrail に書き戻す',
   'settings.airtrail.writeBackHint':
-    '既定ではオフ: AirTrail が信頼できる情報源で、TREK は読み取りのみを行います。TREK で行った編集を AirTrail に書き戻すにはオンにします。',
+    '既定ではオフ: AirTrail が信頼できる情報源で、TREK は読み取りのみを行います。TREK で行った編集を AirTrail に書き戻すにはオンにします。TREK で予約したフライトも AirTrail に追加されます。',
   'settings.airtrail.connected': '接続済み',
   'settings.airtrail.notConnected': '未接続',
   'settings.airtrail.toast.saved': 'AirTrail の接続を保存しました',

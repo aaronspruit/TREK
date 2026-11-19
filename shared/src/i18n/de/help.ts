@@ -4744,7 +4744,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.result':
     'Auf der Karte steht „Für dieses Gerät eingeschaltet“, und die Ereignisse, die du unter „Push“ eingeschaltet hast, kommen auch an, wenn TREK geschlossen ist.',
   'help.guide.connect-airtrail.step.1':
-    'Such unter „Integrationen“ AirTrail und gib die „Instanz-URL“ und einen API-Schlüssel ein. Den Schlüssel erstellst du in AirTrail unter „Einstellungen“, „Sicherheit“. Wenn du den Schlüssel in AirTrail 3.13 oder neuer erstellst, braucht er den Scope flight.read.own zum Lesen. Zum Zurückschreiben braucht er zusätzlich flight.update.own, flight.passengers.manage.own, reference_data.read und profile.read.',
+    'Such unter „Integrationen“ AirTrail und gib die „Instanz-URL“ und einen API-Schlüssel ein. Den Schlüssel erstellst du in AirTrail unter „Einstellungen“, „Sicherheit“. Wenn du den Schlüssel in AirTrail 3.13 oder neuer erstellst, braucht er den Scope flight.read.own zum Lesen. Zum Zurückschreiben braucht er zusätzlich flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read und profile.read.',
   'help.guide.connect-dawarich.step.1':
     'Such unter „Integrationen“ Dawarich und gib die „Adresse der Instanz“ und den API-Schlüssel ein, den du in Dawarich unter „Konto“, „API-Schlüssel“ findest.',
   'help.guide.tour-connect-wanderer.step.1':
@@ -5087,7 +5087,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Push gilt pro Browser: Wiederhol das auf jedem Handy und Computer, auf dem du Benachrichtigungen bekommen willst. „Für dieses Gerät ausschalten“ beendet es nur dort.',
   'help.guide.connect-airtrail.step.2':
-    '„Selbstsignierte Zertifikate erlauben“ ist nur für eine vertrauenswürdige Instanz in deinem eigenen Netzwerk gedacht. „Änderungen zurück nach AirTrail schreiben“ ist standardmäßig aus, TREK liest also nur; schalte es ein, wenn deine Änderungen zurück an AirTrail gehen sollen.',
+    '„Selbstsignierte Zertifikate erlauben“ ist nur für eine vertrauenswürdige Instanz in deinem eigenen Netzwerk gedacht. „Änderungen zurück nach AirTrail schreiben“ ist standardmäßig aus, TREK liest also nur; schalte es ein, wenn deine Änderungen zurück an AirTrail gehen sollen. Außerdem werden in TREK gebuchte Flüge zu AirTrail hinzugefügt.',
   'help.guide.connect-dawarich.step.2':
     'Mit „Automatisch nach neuen Aufenthalten suchen“ sieht TREK von selbst nach; ist es aus, liest TREK Dawarich nur, wenn du es anstößt. „Selbstsigniertes Zertifikat zulassen“ brauchst du nur für eine Instanz, der dein Server nicht vertraut.',
   'help.guide.tour-connect-wanderer.step.2':

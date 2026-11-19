@@ -3988,7 +3988,7 @@ const help: TranslationStrings = {
   'help.guide.dashboard-widgets.step.3': '卡片下方的“恢复默认”会把整个“外观”标签页恢复为初始设置。',
   'help.guide.web-push-device.result': '卡片显示“已为此设备开启”，在“推送”下开启的事件，即使 TREK 没有打开也会送达。',
   'help.guide.connect-airtrail.step.1':
-    '在“集成”下找到 AirTrail，输入它的“实例 URL”和一个 API 密钥。密钥在 AirTrail 的“设置”、“安全”中创建。若在 AirTrail 3.13 或更高版本中创建密钥，读取需要范围 flight.read.own。若要将更改写回，还需要 flight.update.own、flight.passengers.manage.own、reference_data.read 和 profile.read。',
+    '在“集成”下找到 AirTrail，输入它的“实例 URL”和一个 API 密钥。密钥在 AirTrail 的“设置”、“安全”中创建。若在 AirTrail 3.13 或更高版本中创建密钥，读取需要范围 flight.read.own。若要将更改写回，还需要 flight.create.own、flight.update.own、flight.passengers.manage.own、reference_data.read 和 profile.read。',
   'help.guide.connect-dawarich.step.1':
     '在“集成”下找到 Dawarich，输入它的“实例地址”，以及在 Dawarich 的“账户”、“API 密钥”中获取的 API 密钥。',
   'help.guide.tour-connect-wanderer.step.1':
@@ -4253,7 +4253,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     '推送按浏览器生效：想收到通知的每部手机和每台电脑都要各做一遍。“为此设备关闭”只会停止这台设备上的推送。',
   'help.guide.connect-airtrail.step.2':
-    '“允许自签名证书”仅适用于你自己网络中可信的实例。“将更改写回 AirTrail”默认关闭，所以 TREK 只读取；打开后，你的修改会同步回 AirTrail。',
+    '“允许自签名证书”仅适用于你自己网络中可信的实例。“将更改写回 AirTrail”默认关闭，所以 TREK 只读取；打开后，你的修改会同步回 AirTrail。还会把你在 TREK 中预订的航班添加到 AirTrail。',
   'help.guide.connect-dawarich.step.2':
     '“自动检查新的停留记录”让 TREK 自动检查；关闭时，只有在你要求时才会读取 Dawarich。“允许自签名证书”仅适用于你的服务器不信任的实例。',
   'help.guide.tour-connect-wanderer.step.2': '只有实例在你自己的网络中时，才打开“允许自签名证书”。',

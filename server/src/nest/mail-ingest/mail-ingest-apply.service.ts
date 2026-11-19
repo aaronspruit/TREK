@@ -12,6 +12,7 @@ import type { WalkedMail } from '../llm-parse/mail-read.types';
 import { MapsService } from '../maps/maps.service';
 import { PlacesService, type PlaceCreateInput } from '../places/places.service';
 import { RealtimeService } from '../realtime/realtime.service';
+import { ReservationWritesService } from '../reservations/reservation-writes.service';
 import { ReservationsService, type CostEvent, type CreateReservationData } from '../reservations/reservations.service';
 import { contentHash, dateOf, type TripOption } from './mail-ingest-checks';
 import { MailIngestSettingsService } from './mail-ingest-settings.service';
@@ -64,6 +65,8 @@ export interface WrittenBooking {
   costEvents: CostEvent[];
   stayMirror: Written['stayMirror'];
   created: MailIngestCreated;
+  /** The person who forwarded the mail, whose AirTrail gets a new flight. */
+  forwarderId: number | null;
 }
 
 /**
@@ -85,6 +88,7 @@ export class MailIngestApplyService {
     private readonly maps: MapsService,
     private readonly realtime: RealtimeService,
     private readonly bookingImport: BookingImportService,
+    private readonly writes: ReservationWritesService,
     private readonly settings: MailIngestSettingsService,
     @InjectRepository(MailIngestCandidates) private readonly candidates: MailIngestCandidatesRepository,
   ) {}
@@ -148,6 +152,7 @@ export class MailIngestApplyService {
         file_ids: [],
         fingerprint: fingerprintOf(stored ?? written.reservation),
       },
+      forwarderId: prepared.travelerIds[0] ?? null,
     };
   }
 
@@ -159,6 +164,7 @@ export class MailIngestApplyService {
     if (written.accommodationCreated) this.realtime.broadcast(tripId, 'accommodation:created', {});
     await this.reservations.announceStayMirror(tripId, written.stayMirror);
     this.reservations.announceCost(tripId, written.costEvents, undefined);
+    if (written.forwarderId !== null) this.writes.addToAirtrail(written.reservation, tripId, written.forwarderId);
   }
 
   /**

@@ -470,12 +470,12 @@ const settings: TranslationStrings = {
   'settings.airtrail.apiKey': 'API açarı',
   'settings.airtrail.apiKeyPlaceholder': 'Bearer API açarı',
   'settings.airtrail.apiKeyHint':
-    'AirTrail-də Tənzimləmələr → Təhlükəsizlik bölməsindən yaradılır. Şifrələnmiş şəkildə saxlanılır. Açarı AirTrail 3.13 və ya daha yeni versiyada yaratsanız, oxumaq üçün ona flight.read.own icazəsi lazımdır. Dəyişiklikləri geri yazmaq üçün həmçinin flight.update.own, flight.passengers.manage.own, reference_data.read və profile.read lazımdır.',
+    'AirTrail-də Tənzimləmələr → Təhlükəsizlik bölməsindən yaradılır. Şifrələnmiş şəkildə saxlanılır. Açarı AirTrail 3.13 və ya daha yeni versiyada yaratsanız, oxumaq üçün ona flight.read.own icazəsi lazımdır. Dəyişiklikləri geri yazmaq üçün həmçinin flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read və profile.read lazımdır.',
   'settings.airtrail.allowInsecureTls': 'Öz-özünə imzalanmış sertifikatlara icazə ver',
   'settings.airtrail.allowInsecureTlsHint': 'Yalnız öz şəbəkənizdəki etibarlı instansiya üçün aktivləşdirin.',
   'settings.airtrail.writeBack': 'Dəyişiklikləri AirTrail-ə geri yaz',
   'settings.airtrail.writeBackHint':
-    'Standart olaraq deaktivdir: AirTrail əsas məlumat mənbəyidir və TREK ondan yalnız oxuyur. TREK-də edilən dəyişiklikləri AirTrail-ə göndərmək üçün aktivləşdirin.',
+    'Standart olaraq deaktivdir: AirTrail əsas məlumat mənbəyidir və TREK ondan yalnız oxuyur. TREK-də edilən dəyişiklikləri AirTrail-ə göndərmək üçün aktivləşdirin. Həmçinin TREK-də sifariş etdiyiniz uçuşları AirTrail-ə əlavə edir.',
   'settings.airtrail.connected': 'Qoşulub',
   'settings.airtrail.notConnected': 'Qoşulmayıb',
   'settings.airtrail.toast.saved': 'AirTrail bağlantısı yadda saxlanıldı',

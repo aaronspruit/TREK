@@ -427,12 +427,12 @@ const settings: TranslationStrings = {
   'settings.airtrail.apiKey': 'API key',
   'settings.airtrail.apiKeyPlaceholder': 'Bearer API key',
   'settings.airtrail.apiKeyHint':
-    'Generated in AirTrail under Settings → Security. Stored encrypted. If you make the key in AirTrail 3.13 or later, the key must have the scope flight.read.own to read flights. To write changes back to AirTrail, the key must also have flight.update.own, flight.passengers.manage.own, reference_data.read and profile.read.',
+    'Generated in AirTrail under Settings → Security. Stored encrypted. If you make the key in AirTrail 3.13 or later, the key must have the scope flight.read.own to read flights. To write changes back to AirTrail, the key must also have flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read and profile.read.',
   'settings.airtrail.allowInsecureTls': 'Allow self-signed certificates',
   'settings.airtrail.allowInsecureTlsHint': 'Enable only for a trusted instance on your own network.',
   'settings.airtrail.writeBack': 'Write changes back to AirTrail',
   'settings.airtrail.writeBackHint':
-    'Off by default: AirTrail is the source of truth and TREK only reads from it. Turn on to push edits made in TREK back to AirTrail.',
+    'Off by default: AirTrail is the source of truth and TREK only reads from it. Turn on to push edits made in TREK back to AirTrail, and to add the flights you book in TREK to AirTrail.',
   'settings.airtrail.connected': 'Connected',
   'settings.airtrail.notConnected': 'Not connected',
   'settings.airtrail.toast.saved': 'AirTrail connection saved',

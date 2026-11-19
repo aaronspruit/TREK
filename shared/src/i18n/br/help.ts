@@ -4656,7 +4656,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.result':
     'O cartão mostra “Ativado neste dispositivo”, e os eventos ativados em Push chegam mesmo com o TREK fechado.',
   'help.guide.connect-airtrail.step.1':
-    'Em Integrações, procure o AirTrail e informe a “URL da instância” e uma chave de API. A chave é criada no AirTrail, em Settings, Security. Se você criar a chave no AirTrail 3.13 ou posterior, ela precisa do escopo flight.read.own para leitura. Para gravar alterações de volta, também precisa de flight.update.own, flight.passengers.manage.own, reference_data.read e profile.read.',
+    'Em Integrações, procure o AirTrail e informe a “URL da instância” e uma chave de API. A chave é criada no AirTrail, em Settings, Security. Se você criar a chave no AirTrail 3.13 ou posterior, ela precisa do escopo flight.read.own para leitura. Para gravar alterações de volta, também precisa de flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read e profile.read.',
   'help.guide.connect-dawarich.step.1':
     'Em Integrações, procure o Dawarich e informe o “Endereço da instância” e a chave de API, que fica no Dawarich em Account, API key.',
   'help.guide.tour-connect-wanderer.step.1':
@@ -4990,7 +4990,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'O push funciona por navegador: repita o processo em cada celular e computador em que quer receber notificações. “Desativar neste dispositivo” desliga só naquele dispositivo.',
   'help.guide.connect-airtrail.step.2':
-    '“Permitir certificados autoassinados” é só para uma instância confiável na sua própria rede. “Gravar alterações de volta no AirTrail” vem desativado por padrão, então o TREK só lê; ative para enviar suas edições de volta.',
+    '“Permitir certificados autoassinados” é só para uma instância confiável na sua própria rede. “Gravar alterações de volta no AirTrail” vem desativado por padrão, então o TREK só lê; ative para enviar suas edições de volta. Também adiciona ao AirTrail os voos que você reserva no TREK.',
   'help.guide.connect-dawarich.step.2':
     '“Procurar novas estadias automaticamente” deixa o TREK verificar por conta própria. Desativado, o TREK só lê o Dawarich quando você pede. “Permitir certificado autoassinado” é só para uma instância em que o seu servidor não confia.',
   'help.guide.tour-connect-wanderer.step.2':

@@ -4605,7 +4605,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.result':
     'Kortet visar På för den här enheten, och händelserna du har slagit på under Push kommer fram även när TREK är stängt.',
   'help.guide.connect-airtrail.step.1':
-    'Hitta AirTrail under Integrationer och ange dess Instans URL och en API-nyckel. Nyckeln skapar du i AirTrail under Inställningar, Säkerhet. Om du skapar nyckeln i AirTrail 3.13 eller senare behöver den behörigheten flight.read.own för att läsa. För att skriva tillbaka ändringar behöver den även flight.update.own, flight.passengers.manage.own, reference_data.read och profile.read.',
+    'Hitta AirTrail under Integrationer och ange dess Instans URL och en API-nyckel. Nyckeln skapar du i AirTrail under Inställningar, Säkerhet. Om du skapar nyckeln i AirTrail 3.13 eller senare behöver den behörigheten flight.read.own för att läsa. För att skriva tillbaka ändringar behöver den även flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read och profile.read.',
   'help.guide.connect-dawarich.step.1':
     'Hitta Dawarich under Integrationer och ange dess Instansens adress och API-nyckeln från Dawarich under Konto, API-nyckel.',
   'help.guide.tour-connect-wanderer.step.1':
@@ -4932,7 +4932,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Push fungerar per webbläsare: upprepa stegen på varje telefon och dator där du vill ha meddelanden. Slå av för den här enheten stänger bara av push på den enheten.',
   'help.guide.connect-airtrail.step.2':
-    'Tillåt självsignerade certifikat är bara till för en betrodd instans i ditt eget nätverk. Skriv tillbaka ändringarna till AirTrail är av som standard, så TREK bara läser. Slå på det för att skicka tillbaka dina ändringar.',
+    'Tillåt självsignerade certifikat är bara till för en betrodd instans i ditt eget nätverk. Skriv tillbaka ändringarna till AirTrail är av som standard, så TREK bara läser. Slå på det för att skicka tillbaka dina ändringar. Den lägger också till flygen du bokar i TREK i AirTrail.',
   'help.guide.connect-dawarich.step.2':
     'Leta efter nya vistelser automatiskt låter TREK kontrollera på egen hand. När det är av läser TREK Dawarich bara när du ber om det. Tillåt självsignerat certifikat är bara till för en instans som din server inte litar på.',
   'help.guide.tour-connect-wanderer.step.2':

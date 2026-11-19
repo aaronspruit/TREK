@@ -424,12 +424,12 @@ const settings: TranslationStrings = {
   'settings.airtrail.apiKey': 'API nyckel',
   'settings.airtrail.apiKeyPlaceholder': 'API-nyckel för innehavare',
   'settings.airtrail.apiKeyHint':
-    'Skapad i AirTrail under Inställningar → Säkerhet. Lagras i krypterad form. Om du skapar nyckeln i AirTrail 3.13 eller senare behöver den behörigheten flight.read.own för att läsa. För att skriva tillbaka ändringar behöver den även flight.update.own, flight.passengers.manage.own, reference_data.read och profile.read.',
+    'Skapad i AirTrail under Inställningar → Säkerhet. Lagras i krypterad form. Om du skapar nyckeln i AirTrail 3.13 eller senare behöver den behörigheten flight.read.own för att läsa. För att skriva tillbaka ändringar behöver den även flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read och profile.read.',
   'settings.airtrail.allowInsecureTls': 'Tillåt självsignerade certifikat',
   'settings.airtrail.allowInsecureTlsHint': 'Aktivera endast för en betrodd instans i ditt eget nätverk.',
   'settings.airtrail.writeBack': 'Skriv tillbaka ändringarna till AirTrail',
   'settings.airtrail.writeBackHint':
-    'Avstängt som standard: AirTrail är den primära källan och TREK läser endast från den. Aktivera funktionen för att skicka ändringar som gjorts i TREK tillbaka till AirTrail.',
+    'Avstängt som standard: AirTrail är den primära källan och TREK läser endast från den. Aktivera funktionen för att skicka ändringar som gjorts i TREK tillbaka till AirTrail. Den lägger också till flygen du bokar i TREK i AirTrail.',
   'settings.airtrail.connected': 'Ansluten',
   'settings.airtrail.notConnected': 'Inte ansluten',
   'settings.airtrail.toast.saved': 'AirTrail anslutning sparad',

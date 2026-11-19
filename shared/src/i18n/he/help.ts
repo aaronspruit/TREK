@@ -1456,9 +1456,9 @@ const help: TranslationStrings = {
   'help.guide.connect-airtrail.title': 'חיבור ל-AirTrail שלכם',
   'help.guide.connect-airtrail.goal': 'אפשרו ל-TREK לייבא ולסנכרן את הטיסות ממופע ה-AirTrail שלכם.',
   'help.guide.connect-airtrail.step.1':
-    'תחת שילובים, מצאו את AirTrail והזינו את כתובת המופע ומפתח API. את המפתח יוצרים ב-AirTrail תחת הגדרות, אבטחה. אם יוצרים את המפתח ב-AirTrail 3.13 ואילך, הוא צריך את ההרשאה flight.read.own כדי לקרוא. כדי לכתוב שינויים בחזרה, הוא צריך גם את flight.update.own, flight.passengers.manage.own, reference_data.read ו-profile.read.',
+    'תחת שילובים, מצאו את AirTrail והזינו את כתובת המופע ומפתח API. את המפתח יוצרים ב-AirTrail תחת הגדרות, אבטחה. אם יוצרים את המפתח ב-AirTrail 3.13 ואילך, הוא צריך את ההרשאה flight.read.own כדי לקרוא. כדי לכתוב שינויים בחזרה, הוא צריך גם את flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read ו-profile.read.',
   'help.guide.connect-airtrail.step.2':
-    'אפשור תעודות בחתימה עצמית מיועד רק למופע מהימן ברשת שלכם. כתיבת שינויים בחזרה ל-AirTrail כבויה כברירת מחדל, כך ש-TREK רק קורא נתונים; הפעילו אותה כדי לשלוח בחזרה את העריכות שלכם.',
+    'אפשור תעודות בחתימה עצמית מיועד רק למופע מהימן ברשת שלכם. כתיבת שינויים בחזרה ל-AirTrail כבויה כברירת מחדל, כך ש-TREK רק קורא נתונים; הפעילו אותה כדי לשלוח בחזרה את העריכות שלכם. הוא גם מוסיף ל-AirTrail את הטיסות שאתה מזמין ב-TREK.',
   'help.guide.connect-airtrail.step.3': 'לחצו על שמירה ואז על בדיקת חיבור. יוצג מספר הטיסות שנמצאו, והתג ישתנה למחובר.',
   'help.guide.connect-airtrail.result': 'התג מציג מחובר, ובלשונית תחבורה של הטיול מופיעה האפשרות ייבוא מ-AirTrail.',
   'help.guide.connect-airtrail.tip.1': 'הכרטיס מופיע רק כל עוד מנהל המערכת מפעיל את תוסף AirTrail.',

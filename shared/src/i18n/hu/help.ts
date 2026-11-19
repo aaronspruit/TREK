@@ -4725,7 +4725,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.result':
     'A kártyán a „Bekapcsolva ezen az eszközön” felirat látszik, és a „Push” alatt bekapcsolt eseményekről akkor is kapsz értesítést, ha a TREK be van zárva.',
   'help.guide.connect-airtrail.step.1':
-    'Az „Integráció” részben keresd meg az AirTrailt, és add meg a „Példány URL-címe” mezőt és egy API-kulcsot. A kulcsot az AirTrailben hozhatod létre a Settings, Security menüpontban. Ha a kulcsot az AirTrail 3.13-as vagy újabb verziójában hozod létre, olvasáshoz a(z) flight.read.own jogosultság kell. A módosítások visszaírásához ezek is kellenek: flight.update.own, flight.passengers.manage.own, reference_data.read és profile.read.',
+    'Az „Integráció” részben keresd meg az AirTrailt, és add meg a „Példány URL-címe” mezőt és egy API-kulcsot. A kulcsot az AirTrailben hozhatod létre a Settings, Security menüpontban. Ha a kulcsot az AirTrail 3.13-as vagy újabb verziójában hozod létre, olvasáshoz a(z) flight.read.own jogosultság kell. A módosítások visszaírásához ezek is kellenek: flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read és profile.read.',
   'help.guide.connect-dawarich.step.1':
     'Az „Integráció” részben keresd meg a Dawarichot, és add meg „A példány címe” mezőt, valamint az API-kulcsot, amelyet a Dawarichban az Account, API key menüpontban találsz.',
   'help.guide.tour-connect-wanderer.step.1':
@@ -5065,7 +5065,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'A push böngészőnként működik: ismételd meg minden telefonon és számítógépen, amelyen értesítést szeretnél kapni. A „Kikapcsolás ezen az eszközön” csak azon az eszközön kapcsolja ki.',
   'help.guide.connect-airtrail.step.2':
-    'Az „Önaláírt tanúsítványok engedélyezése” csak a saját hálózatodon futó, megbízható példányhoz való. A „Módosítások visszaírása az AirTrailbe” alapból ki van kapcsolva, így a TREK csak olvas; kapcsold be, ha a szerkesztéseidet is vissza szeretnéd küldeni.',
+    'Az „Önaláírt tanúsítványok engedélyezése” csak a saját hálózatodon futó, megbízható példányhoz való. A „Módosítások visszaírása az AirTrailbe” alapból ki van kapcsolva, így a TREK csak olvas; kapcsold be, ha a szerkesztéseidet is vissza szeretnéd küldeni. A TREK-ben foglalt járatokat is hozzáadja az AirTrailhez.',
   'help.guide.connect-dawarich.step.2':
     'Az „Új tartózkodások automatikus keresése” beállítással a TREK magától ellenőrzi az újdonságokat. Kikapcsolt állapotban csak akkor olvassa a Dawarichot, ha kéred. A „Saját aláírású tanúsítvány engedélyezése” csak olyan példányhoz való, amelyben a szervered nem bízik.',
   'help.guide.tour-connect-wanderer.step.2':

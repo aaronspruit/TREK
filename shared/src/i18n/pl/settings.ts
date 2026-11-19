@@ -425,12 +425,12 @@ const settings: TranslationStrings = {
   'settings.airtrail.apiKey': 'Klucz API',
   'settings.airtrail.apiKeyPlaceholder': 'Klucz API typu Bearer',
   'settings.airtrail.apiKeyHint':
-    'Wygenerowany w AirTrail w sekcji Ustawienia → Bezpieczeństwo. Przechowywany w postaci zaszyfrowanej. Jeśli tworzysz klucz w AirTrail 3.13 lub nowszym, do odczytu potrzebuje on zakresu flight.read.own. Do zapisywania zmian z powrotem potrzebuje też flight.update.own, flight.passengers.manage.own, reference_data.read i profile.read.',
+    'Wygenerowany w AirTrail w sekcji Ustawienia → Bezpieczeństwo. Przechowywany w postaci zaszyfrowanej. Jeśli tworzysz klucz w AirTrail 3.13 lub nowszym, do odczytu potrzebuje on zakresu flight.read.own. Do zapisywania zmian z powrotem potrzebuje też flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read i profile.read.',
   'settings.airtrail.allowInsecureTls': 'Zezwalaj na certyfikaty samopodpisane',
   'settings.airtrail.allowInsecureTlsHint': 'Włącz tylko dla zaufanej instancji we własnej sieci.',
   'settings.airtrail.writeBack': 'Zapisuj zmiany z powrotem w AirTrail',
   'settings.airtrail.writeBackHint':
-    'Domyślnie wyłączone: AirTrail jest źródłem prawdy, a TREK tylko z niego odczytuje. Włącz, aby wysyłać zmiany wprowadzone w TREK z powrotem do AirTrail.',
+    'Domyślnie wyłączone: AirTrail jest źródłem prawdy, a TREK tylko z niego odczytuje. Włącz, aby wysyłać zmiany wprowadzone w TREK z powrotem do AirTrail. Dodaje też do AirTrail loty zarezerwowane w TREK.',
   'settings.airtrail.connected': 'Połączono',
   'settings.airtrail.notConnected': 'Nie połączono',
   'settings.airtrail.toast.saved': 'Zapisano połączenie z AirTrail',

@@ -19,7 +19,8 @@ const guardsStub = { hasTripPermission: vi.fn(async () => true) };
 
 /** The service under test with the named collaborators given, every other one left out. */
 function buildService(deps: Partial<Record<(typeof DEP_ORDER)[number], unknown>>): BookingImportService {
-  const args = DEP_ORDER.map((name) => deps[name]);
+  const given: Partial<Record<(typeof DEP_ORDER)[number], unknown>> = { writes, ...deps };
+  const args = DEP_ORDER.map((name) => given[name]);
   return new BookingImportService(...(args as ConstructorParameters<typeof BookingImportService>));
 }
 
@@ -38,6 +39,7 @@ const DEP_ORDER = [
   'places',
   'uow',
   'origins',
+  'writes',
 ] as const;
 // confirm() checks the trip and the person's right itself: the trip is reachable, the role a plain user's.
 const tripAccess = vi.fn(async (): Promise<{ id: number; user_id: number } | undefined> => ({ id: 5, user_id: 1 }));
@@ -46,6 +48,8 @@ const findIdByExternal = vi.fn(async (): Promise<number | undefined> => undefine
 const reservationsRepoStub = { findIdByExternal };
 // The origin bookkeeping of the venues a confirm creates; its own suite is place-origins.service.test.ts.
 const origins = { recordImported: vi.fn(async () => undefined) };
+// The send to AirTrail after the commit; its rules are tested in airtrailCreate.test.ts.
+const writes = { addToAirtrail: vi.fn() };
 // Runs the callback in place; the tests that care about the boundary wrap it to record it.
 const uowStub = { transactional: <T>(fn: () => Promise<T>) => fn() };
 
@@ -606,6 +610,20 @@ describe('BookingImportService.confirm reports every item it did not create', ()
       }),
       undefined,
     );
+  });
+
+  it('BOOKING-IMPORT-AIRTRAIL-001: each booking it created goes to the AirTrail of the importer, after the commit', async () => {
+    writes.addToAirtrail.mockClear();
+    const { svc } = makeReport(async () => ({
+      reservation: { id: 1, type: 'flight' },
+      accommodationCreated: false,
+      costEvents: [],
+      stayMirror: {},
+    }));
+
+    await svc.confirm('5', 1, [flight as never], undefined);
+
+    expect(writes.addToAirtrail).toHaveBeenCalledExactlyOnceWith({ id: 1, type: 'flight' }, '5', 1);
   });
 
   it('BOOKING-IMPORT-REPORT-002: the origin an item names itself is ignored, and an item without a reference has none', async () => {

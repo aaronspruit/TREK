@@ -4638,7 +4638,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.result':
     'Karta pokazuje „Włączone na tym urządzeniu”, a zdarzenia włączone w kolumnie „Push” docierają do ciebie nawet wtedy, gdy TREK jest zamknięty.',
   'help.guide.connect-airtrail.step.1':
-    'W „Integracjach” znajdź AirTrail i wpisz „Adres URL instancji” oraz klucz API. Klucz utworzysz w AirTrail w „Settings”, „Security”. Jeśli tworzysz klucz w AirTrail 3.13 lub nowszym, do odczytu potrzebuje on zakresu flight.read.own. Do zapisywania zmian z powrotem potrzebuje też flight.update.own, flight.passengers.manage.own, reference_data.read i profile.read.',
+    'W „Integracjach” znajdź AirTrail i wpisz „Adres URL instancji” oraz klucz API. Klucz utworzysz w AirTrail w „Settings”, „Security”. Jeśli tworzysz klucz w AirTrail 3.13 lub nowszym, do odczytu potrzebuje on zakresu flight.read.own. Do zapisywania zmian z powrotem potrzebuje też flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read i profile.read.',
   'help.guide.connect-dawarich.step.1':
     'W „Integracjach” znajdź Dawarich i wpisz „Adres instancji” oraz klucz API z Dawarich (w „Account”, „API key”).',
   'help.guide.tour-connect-wanderer.step.1':
@@ -4969,7 +4969,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Push działa osobno w każdej przeglądarce: powtórz to na każdym telefonie i komputerze, na którym chcesz dostawać powiadomienia. „Wyłącz na tym urządzeniu” wyłącza je tylko na tym urządzeniu.',
   'help.guide.connect-airtrail.step.2':
-    '„Zezwalaj na certyfikaty samopodpisane” włączaj tylko dla zaufanej instancji we własnej sieci. „Zapisuj zmiany z powrotem w AirTrail” jest domyślnie wyłączone, więc TREK tylko odczytuje dane; włącz tę opcję, żeby wysyłać swoje zmiany z powrotem.',
+    '„Zezwalaj na certyfikaty samopodpisane” włączaj tylko dla zaufanej instancji we własnej sieci. „Zapisuj zmiany z powrotem w AirTrail” jest domyślnie wyłączone, więc TREK tylko odczytuje dane; włącz tę opcję, żeby wysyłać swoje zmiany z powrotem. Dodaje też do AirTrail loty zarezerwowane w TREK.',
   'help.guide.connect-dawarich.step.2':
     '„Sprawdzaj nowe pobyty automatycznie” pozwala TREK samodzielnie sprawdzać nowe dane. Gdy ta opcja jest wyłączona, TREK odczytuje Dawarich tylko na twoje żądanie. „Zezwalaj na certyfikat z własnym podpisem” jest przeznaczone tylko dla instancji, której twój serwer nie ufa.',
   'help.guide.tour-connect-wanderer.step.2':

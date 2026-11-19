@@ -426,12 +426,12 @@ const settings: TranslationStrings = {
   'settings.airtrail.apiKey': 'API-sleutel',
   'settings.airtrail.apiKeyPlaceholder': 'Bearer API-sleutel',
   'settings.airtrail.apiKeyHint':
-    'Aangemaakt in AirTrail onder Instellingen → Beveiliging. Versleuteld opgeslagen. Als je de sleutel in AirTrail 3.13 of nieuwer aanmaakt, heeft hij de scope flight.read.own nodig om te lezen. Om wijzigingen terug te schrijven, heeft hij ook flight.update.own, flight.passengers.manage.own, reference_data.read en profile.read nodig.',
+    'Aangemaakt in AirTrail onder Instellingen → Beveiliging. Versleuteld opgeslagen. Als je de sleutel in AirTrail 3.13 of nieuwer aanmaakt, heeft hij de scope flight.read.own nodig om te lezen. Om wijzigingen terug te schrijven, heeft hij ook flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read en profile.read nodig.',
   'settings.airtrail.allowInsecureTls': 'Zelfondertekende certificaten toestaan',
   'settings.airtrail.allowInsecureTlsHint': 'Schakel dit alleen in voor een vertrouwde instantie op je eigen netwerk.',
   'settings.airtrail.writeBack': 'Wijzigingen terugschrijven naar AirTrail',
   'settings.airtrail.writeBackHint':
-    'Standaard uit: AirTrail is de bron van waarheid en TREK leest er alleen uit. Schakel in om in TREK gemaakte wijzigingen terug te sturen naar AirTrail.',
+    'Standaard uit: AirTrail is de bron van waarheid en TREK leest er alleen uit. Schakel in om in TREK gemaakte wijzigingen terug te sturen naar AirTrail. Het voegt ook de vluchten die je in TREK boekt toe aan AirTrail.',
   'settings.airtrail.connected': 'Verbonden',
   'settings.airtrail.notConnected': 'Niet verbonden',
   'settings.airtrail.toast.saved': 'AirTrail-verbinding opgeslagen',

@@ -4627,7 +4627,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.result':
     'Kartta Bu cihaz için açık yazar. Anlık bildirim altında açtığınız olaylar TREK kapalıyken bile size ulaşır.',
   'help.guide.connect-airtrail.step.1':
-    "Entegrasyonlar altında AirTrail'i bulun ve Örnek URL'sini ile bir API anahtarını girin. Anahtarı AirTrail'de Ayarlar, Güvenlik bölümünden oluşturursunuz. Anahtarı AirTrail 3.13 veya sonraki bir sürümde oluşturursanız, okumak için flight.read.own kapsamı gerekir. Değişiklikleri geri yazmak için ayrıca flight.update.own, flight.passengers.manage.own, reference_data.read ve profile.read gerekir.",
+    "Entegrasyonlar altında AirTrail'i bulun ve Örnek URL'sini ile bir API anahtarını girin. Anahtarı AirTrail'de Ayarlar, Güvenlik bölümünden oluşturursunuz. Anahtarı AirTrail 3.13 veya sonraki bir sürümde oluşturursanız, okumak için flight.read.own kapsamı gerekir. Değişiklikleri geri yazmak için ayrıca flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read ve profile.read gerekir.",
   'help.guide.connect-dawarich.step.1':
     "Entegrasyonlar altında Dawarich'i bulun ve Sunucu adresi ile Dawarich'te Hesap, API anahtarı bölümündeki API anahtarını girin.",
   'help.guide.tour-connect-wanderer.step.1':
@@ -4963,7 +4963,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Anlık bildirim tarayıcı başına çalışır: bildirim almak istediğiniz her telefonda ve bilgisayarda bunu yeniden yapın. Bu cihaz için kapat yalnızca o cihazdaki bildirimleri durdurur.',
   'help.guide.connect-airtrail.step.2':
-    "Kendinden imzalı sertifikalara izin ver yalnızca kendi ağınızdaki güvenilir bir sunucu içindir. Değişiklikleri AirTrail’e geri yaz varsayılan olarak kapalıdır, yani TREK yalnızca okur. Düzenlemelerinizi AirTrail'e geri göndermek için açın.",
+    "Kendinden imzalı sertifikalara izin ver yalnızca kendi ağınızdaki güvenilir bir sunucu içindir. Değişiklikleri AirTrail’e geri yaz varsayılan olarak kapalıdır, yani TREK yalnızca okur. Düzenlemelerinizi AirTrail'e geri göndermek için açın. Ayrıca TREK’te ayırttığınız uçuşları AirTrail’e ekler.",
   'help.guide.connect-dawarich.step.2':
     "Yeni konaklamaları otomatik olarak denetle, TREK'in kendiliğinden bakmasını sağlar. Kapalıyken TREK Dawarich'i yalnızca siz istediğinizde okur. Kendinden imzalı sertifikaya izin ver yalnızca sunucunuzun güvenmediği bir sunucu içindir.",
   'help.guide.tour-connect-wanderer.step.2':

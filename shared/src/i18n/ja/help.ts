@@ -4500,7 +4500,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.result':
     'カードに「このデバイスでオン」と表示され、「プッシュ」でオンにしたイベントがTREKを閉じていても届きます。',
   'help.guide.connect-airtrail.step.1':
-    '「連携」でAirTrailを探し、「インスタンス URL」とAPIキーを入力します。キーはAirTrailの「設定」の「セキュリティ」で作成します。AirTrail 3.13 以降でキーを作成する場合、読み取りにはスコープ flight.read.own が必要です。変更を書き戻すには、flight.update.own、flight.passengers.manage.own、reference_data.read、profile.read も必要です。',
+    '「連携」でAirTrailを探し、「インスタンス URL」とAPIキーを入力します。キーはAirTrailの「設定」の「セキュリティ」で作成します。AirTrail 3.13 以降でキーを作成する場合、読み取りにはスコープ flight.read.own が必要です。変更を書き戻すには、flight.create.own、flight.update.own、flight.passengers.manage.own、reference_data.read、profile.read も必要です。',
   'help.guide.connect-dawarich.step.1':
     '「連携」でDawarichを探し、「インスタンスのアドレス」と、Dawarichの「アカウント」の「APIキー」にあるAPIキーを入力します。',
   'help.guide.tour-connect-wanderer.step.1':
@@ -4821,7 +4821,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'プッシュはブラウザーごとに設定します。通知を受け取りたいスマートフォンとパソコンで、それぞれ設定してください。「このデバイスでオフにする」は、その端末でだけ通知を止めます。',
   'help.guide.connect-airtrail.step.2':
-    '「自己署名証明書を許可する」は、自分のネットワーク内にある信頼できるインスタンスにだけ使います。「変更を AirTrail に書き戻す」は初期設定でオフなので、TREKは読み取りだけを行います。編集内容をAirTrailに反映するにはオンにします。',
+    '「自己署名証明書を許可する」は、自分のネットワーク内にある信頼できるインスタンスにだけ使います。「変更を AirTrail に書き戻す」は初期設定でオフなので、TREKは読み取りだけを行います。編集内容をAirTrailに反映するにはオンにします。TREK で予約したフライトも AirTrail に追加されます。',
   'help.guide.connect-dawarich.step.2':
     '「新しい滞在を自動で確認」をオンにすると、TREKが自動で確認します。オフの場合、TREKがDawarichを読み込むのは操作したときだけです。「自己署名証明書を許可」は、サーバーが信頼していないインスタンスにだけ使います。',
   'help.guide.tour-connect-wanderer.step.2':

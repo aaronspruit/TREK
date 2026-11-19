@@ -630,11 +630,32 @@ describe('AirtrailClient writes a flight through v1', () => {
     expect(post.body).toMatchObject({ fromId: 11, toId: 22, passengers: [{ userId: 'u-self' }] });
   });
 
-  it('refuses an airline code that only an IATA code matches, as the legacy save did', async () => {
+  it('makes a new flight without an airline or aircraft that AirTrail does not know', async () => {
+    v1Instance();
+    on('GET', '/api/v1/aircraft', () => json({ data: [], page: { nextCursor: null } }));
+    on('POST', '/api/v1/flights', () => json({ data: { id: 77 } }, 201));
+
+    const out = await new AirtrailClient().saveFlight(creds, {
+      from: 'LAX',
+      to: 'MEL',
+      departure: '2026-10-04',
+      airline: 'QF',
+      aircraft: 'B739',
+      seats: [],
+      passengers: [{ userId: 'u-self', guestName: null, seat: null, seatNumber: null, seatClass: null }],
+    });
+
+    expect(out).toEqual({ id: 77 });
+    const post = present(calls.find((c) => c.method === 'POST'));
+    expect(post.body).toMatchObject({ airlineId: null, aircraftId: null });
+  });
+
+  it('refuses, on an update, an airline code that only an IATA code matches, as the legacy save did', async () => {
     v1Instance();
 
     const err = await new AirtrailClient()
       .saveFlight(creds, {
+        id: 41,
         from: 'LAX',
         to: 'MEL',
         departure: '2026-10-04',

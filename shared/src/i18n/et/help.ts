@@ -4577,7 +4577,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.result':
     'Kaardil on kirjas „Selles seadmes sisse lülitatud“ ja jaotises „Tõuketeavitus“ sisse lülitatud sündmused jõuavad sinuni ka siis, kui TREK on suletud.',
   'help.guide.connect-airtrail.step.1':
-    'Leia jaotisest „Integratsioonid“ AirTrail ja sisesta selle „Serveri URL“ ja API-võti. Võtme lood AirTrailis jaotises „Settings“, „Security“. Kui lood võtme AirTraili versioonis 3.13 või uuemas, vajab see lugemiseks õigust flight.read.own. Muudatuste tagasi kirjutamiseks vajab see ka õigusi flight.update.own, flight.passengers.manage.own, reference_data.read ja profile.read.',
+    'Leia jaotisest „Integratsioonid“ AirTrail ja sisesta selle „Serveri URL“ ja API-võti. Võtme lood AirTrailis jaotises „Settings“, „Security“. Kui lood võtme AirTraili versioonis 3.13 või uuemas, vajab see lugemiseks õigust flight.read.own. Muudatuste tagasi kirjutamiseks vajab see ka õigusi flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read ja profile.read.',
   'help.guide.connect-dawarich.step.1':
     'Leia jaotisest „Integratsioonid“ Dawarich ja sisesta selle „Serveri aadress“ ning API-võti, mille leiad Dawarichis jaotisest „Account“, „API key“.',
   'help.guide.tour-connect-wanderer.step.1':
@@ -4902,7 +4902,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'Tõuketeavitused töötavad brauseri kaupa: korda seda igas telefonis ja arvutis, kus tahad teavitusi saada. „Lülita selles seadmes välja“ peatab need ainult selles seadmes.',
   'help.guide.connect-airtrail.step.2':
-    '„Luba iseallkirjastatud sertifikaadid“ on mõeldud ainult usaldusväärsele serverile sinu enda võrgus. „Kirjuta muudatused AirTraili tagasi“ on vaikimisi väljas, nii et TREK ainult loeb; lülita see sisse, et saata oma muudatused tagasi.',
+    '„Luba iseallkirjastatud sertifikaadid“ on mõeldud ainult usaldusväärsele serverile sinu enda võrgus. „Kirjuta muudatused AirTraili tagasi“ on vaikimisi väljas, nii et TREK ainult loeb; lülita see sisse, et saata oma muudatused tagasi. See lisab AirTraili ka TREKis broneeritud lennud.',
   'help.guide.connect-dawarich.step.2':
     '„Kontrolli uusi peatumisi automaatselt“ laseb TREKil ise kontrollida. Kui see on väljas, loeb TREK Dawarichi ainult siis, kui seda palud. „Luba iseallkirjastatud sertifikaat“ on mõeldud ainult serverile, mida sinu server ei usalda.',
   'help.guide.tour-connect-wanderer.step.2':

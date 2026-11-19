@@ -4295,7 +4295,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.result':
     '카드에 ‘이 기기에서 켜짐’이 보이고, ‘푸시’에서 켠 이벤트는 TREK를 닫아 둬도 알림이 와요.',
   'help.guide.connect-airtrail.step.1':
-    '‘통합’에서 AirTrail을 찾아 ‘인스턴스 URL’과 API 키를 입력하세요. 키는 AirTrail의 ‘Settings’, ‘Security’에서 만들어요. AirTrail 3.13 이상에서 키를 만드는 경우, 읽기에는 flight.read.own 범위가 필요합니다. 변경 사항을 다시 기록하려면 flight.update.own, flight.passengers.manage.own, reference_data.read, profile.read 범위도 필요합니다.',
+    '‘통합’에서 AirTrail을 찾아 ‘인스턴스 URL’과 API 키를 입력하세요. 키는 AirTrail의 ‘Settings’, ‘Security’에서 만들어요. AirTrail 3.13 이상에서 키를 만드는 경우, 읽기에는 flight.read.own 범위가 필요합니다. 변경 사항을 다시 기록하려면 flight.create.own, flight.update.own, flight.passengers.manage.own, reference_data.read, profile.read 범위도 필요합니다.',
   'help.guide.connect-dawarich.step.1':
     '‘통합’에서 Dawarich를 찾아 ‘인스턴스 주소’와 API 키를 입력하세요. API 키는 Dawarich의 ‘Account’, ‘API key’에 있어요.',
   'help.guide.tour-connect-wanderer.step.1':
@@ -4594,7 +4594,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     '푸시는 브라우저마다 따로 동작해요. 알림을 받을 휴대폰과 컴퓨터마다 따로 켜세요. ‘이 기기에서 끄기’는 그 기기에서만 꺼요.',
   'help.guide.connect-airtrail.step.2':
-    '‘자체 서명 인증서 허용’은 내 네트워크에 있는 믿을 수 있는 인스턴스에만 쓰세요. ‘변경 사항을 AirTrail에 다시 기록’은 기본으로 꺼져 있어서 TREK는 읽기만 해요. 켜면 내가 편집한 내용을 AirTrail로 보내요.',
+    '‘자체 서명 인증서 허용’은 내 네트워크에 있는 믿을 수 있는 인스턴스에만 쓰세요. ‘변경 사항을 AirTrail에 다시 기록’은 기본으로 꺼져 있어서 TREK는 읽기만 해요. 켜면 내가 편집한 내용을 AirTrail로 보내요. TREK에서 예약한 항공편도 AirTrail에 추가합니다.',
   'help.guide.connect-dawarich.step.2':
     '‘새 방문 기록을 자동으로 확인’을 켜면 TREK가 알아서 확인해요. 끄면 내가 요청할 때만 Dawarich를 읽어요. ‘자체 서명 인증서 허용’은 서버가 신뢰하지 않는 인스턴스에만 쓰세요.',
   'help.guide.tour-connect-wanderer.step.2': '‘자체 서명 인증서 허용’은 내 네트워크에 있는 인스턴스일 때만 켜세요.',

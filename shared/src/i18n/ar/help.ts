@@ -4333,7 +4333,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.result':
     'تعرض البطاقة «مُفعّل على هذا الجهاز»، وتصلك الأحداث المفعّلة تحت «إشعارات فورية» حتى عندما يكون TREK مغلقًا.',
   'help.guide.connect-airtrail.step.1':
-    'تحت «التكاملات»، ابحث عن AirTrail وأدخل «رابط النسخة» و«مفتاح API». تنشئ المفتاح في AirTrail من «الإعدادات»، ثم «الأمان». إذا أنشأت المفتاح في AirTrail 3.13 أو أحدث، فإنه يحتاج إلى النطاق flight.read.own للقراءة. ولكتابة التغييرات إلى AirTrail يحتاج أيضًا إلى flight.update.own و flight.passengers.manage.own و reference_data.read و profile.read.',
+    'تحت «التكاملات»، ابحث عن AirTrail وأدخل «رابط النسخة» و«مفتاح API». تنشئ المفتاح في AirTrail من «الإعدادات»، ثم «الأمان». إذا أنشأت المفتاح في AirTrail 3.13 أو أحدث، فإنه يحتاج إلى النطاق flight.read.own للقراءة. ولكتابة التغييرات إلى AirTrail يحتاج أيضًا إلى flight.create.own و flight.update.own و flight.passengers.manage.own و reference_data.read و profile.read.',
   'help.guide.connect-dawarich.step.1':
     'تحت «التكاملات»، ابحث عن Dawarich وأدخل «عنوان الخادم» و«مفتاح API» الذي تجده في Dawarich تحت «الحساب»، ثم «مفتاح API».',
   'help.guide.tour-connect-wanderer.step.1':
@@ -4630,7 +4630,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     'تعمل الإشعارات الفورية لكل متصفح على حدة: كرر الخطوات على كل هاتف وحاسوب تريد أن تصله الإشعارات. و«إيقاف على هذا الجهاز» يوقفها على ذلك الجهاز فقط.',
   'help.guide.connect-airtrail.step.2':
-    '«السماح بالشهادات الموقّعة ذاتيًا» مخصص فقط لنسخة موثوقة على شبكتك الخاصة. و«كتابة التغييرات إلى AirTrail» معطّل افتراضيًا، فلا يفعل TREK سوى القراءة؛ فعّله لإرسال تعديلاتك إلى AirTrail.',
+    '«السماح بالشهادات الموقّعة ذاتيًا» مخصص فقط لنسخة موثوقة على شبكتك الخاصة. و«كتابة التغييرات إلى AirTrail» معطّل افتراضيًا، فلا يفعل TREK سوى القراءة؛ فعّله لإرسال تعديلاتك إلى AirTrail. كما يضيف الرحلات الجوية التي تحجزها في TREK إلى AirTrail.',
   'help.guide.connect-dawarich.step.2':
     '«التحقق من الإقامات الجديدة تلقائياً» يجعل TREK يتحقق من تلقاء نفسه. وعند إيقافه، لا يقرأ TREK من Dawarich إلا عندما تطلب. و«السماح بشهادة موقّعة ذاتياً» مخصص فقط لنسخة لا يثق بها خادمك.',
   'help.guide.tour-connect-wanderer.step.2': 'لا تفعّل «السماح بشهادة موقّعة ذاتيًا» إلا لنسخة على شبكتك الخاصة.',

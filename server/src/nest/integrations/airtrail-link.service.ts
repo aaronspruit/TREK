@@ -12,7 +12,7 @@ import { logError } from '../audit/audit-log.logger';
 import { readAppSetting } from '../common/app-settings.registry';
 import { RealtimeService } from '../realtime/realtime.service';
 import { ReservationsReadService } from '../reservations/reservations-read.service';
-import { buildSavePayload } from './airtrail-sync.helpers';
+import { buildCreatePayload, buildSavePayload, findMatchingFlight } from './airtrail-sync.helpers';
 import { AirtrailAuthError, type AirtrailCreds, type AirtrailFlightRaw } from './airtrail.client';
 import { AirtrailClient } from './airtrail.client';
 import { canonicalHash } from './airtrail.mapper';
@@ -33,6 +33,9 @@ import { Injectable } from '@nestjs/common';
  */
 @Injectable()
 export class AirtrailLinkService {
+  /** The last send of a new flight for each person, so that the next one waits for it. */
+  private readonly sending = new Map<number, Promise<void>>();
+
   constructor(
     @InjectRepository(Reservations) private readonly reservationsRepo: ReservationsRepository,
     @InjectRepository(ReservationEndpoints) private readonly endpointsRepo: ReservationEndpointsRepository,
@@ -142,6 +145,66 @@ export class AirtrailLinkService {
       }
     } catch (err) {
       logError(`AirTrail push failed for reservation ${row.id}: ${err instanceof Error ? err.message : err}`);
+    }
+  }
+
+  /**
+   * Adds a new plain flight booking to the AirTrail of `userId`, the person who
+   * made it, when that person turned on the write-back and the instance speaks
+   * v1. When AirTrail has the flight already (the same airports, date and flight
+   * number), TREK uses that flight and does not make a second one.
+   *
+   * A booking with no origin (made by hand, through MCP, or by a file import
+   * without a booking reference) links to the flight with live sync, as an
+   * imported AirTrail flight does. A booking that the mail import or the file
+   * import marked with its origin is sent but not linked: it keeps that origin,
+   * because the import finds a second copy of the same booking by it.
+   *
+   * A failure goes to the log and is not tried again. The booking stays as it is.
+   */
+  async addNewFlightToAirtrail(reservationId: number, tripId: number, userId: number): Promise<void> {
+    // The sends of one person run one after the other. Each one reads the person's
+    // flights first, so a second booking of the same flight finds the first one.
+    const before = this.sending.get(userId) ?? Promise.resolve();
+    const done = before.then(() => this.sendNewFlight(reservationId, tripId, userId));
+    this.sending.set(userId, done);
+    try {
+      await done;
+    } finally {
+      if (this.sending.get(userId) === done) this.sending.delete(userId);
+    }
+  }
+
+  private async sendNewFlight(reservationId: number, tripId: number, userId: number): Promise<void> {
+    try {
+      if (!(await this.syncGloballyEnabled())) return;
+      if (!(await this.airtrail.isAirtrailWriteEnabled(userId))) return;
+      const creds = await this.airtrail.getAirtrailCredentials(userId);
+      if (!creds) return;
+      const reservation = await this.reads.getReservationWithJoins(reservationId, tripId);
+      if (!reservation || reservation.type !== 'flight' || reservation.external_source === 'airtrail') return;
+      const payload = buildCreatePayload(reservation);
+      if (!payload || !(await this.client.speaksV1(creds))) return;
+
+      const match = findMatchingFlight(await this.client.listFlights(creds), payload);
+      const id = match?.id ?? (await this.client.saveFlight(creds, payload)).id;
+      if (!id || reservation.external_source) return;
+      // One flight links to one booking in a trip. Another booking of the trip has this one.
+      const linked = await this.reservationsRepo.listAirtrailLinkedForTrip(tripId);
+      if (linked.some((r) => r.external_id === String(id))) return;
+      const flight = match ?? (await this.client.getFlight(creds, id));
+      if (!flight) return;
+      const hash = canonicalHash(flight);
+      await this.reservationsRepo.linkAirtrailSingleFlight(
+        reservationId,
+        String(id),
+        userId,
+        hash,
+        new Date().toISOString(),
+      );
+      await this.broadcastUpdated(tripId, reservationId);
+    } catch (err) {
+      logError(`AirTrail add failed for reservation ${reservationId}: ${err instanceof Error ? err.message : err}`);
     }
   }
 }

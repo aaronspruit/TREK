@@ -4025,7 +4025,7 @@ const help: TranslationStrings = {
   'help.guide.dashboard-widgets.step.3': '卡片下方的「恢復預設」會讓整個「外觀」分頁恢復為出廠狀態。',
   'help.guide.web-push-device.result': '卡片會顯示「已為此裝置開啟」，在「推播」下開啟的事件即使 TREK 已關閉也會送達。',
   'help.guide.connect-airtrail.step.1':
-    '在「整合」下找到 AirTrail，輸入它的「執行個體網址」和 API 金鑰。金鑰需要在 AirTrail 的「設定」、「安全性」中建立。若在 AirTrail 3.13 或更新版本中建立金鑰，讀取需要範圍 flight.read.own。若要將變更寫回，還需要 flight.update.own、flight.passengers.manage.own、reference_data.read 和 profile.read。',
+    '在「整合」下找到 AirTrail，輸入它的「執行個體網址」和 API 金鑰。金鑰需要在 AirTrail 的「設定」、「安全性」中建立。若在 AirTrail 3.13 或更新版本中建立金鑰，讀取需要範圍 flight.read.own。若要將變更寫回，還需要 flight.create.own、flight.update.own、flight.passengers.manage.own、reference_data.read 和 profile.read。',
   'help.guide.connect-dawarich.step.1':
     '在「整合」下找到 Dawarich，輸入它的「執行個體位址」，以及 Dawarich 中「帳戶」、「API 金鑰」裡的 API 金鑰。',
   'help.guide.tour-connect-wanderer.step.1':
@@ -4289,7 +4289,7 @@ const help: TranslationStrings = {
   'help.guide.web-push-device.tip.1':
     '推播是依瀏覽器運作的：想讓哪支手機或電腦收到，就在上面重複一次。「為此裝置關閉」只會在該裝置上停止。',
   'help.guide.connect-airtrail.step.2':
-    '「允許自簽憑證」只適用於你自己網路中受信任的執行個體。「將變更寫回 AirTrail」預設為關閉，所以 TREK 只讀取；開啟後才會把你的編輯傳回去。',
+    '「允許自簽憑證」只適用於你自己網路中受信任的執行個體。「將變更寫回 AirTrail」預設為關閉，所以 TREK 只讀取；開啟後才會把你的編輯傳回去。也會把你在 TREK 中預訂的航班新增到 AirTrail。',
   'help.guide.connect-dawarich.step.2':
     '「自動檢查新的停留點」讓 TREK 自行查看；關閉時，只有你要求時它才會讀取 Dawarich。「允許自簽憑證」只適用於你的伺服器不信任的執行個體。',
   'help.guide.tour-connect-wanderer.step.2': '只有在你自己網路中的執行個體，才需要開啟「允許自我簽署憑證」。',

@@ -13,6 +13,7 @@ import { importExternalId } from '../../../../src/nest/booking-import/booking-or
 import { DemoService } from '../../../../src/nest/common/demo.service';
 import { DomainError } from '../../../../src/nest/common/domain-error';
 import { FilesService } from '../../../../src/nest/files/files.service';
+import { AirtrailLinkService } from '../../../../src/nest/integrations/airtrail-link.service';
 import { MailReadService } from '../../../../src/nest/llm-parse/mail-read.service';
 import type { MailReading as AiReading } from '../../../../src/nest/llm-parse/mail-read.types';
 import { walkMail } from '../../../../src/nest/llm-parse/mime-walker';
@@ -90,6 +91,9 @@ const notifications = {
   registerResponseAction: vi.fn(),
 };
 
+// The send of a new flight to AirTrail; its rules are tested in airtrailCreate.test.ts.
+const airtrailLink = { addNewFlightToAirtrail: vi.fn(async () => undefined) };
+
 const db = createSnapshotTestDb();
 let t: TestModule;
 const orm = () => t.get(MikroORM);
@@ -104,6 +108,7 @@ beforeAll(async () => {
       { provide: FilesService, useValue: files },
       { provide: MapsService, useValue: { geocodeQuery: vi.fn(async () => null) } },
       { provide: NotificationsService, useValue: notifications },
+      { provide: AirtrailLinkService, useValue: airtrailLink },
     ],
   });
 });
@@ -224,6 +229,7 @@ describe('a booking that passes every check', () => {
       ['mail_booking_added', 'trip'],
     ]);
     expect(t.realtime.broadcastMock).toHaveBeenCalledWith(trip.id, 'reservation:created', expect.anything());
+    expect(airtrailLink.addNewFlightToAirtrail).toHaveBeenCalledExactlyOnceWith(booking?.id, trip.id, user.id);
   });
 
   it('is undone by its forwarder: the booking and its cost go, the same mail again waits in the inbox', async () => {
